@@ -1,0 +1,56 @@
+# Build results
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# VS Code settings (if used)
+.vscode/
+
+# Rider settings (if used)
+.idea/
+
+# Backup & log files
+*.bak
+*.log
+
+# NuGet packages
+*.nupkg
+packages/
+*.snupkg
+
+# DotCover files
+*.dotCover
+
+# SQL dump or local DB (if any)
+*.mdf
+*.ldf
+*.sql
+
+# Publish output
+publish/
+app.publish/
+
+# WPF Designer and generated files
+*.g.cs
+*.g.i.cs
+
+# Others
+_ReSharper*/
+*.vs/
+*.dbmdl
+
+# OS generated files
+.DS_Store
+desktop.ini

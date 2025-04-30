@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35818.85 d17.13
+VisualStudioVersion = 17.13.35818.85
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoodTracker", "MoodTracker\MoodTracker.csproj", "{EE67C64E-A3CB-4130-BAE5-F528E3A91D0B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoodTracker", "EmotionMusicDiary\MoodTracker.csproj", "{825479F6-AB56-4D34-9904-F81BFF9F3A83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EE67C64E-A3CB-4130-BAE5-F528E3A91D0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EE67C64E-A3CB-4130-BAE5-F528E3A91D0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EE67C64E-A3CB-4130-BAE5-F528E3A91D0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EE67C64E-A3CB-4130-BAE5-F528E3A91D0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{825479F6-AB56-4D34-9904-F81BFF9F3A83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{825479F6-AB56-4D34-9904-F81BFF9F3A83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{825479F6-AB56-4D34-9904-F81BFF9F3A83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{825479F6-AB56-4D34-9904-F81BFF9F3A83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {9761D799-0D23-4C68-B1A0-D4D22AAF61C6}
+		SolutionGuid = {C6296E98-DE47-441D-9063-82F82834F1E2}
 	EndGlobalSection
 EndGlobal
