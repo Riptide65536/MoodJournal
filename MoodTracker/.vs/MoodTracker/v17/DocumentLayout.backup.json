@@ -1,22 +1,66 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\C#\\Big_Project_0\\MoodTracker\\",
+  "WorkspaceRootPath": "D:\\C#\\Big_Project_0\\MoodJournal\\EmotionMusicDiary\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EE67C64E-A3CB-4130-BAE5-F528E3A91D0B}|MoodTracker\\MoodTracker.csproj|d:\\c#\\big_project_0\\moodtracker\\moodtracker\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{EE67C64E-A3CB-4130-BAE5-F528E3A91D0B}|MoodTracker\\MoodTracker.csproj|solutionrelative:moodtracker\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{825479F6-AB56-4D34-9904-F81BFF9F3A83}|EmotionMusicDiary\\MoodTrack.csproj|d:\\c#\\big_project_0\\moodjournal\\emotionmusicdiary\\emotionmusicdiary\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{825479F6-AB56-4D34-9904-F81BFF9F3A83}|EmotionMusicDiary\\MoodTrack.csproj|solutionrelative:emotionmusicdiary\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EE67C64E-A3CB-4130-BAE5-F528E3A91D0B}|MoodTracker\\MoodTracker.csproj|D:\\C#\\Big_Project_0\\MoodTracker\\moodtracker\\utils\\dbhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EE67C64E-A3CB-4130-BAE5-F528E3A91D0B}|MoodTracker\\MoodTracker.csproj|solutionrelative:moodtracker\\utils\\dbhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{825479F6-AB56-4D34-9904-F81BFF9F3A83}|EmotionMusicDiary\\MoodTrack.csproj|d:\\c#\\big_project_0\\moodjournal\\emotionmusicdiary\\emotionmusicdiary\\controls\\keywordcloud.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{825479F6-AB56-4D34-9904-F81BFF9F3A83}|EmotionMusicDiary\\MoodTrack.csproj|solutionrelative:emotionmusicdiary\\controls\\keywordcloud.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EE67C64E-A3CB-4130-BAE5-F528E3A91D0B}|MoodTracker\\MoodTracker.csproj|D:\\C#\\Big_Project_0\\MoodTracker\\moodtracker\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{EE67C64E-A3CB-4130-BAE5-F528E3A91D0B}|MoodTracker\\MoodTracker.csproj|solutionrelative:moodtracker\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+      "AbsoluteMoniker": "D:0:0:{825479F6-AB56-4D34-9904-F81BFF9F3A83}|EmotionMusicDiary\\MoodTrack.csproj|d:\\c#\\big_project_0\\moodjournal\\emotionmusicdiary\\emotionmusicdiary\\controls\\emotionpiechart.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{825479F6-AB56-4D34-9904-F81BFF9F3A83}|EmotionMusicDiary\\MoodTrack.csproj|solutionrelative:emotionmusicdiary\\controls\\emotionpiechart.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EE67C64E-A3CB-4130-BAE5-F528E3A91D0B}|MoodTracker\\MoodTracker.csproj|D:\\C#\\Big_Project_0\\MoodTracker\\moodtracker\\moedels\\moodrecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EE67C64E-A3CB-4130-BAE5-F528E3A91D0B}|MoodTracker\\MoodTracker.csproj|solutionrelative:moodtracker\\moedels\\moodrecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{825479F6-AB56-4D34-9904-F81BFF9F3A83}|EmotionMusicDiary\\MoodTrack.csproj|d:\\c#\\big_project_0\\moodjournal\\emotionmusicdiary\\emotionmusicdiary\\controls\\emotionlinechart.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{825479F6-AB56-4D34-9904-F81BFF9F3A83}|EmotionMusicDiary\\MoodTrack.csproj|solutionrelative:emotionmusicdiary\\controls\\emotionlinechart.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{825479F6-AB56-4D34-9904-F81BFF9F3A83}|EmotionMusicDiary\\MoodTrack.csproj|d:\\c#\\big_project_0\\moodjournal\\emotionmusicdiary\\emotionmusicdiary\\controls\\sidenav.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{825479F6-AB56-4D34-9904-F81BFF9F3A83}|EmotionMusicDiary\\MoodTrack.csproj|solutionrelative:emotionmusicdiary\\controls\\sidenav.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{825479F6-AB56-4D34-9904-F81BFF9F3A83}|EmotionMusicDiary\\MoodTrack.csproj|d:\\c#\\big_project_0\\moodjournal\\emotionmusicdiary\\emotionmusicdiary\\view\\homepage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{825479F6-AB56-4D34-9904-F81BFF9F3A83}|EmotionMusicDiary\\MoodTrack.csproj|solutionrelative:emotionmusicdiary\\view\\homepage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{825479F6-AB56-4D34-9904-F81BFF9F3A83}|EmotionMusicDiary\\MoodTrack.csproj|d:\\c#\\big_project_0\\moodjournal\\emotionmusicdiary\\emotionmusicdiary\\view\\dataanalysispage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{825479F6-AB56-4D34-9904-F81BFF9F3A83}|EmotionMusicDiary\\MoodTrack.csproj|solutionrelative:emotionmusicdiary\\view\\dataanalysispage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{825479F6-AB56-4D34-9904-F81BFF9F3A83}|EmotionMusicDiary\\MoodTrack.csproj|d:\\c#\\big_project_0\\moodjournal\\emotionmusicdiary\\emotionmusicdiary\\controls\\rightsidebar.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{825479F6-AB56-4D34-9904-F81BFF9F3A83}|EmotionMusicDiary\\MoodTrack.csproj|solutionrelative:emotionmusicdiary\\controls\\rightsidebar.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{825479F6-AB56-4D34-9904-F81BFF9F3A83}|EmotionMusicDiary\\MoodTrack.csproj|d:\\c#\\big_project_0\\moodjournal\\emotionmusicdiary\\emotionmusicdiary\\controls\\musicdisplay.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{825479F6-AB56-4D34-9904-F81BFF9F3A83}|EmotionMusicDiary\\MoodTrack.csproj|solutionrelative:emotionmusicdiary\\controls\\musicdisplay.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{825479F6-AB56-4D34-9904-F81BFF9F3A83}|EmotionMusicDiary\\MoodTrack.csproj|d:\\c#\\big_project_0\\moodjournal\\emotionmusicdiary\\emotionmusicdiary\\controls\\musicdisplay.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{825479F6-AB56-4D34-9904-F81BFF9F3A83}|EmotionMusicDiary\\MoodTrack.csproj|solutionrelative:emotionmusicdiary\\controls\\musicdisplay.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{825479F6-AB56-4D34-9904-F81BFF9F3A83}|EmotionMusicDiary\\MoodTrack.csproj|d:\\c#\\big_project_0\\moodjournal\\emotionmusicdiary\\emotionmusicdiary\\controls\\recordlist.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{825479F6-AB56-4D34-9904-F81BFF9F3A83}|EmotionMusicDiary\\MoodTrack.csproj|solutionrelative:emotionmusicdiary\\controls\\recordlist.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{825479F6-AB56-4D34-9904-F81BFF9F3A83}|EmotionMusicDiary\\MoodTrack.csproj|d:\\c#\\big_project_0\\moodjournal\\emotionmusicdiary\\emotionmusicdiary\\controls\\recordcard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{825479F6-AB56-4D34-9904-F81BFF9F3A83}|EmotionMusicDiary\\MoodTrack.csproj|solutionrelative:emotionmusicdiary\\controls\\recordcard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{825479F6-AB56-4D34-9904-F81BFF9F3A83}|EmotionMusicDiary\\MoodTrack.csproj|d:\\c#\\big_project_0\\moodjournal\\emotionmusicdiary\\emotionmusicdiary\\controls\\recordcard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{825479F6-AB56-4D34-9904-F81BFF9F3A83}|EmotionMusicDiary\\MoodTrack.csproj|solutionrelative:emotionmusicdiary\\controls\\recordcard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{825479F6-AB56-4D34-9904-F81BFF9F3A83}|EmotionMusicDiary\\MoodTrack.csproj|d:\\c#\\big_project_0\\moodjournal\\emotionmusicdiary\\emotionmusicdiary\\controls\\sidenav.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{825479F6-AB56-4D34-9904-F81BFF9F3A83}|EmotionMusicDiary\\MoodTrack.csproj|solutionrelative:emotionmusicdiary\\controls\\sidenav.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{825479F6-AB56-4D34-9904-F81BFF9F3A83}|EmotionMusicDiary\\MoodTrack.csproj|d:\\c#\\big_project_0\\moodjournal\\emotionmusicdiary\\emotionmusicdiary\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{825479F6-AB56-4D34-9904-F81BFF9F3A83}|EmotionMusicDiary\\MoodTrack.csproj|solutionrelative:emotionmusicdiary\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +70,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,51 +82,187 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "App.xaml",
+              "DocumentMoniker": "D:\\C#\\Big_Project_0\\MoodJournal\\EmotionMusicDiary\\EmotionMusicDiary\\App.xaml",
+              "RelativeDocumentMoniker": "EmotionMusicDiary\\App.xaml",
+              "ToolTip": "D:\\C#\\Big_Project_0\\MoodJournal\\EmotionMusicDiary\\EmotionMusicDiary\\App.xaml",
+              "RelativeToolTip": "EmotionMusicDiary\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-30T08:36:04.202Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "DbHelper.cs",
-              "DocumentMoniker": "D:\\C#\\Big_Project_0\\MoodTracker\\MoodTracker\\Utils\\DbHelper.cs",
-              "RelativeDocumentMoniker": "MoodTracker\\Utils\\DbHelper.cs",
-              "ToolTip": "D:\\C#\\Big_Project_0\\MoodTracker\\MoodTracker\\Utils\\DbHelper.cs",
-              "RelativeToolTip": "MoodTracker\\Utils\\DbHelper.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-23T11:59:37.171Z",
+              "Title": "KeywordCloud.xaml",
+              "DocumentMoniker": "D:\\C#\\Big_Project_0\\MoodJournal\\EmotionMusicDiary\\EmotionMusicDiary\\Controls\\KeywordCloud.xaml",
+              "RelativeDocumentMoniker": "EmotionMusicDiary\\Controls\\KeywordCloud.xaml",
+              "ToolTip": "D:\\C#\\Big_Project_0\\MoodJournal\\EmotionMusicDiary\\EmotionMusicDiary\\Controls\\KeywordCloud.xaml",
+              "RelativeToolTip": "EmotionMusicDiary\\Controls\\KeywordCloud.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-30T08:29:03.534Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "App.config",
-              "DocumentMoniker": "D:\\C#\\Big_Project_0\\MoodTracker\\MoodTracker\\App.config",
-              "RelativeDocumentMoniker": "MoodTracker\\App.config",
-              "ToolTip": "D:\\C#\\Big_Project_0\\MoodTracker\\MoodTracker\\App.config",
-              "RelativeToolTip": "MoodTracker\\App.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-04-23T11:50:49.492Z"
+              "Title": "EmotionPieChart.xaml",
+              "DocumentMoniker": "D:\\C#\\Big_Project_0\\MoodJournal\\EmotionMusicDiary\\EmotionMusicDiary\\Controls\\EmotionPieChart.xaml",
+              "RelativeDocumentMoniker": "EmotionMusicDiary\\Controls\\EmotionPieChart.xaml",
+              "ToolTip": "D:\\C#\\Big_Project_0\\MoodJournal\\EmotionMusicDiary\\EmotionMusicDiary\\Controls\\EmotionPieChart.xaml",
+              "RelativeToolTip": "EmotionMusicDiary\\Controls\\EmotionPieChart.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-30T08:25:03.919Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "MoodRecord.cs",
-              "DocumentMoniker": "D:\\C#\\Big_Project_0\\MoodTracker\\MoodTracker\\Moedels\\MoodRecord.cs",
-              "RelativeDocumentMoniker": "MoodTracker\\Moedels\\MoodRecord.cs",
-              "ToolTip": "D:\\C#\\Big_Project_0\\MoodTracker\\MoodTracker\\Moedels\\MoodRecord.cs",
-              "RelativeToolTip": "MoodTracker\\Moedels\\MoodRecord.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-23T11:44:13.83Z"
+              "Title": "EmotionLineChart.xaml",
+              "DocumentMoniker": "D:\\C#\\Big_Project_0\\MoodJournal\\EmotionMusicDiary\\EmotionMusicDiary\\Controls\\EmotionLineChart.xaml",
+              "RelativeDocumentMoniker": "EmotionMusicDiary\\Controls\\EmotionLineChart.xaml",
+              "ToolTip": "D:\\C#\\Big_Project_0\\MoodJournal\\EmotionMusicDiary\\EmotionMusicDiary\\Controls\\EmotionLineChart.xaml",
+              "RelativeToolTip": "EmotionMusicDiary\\Controls\\EmotionLineChart.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-30T08:17:47.463Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "D:\\C#\\Big_Project_0\\MoodTracker\\MoodTracker\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "MoodTracker\\MainWindow.xaml",
-              "ToolTip": "D:\\C#\\Big_Project_0\\MoodTracker\\MoodTracker\\MainWindow.xaml",
-              "RelativeToolTip": "MoodTracker\\MainWindow.xaml",
+              "DocumentIndex": 4,
+              "Title": "SideNav.xaml.cs",
+              "DocumentMoniker": "D:\\C#\\Big_Project_0\\MoodJournal\\EmotionMusicDiary\\EmotionMusicDiary\\Controls\\SideNav.xaml.cs",
+              "RelativeDocumentMoniker": "EmotionMusicDiary\\Controls\\SideNav.xaml.cs",
+              "ToolTip": "D:\\C#\\Big_Project_0\\MoodJournal\\EmotionMusicDiary\\EmotionMusicDiary\\Controls\\SideNav.xaml.cs",
+              "RelativeToolTip": "EmotionMusicDiary\\Controls\\SideNav.xaml.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAYwFAAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T07:15:18.857Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "HomePage.xaml.cs",
+              "DocumentMoniker": "D:\\C#\\Big_Project_0\\MoodJournal\\EmotionMusicDiary\\EmotionMusicDiary\\View\\HomePage.xaml.cs",
+              "RelativeDocumentMoniker": "EmotionMusicDiary\\View\\HomePage.xaml.cs",
+              "ToolTip": "D:\\C#\\Big_Project_0\\MoodJournal\\EmotionMusicDiary\\EmotionMusicDiary\\View\\HomePage.xaml.cs",
+              "RelativeToolTip": "EmotionMusicDiary\\View\\HomePage.xaml.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAADwvxYAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T07:13:41.852Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DataAnalysisPage.xaml",
+              "DocumentMoniker": "D:\\C#\\Big_Project_0\\MoodJournal\\EmotionMusicDiary\\EmotionMusicDiary\\View\\DataAnalysisPage.xaml",
+              "RelativeDocumentMoniker": "EmotionMusicDiary\\View\\DataAnalysisPage.xaml",
+              "ToolTip": "D:\\C#\\Big_Project_0\\MoodJournal\\EmotionMusicDiary\\EmotionMusicDiary\\View\\DataAnalysisPage.xaml",
+              "RelativeToolTip": "EmotionMusicDiary\\View\\DataAnalysisPage.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-23T08:15:03.864Z",
+              "WhenOpened": "2025-04-30T06:13:39.157Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RightSidebar.xaml",
+              "DocumentMoniker": "D:\\C#\\Big_Project_0\\MoodJournal\\EmotionMusicDiary\\EmotionMusicDiary\\Controls\\RightSidebar.xaml",
+              "RelativeDocumentMoniker": "EmotionMusicDiary\\Controls\\RightSidebar.xaml",
+              "ToolTip": "D:\\C#\\Big_Project_0\\MoodJournal\\EmotionMusicDiary\\EmotionMusicDiary\\Controls\\RightSidebar.xaml",
+              "RelativeToolTip": "EmotionMusicDiary\\Controls\\RightSidebar.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-30T04:22:02.369Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MusicDisplay.xaml.cs",
+              "DocumentMoniker": "D:\\C#\\Big_Project_0\\MoodJournal\\EmotionMusicDiary\\EmotionMusicDiary\\Controls\\MusicDisplay.xaml.cs",
+              "RelativeDocumentMoniker": "EmotionMusicDiary\\Controls\\MusicDisplay.xaml.cs",
+              "ToolTip": "D:\\C#\\Big_Project_0\\MoodJournal\\EmotionMusicDiary\\EmotionMusicDiary\\Controls\\MusicDisplay.xaml.cs",
+              "RelativeToolTip": "EmotionMusicDiary\\Controls\\MusicDisplay.xaml.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAAwCUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T04:15:50.279Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "MusicDisplay.xaml",
+              "DocumentMoniker": "D:\\C#\\Big_Project_0\\MoodJournal\\EmotionMusicDiary\\EmotionMusicDiary\\Controls\\MusicDisplay.xaml",
+              "RelativeDocumentMoniker": "EmotionMusicDiary\\Controls\\MusicDisplay.xaml",
+              "ToolTip": "D:\\C#\\Big_Project_0\\MoodJournal\\EmotionMusicDiary\\EmotionMusicDiary\\Controls\\MusicDisplay.xaml",
+              "RelativeToolTip": "EmotionMusicDiary\\Controls\\MusicDisplay.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-30T04:12:24.707Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "RecordList.xaml.cs",
+              "DocumentMoniker": "D:\\C#\\Big_Project_0\\MoodJournal\\EmotionMusicDiary\\EmotionMusicDiary\\Controls\\RecordList.xaml.cs",
+              "RelativeDocumentMoniker": "EmotionMusicDiary\\Controls\\RecordList.xaml.cs",
+              "ToolTip": "D:\\C#\\Big_Project_0\\MoodJournal\\EmotionMusicDiary\\EmotionMusicDiary\\Controls\\RecordList.xaml.cs",
+              "RelativeToolTip": "EmotionMusicDiary\\Controls\\RecordList.xaml.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T03:37:28.579Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "RecordCard.xaml.cs",
+              "DocumentMoniker": "D:\\C#\\Big_Project_0\\MoodJournal\\EmotionMusicDiary\\EmotionMusicDiary\\Controls\\RecordCard.xaml.cs",
+              "RelativeDocumentMoniker": "EmotionMusicDiary\\Controls\\RecordCard.xaml.cs",
+              "ToolTip": "D:\\C#\\Big_Project_0\\MoodJournal\\EmotionMusicDiary\\EmotionMusicDiary\\Controls\\RecordCard.xaml.cs",
+              "RelativeToolTip": "EmotionMusicDiary\\Controls\\RecordCard.xaml.cs",
+              "ViewState": "AgIAAFYAAAAAAAAAAAAhwGsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T03:35:37.776Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "RecordCard.xaml",
+              "DocumentMoniker": "D:\\C#\\Big_Project_0\\MoodJournal\\EmotionMusicDiary\\EmotionMusicDiary\\Controls\\RecordCard.xaml",
+              "RelativeDocumentMoniker": "EmotionMusicDiary\\Controls\\RecordCard.xaml",
+              "ToolTip": "D:\\C#\\Big_Project_0\\MoodJournal\\EmotionMusicDiary\\EmotionMusicDiary\\Controls\\RecordCard.xaml",
+              "RelativeToolTip": "EmotionMusicDiary\\Controls\\RecordCard.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-30T03:33:23.526Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "SideNav.xaml",
+              "DocumentMoniker": "D:\\C#\\Big_Project_0\\MoodJournal\\EmotionMusicDiary\\EmotionMusicDiary\\Controls\\SideNav.xaml",
+              "RelativeDocumentMoniker": "EmotionMusicDiary\\Controls\\SideNav.xaml",
+              "ToolTip": "D:\\C#\\Big_Project_0\\MoodJournal\\EmotionMusicDiary\\EmotionMusicDiary\\Controls\\SideNav.xaml",
+              "RelativeToolTip": "EmotionMusicDiary\\Controls\\SideNav.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-30T02:33:11.933Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "D:\\C#\\Big_Project_0\\MoodJournal\\EmotionMusicDiary\\EmotionMusicDiary\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "EmotionMusicDiary\\MainWindow.xaml",
+              "ToolTip": "D:\\C#\\Big_Project_0\\MoodJournal\\EmotionMusicDiary\\EmotionMusicDiary\\MainWindow.xaml",
+              "RelativeToolTip": "EmotionMusicDiary\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-29T14:18:51.594Z",
               "EditorCaption": ""
             }
           ]

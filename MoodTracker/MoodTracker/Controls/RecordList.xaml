@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="MoodTracker.Controls.RecordList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:MoodTracker.Controls"
+             Height="Auto" Width="Auto">
+
+    <Border 
+            CornerRadius="20" Margin="4"
+            Padding="10"
+            >
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#00FFFFFF" Offset="0"/>
+                <GradientStop Color="#00FFFFFF" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.Background>
+
+
+        <ScrollViewer VerticalScrollBarVisibility="Hidden"
+                      HorizontalScrollBarVisibility="Disabled"
+                      Padding="10">
+            <ScrollViewer.Resources>
+
+                <!-- 滚动条样式 -->
+                <Style TargetType="ScrollBar">
+                    <Setter Property="Width" Value="6"/>
+                </Style>
+
+
+            </ScrollViewer.Resources>
+
+            <StackPanel Orientation="Vertical" 
+                        HorizontalAlignment="Left"
+                        x:Name="RecordStackPanel">
+            </StackPanel>
+        </ScrollViewer>
+
+    </Border>
+    </UserControl>
