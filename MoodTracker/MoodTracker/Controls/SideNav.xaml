@@ -83,6 +83,21 @@
                 </StackPanel>
             </ToggleButton>
 
+            <!-- ai聊天按钮 -->
+            <ToggleButton Style="{StaticResource NavButtonStyle}" 
+                          x:Name="AIButton" 
+                          Click="AIButton_Click"
+                          Margin="0,5,0,0" Height="48">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Image Source="pack://application:,,,/Assets/ai.png" Width="24" Height="24"/>
+                    <TextBlock Text="AI聊天" 
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Center"
+                               FontSize="14"
+                               Visibility="{Binding IsExpanded, ElementName=SideNavControl, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                </StackPanel>
+            </ToggleButton>
+            
             <!-- 主题切换按钮 -->
             <ToggleButton Style="{StaticResource NavButtonStyle}" 
                           x:Name="ThemeButton" 
@@ -99,6 +114,7 @@
                                Visibility="{Binding IsExpanded, ElementName=SideNavControl, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </StackPanel>
             </ToggleButton>
+            
         </StackPanel>
     </Border>
 </UserControl>

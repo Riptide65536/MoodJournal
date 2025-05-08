@@ -10,6 +10,7 @@ namespace MoodTracker.Data
             optionsBuilder.UseMySQL("server=localhost;port=3307;database=JournalDatabase;user=root;password=password;");
         }
 
+        public DbSet<ChatRecord> ChatHistory { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<MoodRecord> MoodRecords { get; set; }
 
@@ -17,6 +18,14 @@ namespace MoodTracker.Data
         //public DbSet<Mood> Moods { get; set; }
 
         public DbSet<Tag> Tags { get; set; }
+        public class ChatRecord
+        {
+            public string Id { get; set; } = Guid.NewGuid().ToString();
+            public string UserMessage { get; set; }
+            public string AIMessage { get; set; }
+            public string UserId { get; set; }  // Ìí¼ÓÓÃ»§ID×Ö¶Î
+            public DateTime Timestamp { get; set; } = DateTime.Now;
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
