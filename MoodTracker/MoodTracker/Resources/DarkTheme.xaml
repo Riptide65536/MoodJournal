@@ -1,0 +1,93 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--主界面颜色资源-->
+
+    <!--====== 基础色系（深色） ======-->
+    <Color x:Key="BaseContainer">#1E1E1E</Color>
+    <Color x:Key="ContentBase">#252526</Color>
+    <Color x:Key="AccentViolet">#9D7FFF</Color>
+    <SolidColorBrush x:Key="BaseContainerBrush" Color="{StaticResource BaseContainer}" />
+    <SolidColorBrush x:Key="ContentBaseBrush" Color="{StaticResource ContentBase}" />
+    <SolidColorBrush x:Key="AccentVioletBrush" Color="{StaticResource AccentViolet}" />
+
+    <!--====== 渐变背景：柔和融合层次感 ======-->
+    <LinearGradientBrush x:Key="ContainerGlow" StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Color="#2D2D2D" Offset="0"/>
+        <GradientStop Color="{StaticResource BaseContainer}" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="ContentSurface" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#2D2D2D" Offset="0"/>
+        <GradientStop Color="#252526" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!--====== 动态效果颜色（hover/点击） ======-->
+    <Color x:Key="HoverGlow">#30FFFFFF</Color>
+    <SolidColorBrush x:Key="HoverGlowBrush" Color="{StaticResource HoverGlow}" />
+
+    <!--====== 左侧导航栏 ======-->
+    <SolidColorBrush x:Key="NavTextDefaultBrush" Color="#A0A0A0"/>
+    <SolidColorBrush x:Key="NavTextHoverBrush" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="NavTextSelectedBrush" Color="#9D7FFF"/>
+    <SolidColorBrush x:Key="NavIconHoverBackground" Color="#3D3D3D"/>
+    <SolidColorBrush x:Key="NavIconCheckedBackground" Color="#4D4D4D"/>
+
+    <!--====== RecordCard 卡片 ======-->
+    <SolidColorBrush x:Key="CardBackground" Color="#2D2D2D"/>
+    <SolidColorBrush x:Key="CardBorder" Color="#3D3D3D"/>
+    <SolidColorBrush x:Key="CardText" Color="#E0E0E0"/>
+    <SolidColorBrush x:Key="TagBackground" Color="#3D3D3D"/>
+    <SolidColorBrush x:Key="TagText" Color="#A0A0A0"/>
+
+    <!--====== 图表主色调 ======-->
+    <SolidColorBrush x:Key="ChartLine1" Color="#9D7FFF"/>
+    <SolidColorBrush x:Key="ChartLine2" Color="#4CD9C0"/>
+    <SolidColorBrush x:Key="ChartLine3" Color="#FFB845"/>
+
+    <!--====== 饼图配色板 ======-->
+    <SolidColorBrush x:Key="Pie1" Color="#9D7FFF"/>
+    <SolidColorBrush x:Key="Pie2" Color="#4CD9C0"/>
+    <SolidColorBrush x:Key="Pie3" Color="#FFC372"/>
+    <SolidColorBrush x:Key="Pie4" Color="#BFA9A0"/>
+    <SolidColorBrush x:Key="Pie5" Color="#A18AFF"/>
+
+    <!--====== 卡片阴影（轻柔浮起） ======-->
+    <DropShadowEffect x:Key="CardShadow" 
+                      BlurRadius="12" 
+                      ShadowDepth="4" 
+                      Color="#40000000" 
+                      Direction="270"/>
+
+    <Style x:Key="BodyTextStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="Foreground" Value="#E0E0E0"/>
+    </Style>
+    <Style x:Key="CaptionTextStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Foreground" Value="#A0A0A0"/>
+    </Style>
+    <CornerRadius x:Key="CardCornerRadius">16</CornerRadius>
+
+    <!-- 颜色定义 -->
+    <Color x:Key="PrimaryColor">#1E1E1E</Color>
+    <Color x:Key="SecondaryColor">#252526</Color>
+    <Color x:Key="TextPrimaryColor">#E0E0E0</Color>
+    <Color x:Key="TextSecondaryColor">#A0A0A0</Color>
+    <Color x:Key="AccentColor">#007ACC</Color>
+
+    <!-- 画刷定义 -->
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}"/>
+    <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource SecondaryColor}"/>
+    <SolidColorBrush x:Key="TextPrimaryBrush" Color="{StaticResource TextPrimaryColor}"/>
+    <SolidColorBrush x:Key="TextSecondaryBrush" Color="{StaticResource TextSecondaryColor}"/>
+    <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}"/>
+
+    <!-- 图标资源 -->
+    <BitmapImage x:Key="MenuIcon" UriSource="/Assets/hamburger.png"/>
+    <BitmapImage x:Key="HomeIcon" UriSource="/Assets/home.png"/>
+    <BitmapImage x:Key="AnalyticsIcon" UriSource="/Assets/analytics.png"/>
+    <BitmapImage x:Key="ThemeIcon" UriSource="/Assets/analytics.png"/>
+    <BitmapImage x:Key="AvatarIcon" UriSource="/Assets/UserAvatar.jpg"/>
+
+
+</ResourceDictionary>

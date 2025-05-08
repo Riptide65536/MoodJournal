@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MoodTracker.Controls
 {
@@ -23,6 +12,17 @@ namespace MoodTracker.Controls
         public RightSidebar()
         {
             InitializeComponent();
+            PunchCalendar.SelectedDatesChanged += PunchCalendar_SelectedDatesChanged;
+        }
+
+        private void PunchCalendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (PunchCalendar.SelectedDate.HasValue)
+            {
+                // 处理日期选择变化
+                DateTime selectedDate = PunchCalendar.SelectedDate.Value;
+                // TODO: 根据选择的日期更新UI或执行其他操作
+            }
         }
     }
 }

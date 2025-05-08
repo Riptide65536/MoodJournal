@@ -1,9 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
-using MoodTracker.View;
-
+using System.Windows.Controls.Primitives;
+using MoodTracker.ViewModels;
 using System.Windows.Media.Animation;
-
 
 namespace MoodTracker.Controls
 {
@@ -12,12 +12,14 @@ namespace MoodTracker.Controls
     /// </summary>
     public partial class SideNav : UserControl
     {
-        public SideNav()
-        {
-            InitializeComponent();
+        public static readonly RoutedEvent NavigationRequestedEvent =
+            EventManager.RegisterRoutedEvent("NavigationRequested", RoutingStrategy.Bubble,
+                typeof(RoutedEventHandler), typeof(SideNav));
 
-            // 初始宽度设置
-            this.Width = IsExpanded ? ExpandedWidth : CollapsedWidth;
+        public event RoutedEventHandler NavigationRequested
+        {
+            add { AddHandler(NavigationRequestedEvent, value); }
+            remove { RemoveHandler(NavigationRequestedEvent, value); }
         }
 
         private const double ExpandedWidth = 200;
@@ -32,6 +34,15 @@ namespace MoodTracker.Controls
         {
             get => (bool)GetValue(IsExpandedProperty);
             set => SetValue(IsExpandedProperty, value);
+        }
+
+        public SideNav()
+        {
+            InitializeComponent();
+            DataContext = new MainViewModel();
+
+            // 初始宽度设置
+            this.Width = IsExpanded ? ExpandedWidth : CollapsedWidth;
         }
 
         // 当 IsExpanded 变化时触发
@@ -64,35 +75,43 @@ namespace MoodTracker.Controls
             //待添加（别的功能按钮）
         }
 
-
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
             ResetSelection();
-            MenuButton.IsChecked = true;
             IsExpanded = !IsExpanded;
+            if (sender is ToggleButton button)
+            {
+                button.IsChecked = IsExpanded;
+            }
         }
 
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
             ResetSelection();
-            HomeButton.IsChecked = true;
-            // TODO: 导航到首页
-            var mainWindow = Window.GetWindow(this) as MainWindow;
-            if (mainWindow != null)
+            if (sender is ToggleButton homeButton)
             {
-                mainWindow.NavigateTo(new HomePage());
+                var analyticsButton = this.FindName("AnalyticsButton") as ToggleButton;
+                if (analyticsButton != null)
+                {
+                    homeButton.IsChecked = true;
+                    analyticsButton.IsChecked = false;
+                    RaiseEvent(new RoutedEventArgs(NavigationRequestedEvent, "Home"));
+                }
             }
         }
 
         private void AnalyticsButton_Click(object sender, RoutedEventArgs e)
         {
             ResetSelection();
-            AnalyticsButton.IsChecked = true;
-            // TODO: 导航到数据分析页
-            var mainWindow = Window.GetWindow(this) as MainWindow;
-            if (mainWindow != null)
+            if (sender is ToggleButton analyticsButton)
             {
-                mainWindow.NavigateTo(new DataAnalysisPage());
+                var homeButton = this.FindName("HomeButton") as ToggleButton;
+                if (homeButton != null)
+                {
+                    homeButton.IsChecked = false;
+                    analyticsButton.IsChecked = true;
+                    RaiseEvent(new RoutedEventArgs(NavigationRequestedEvent, "Analytics"));
+                }
             }
         }
     }

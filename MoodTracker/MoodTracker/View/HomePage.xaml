@@ -12,31 +12,32 @@
                     BorderBrush="#30324A"
                     BorderThickness="1">-->
 
-        <Grid
+    <Grid
             Background="{StaticResource ContentSurface}"
             
             >
-            <!-- 主内容三列布局 -->
+        <!-- 主内容三列布局 -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="360*"/>
+            <!-- 左侧 -->
+            <ColumnDefinition Width="800*"/>
+            <!-- 中间 -->
+        </Grid.ColumnDefinitions>
+
+        <!-- 左侧： RecordList -->
+        <controls:RecordList Grid.Column="0" Margin="0,0,10,0"/>
+
+        <!-- 中间 -->
+        <ContentControl x:Name="DetailContainer" Grid.Column="1">
+            <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="360*"/>
-                    <!-- 左侧 -->
                     <ColumnDefinition Width="500*"/>
-                    <!-- 中间 -->
                     <ColumnDefinition Width="300*"/>
-                    <!-- 右侧 -->
                 </Grid.ColumnDefinitions>
 
-                <!-- 左侧： RecordList -->
-                <controls:RecordList Grid.Column="0" Margin="0,0,10,0"/>
-
-                <!-- 中间 -->
-                <Border Grid.Column="1" Background="Transparent">
-                    <controls:MusicDisplay Grid.Column="1"/>
-                </Border>
-
-                <!-- 右侧 -->
-                <Border Grid.Column="2" Background="Transparent">
-                    <controls:RightSidebar Grid.Column="2"/>
-                </Border>
+                <controls:MusicDisplay Grid.Column="0"/>
+                <controls:RightSidebar Grid.Column="1"/>
             </Grid>
+        </ContentControl>
+    </Grid>
 </Page>

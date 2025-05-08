@@ -1,6 +1,9 @@
-﻿using MoodTracker.View;
-using System.Windows;
+﻿using System.Windows;
+using System.Windows.Input;
+using MoodTracker.ViewModels;
+using MoodTracker.View;
 using System.Windows.Controls;
+using MoodTracker.Controls;
 
 namespace MoodTracker
 {
@@ -9,33 +12,29 @@ namespace MoodTracker
         public MainWindow()
         {
             InitializeComponent();
-            //页面初始加载为HomePage
+            DataContext = new MainViewModel();
+            // 默认导航到首页
             MainContentFrame.Navigate(new HomePage());
         }
 
-        //页面切换逻辑
-        public void NavigateTo(Page page)
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            MainContentFrame.Navigate(page);
+            DragMove();
         }
 
-        // 拖动窗口
-        private void Window_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void SideNav_NavigationRequested(object sender, RoutedEventArgs e)
         {
-            if (e.ButtonState == System.Windows.Input.MouseButtonState.Pressed)
-                DragMove();
-        }
-
-        // 最小化按钮事件
-        private void Minimize_Click(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = WindowState.Minimized;
-        }
-
-        // 关闭按钮事件
-        private void Close_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
+            if (sender is SideNav sideNav)
+            {
+                if (sideNav.HomeButton.IsChecked == true)
+                {
+                    MainContentFrame.Navigate(new HomePage());
+                }
+                else if (sideNav.AnalyticsButton.IsChecked == true)
+                {
+                    MainContentFrame.Navigate(new DataAnalysisPage());
+                }
+            }
         }
     }
 }

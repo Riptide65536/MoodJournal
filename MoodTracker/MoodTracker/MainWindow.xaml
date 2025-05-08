@@ -1,14 +1,21 @@
 ﻿<Window x:Class="MoodTracker.MainWindow"
+        x:Name="MainWin"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:controls="clr-namespace:MoodTracker.Controls"
+        xmlns:viewmodels="clr-namespace:MoodTracker.ViewModels"
+        xmlns:views="clr-namespace:MoodTracker.View"
         Title="MoodTracker"
-        Width="1480" Height="820"
+        Width="1180" Height="720"
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
         WindowStartupLocation="CenterScreen"
         MouseLeftButtonDown="Window_MouseLeftButtonDown">
+
+    <Window.DataContext>
+        <viewmodels:MainViewModel/>
+    </Window.DataContext>
 
     <!--加载动画-->
     <Window.Triggers>
@@ -30,6 +37,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
             <!-- 左侧区域：斜纹背景 + SideNav -->
@@ -53,7 +61,8 @@
                 <controls:SideNav x:Name="SideNavControl"
                                   VerticalAlignment="Stretch"
                                   HorizontalAlignment="Left"
-                                  Margin="10,20,0,20"/>
+                                  Margin="10,20,0,20"
+                                  NavigationRequested="SideNav_NavigationRequested"/>
             </Grid>
 
             <!-- 主内容区域 -->
@@ -80,25 +89,26 @@
                                 Margin="0,10,10,0">
                         <Button Content="─"
                                 Style="{StaticResource TitleBarButtonStyle}"
-                                Click="Minimize_Click"/>
+                                Command="{Binding MinimizeCommand}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
                         <Button Content="✕"
                                 Style="{StaticResource TitleBarButtonStyle}"
-                                Click="Close_Click"/>
+                                Command="{Binding CloseCommand}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
                     </StackPanel>
 
-                    <!-- 装饰性横线 -->
+                    <!-- 装饰 -->
                     <Border Grid.Row="1"
                             Height="1"
                             Margin="40,40,40,0"
                             Background="#1E2035"
                             VerticalAlignment="Top"/>
 
-                    <!--HomePage-->
+                    <!--页面内容-->
                     <Frame 
                         x:Name="MainContentFrame"
                         Grid.Row="2"
-                        NavigationUIVisibility="Hidden"
-                        />
+                        NavigationUIVisibility="Hidden"/>
                 </Grid>
             </Border>
         </Grid>

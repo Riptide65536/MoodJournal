@@ -6,22 +6,48 @@
     <Border CornerRadius="20" 
             Margin="10" 
             Padding="10" 
-            Background="Transparent"
-            >
+            Background="Transparent">
         <StackPanel>
+            <!--<Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Row="0" Grid.Column="0"
+           Source="/Assets/MoodTracker.png"
+           Width="60" Height="60"
+           Margin="0,0,10,0"/>
+
+                <TextBlock Grid.Row="0" Grid.Column="1"
+               Text="MOOD"
+               FontSize="16"
+               FontWeight="Bold"
+               VerticalAlignment="Top"
+               Foreground="{DynamicResource TextPrimaryBrush}" Margin="0,40,0,0"/>
+
+                <TextBlock
+               Text="Tracker"
+               FontSize="18"
+               Foreground="{DynamicResource TextSecondaryBrush}" Margin="63,60,-1,0" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+            </Grid>-->
             <!-- 汉堡菜单按钮 -->
             <ToggleButton Click="MenuButton_Click" 
                           Style="{StaticResource NavButtonStyle}" 
                           x:Name="MenuButton"
                           Height="40">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <Image Source="pack://application:,,,/Assets/hamburger.png" Width="24" Height="24" Cursor=""/>
-                    <TextBlock Text="菜单" 
+                    <Image Source="{DynamicResource MenuIcon}" Width="24" Height="24"/>
+                    <TextBlock Text="收起边栏" 
                                Margin="10,0,0,0"
                                VerticalAlignment="Center"
                                FontSize="14"
-                               Visibility="{Binding IsExpanded, ElementName=SideNavControl, Converter={StaticResource BooleanToVisibilityConverter}}" 
-                               Cursor="Hand"/>
+                               Foreground="{DynamicResource TextPrimaryBrush}"
+                               Visibility="{Binding IsExpanded, ElementName=SideNavControl, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </StackPanel>
             </ToggleButton>
 
@@ -31,11 +57,12 @@
                           Click="HomeButton_Click"
                           Margin="0,5,0,0" Height="48">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <Image Source="pack://application:,,,/Assets/home.png" Width="24" Height="24"/>
+                    <Image Source="{DynamicResource HomeIcon}" Width="24" Height="24"/>
                     <TextBlock Text="首页" 
                                Margin="10,0,0,0"
                                VerticalAlignment="Center"
                                FontSize="14"
+                               Foreground="{DynamicResource TextPrimaryBrush}"
                                Visibility="{Binding IsExpanded, ElementName=SideNavControl, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </StackPanel>
             </ToggleButton>
@@ -46,11 +73,29 @@
                           Click="AnalyticsButton_Click"
                           Margin="0,5,0,0" Height="48">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <Image Source="pack://application:,,,/Assets/analytics.png" Width="24" Height="24"/>
+                    <Image Source="{DynamicResource AnalyticsIcon}" Width="24" Height="24"/>
                     <TextBlock Text="数据分析" 
                                Margin="10,0,0,0"
                                VerticalAlignment="Center"
                                FontSize="14"
+                               Foreground="{DynamicResource TextPrimaryBrush}"
+                               Visibility="{Binding IsExpanded, ElementName=SideNavControl, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                </StackPanel>
+            </ToggleButton>
+
+            <!-- 主题切换按钮 -->
+            <ToggleButton Style="{StaticResource NavButtonStyle}" 
+                          x:Name="ThemeButton" 
+                          Command="{Binding ToggleThemeCommand}"
+                          IsChecked="{Binding IsDarkTheme}"
+                          Margin="0,360,0,10" Height="48">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Image Source="{DynamicResource ThemeIcon}" Width="24" Height="24"/>
+                    <TextBlock Text="{Binding IsDarkTheme, Converter={StaticResource BoolToThemeTextConverter}}"
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Center"
+                               FontSize="14"
+                               Foreground="{DynamicResource TextPrimaryBrush}"
                                Visibility="{Binding IsExpanded, ElementName=SideNavControl, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </StackPanel>
             </ToggleButton>
