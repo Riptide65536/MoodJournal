@@ -6,7 +6,7 @@
         xmlns:viewmodels="clr-namespace:MoodTracker.ViewModels"
         xmlns:views="clr-namespace:MoodTracker.View"
         Title="MoodTracker"
-        Width="1280" Height="820"
+        Width="1180" Height="720"
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"

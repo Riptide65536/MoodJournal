@@ -90,5 +90,7 @@
     <BitmapImage x:Key="HomeIcon" UriSource="/Assets/home.png"/>
     <BitmapImage x:Key="AnalyticsIcon" UriSource="/Assets/analytics.png"/>
     <BitmapImage x:Key="ThemeIcon" UriSource="/Assets/DaylightMode.png"/>
+    <BitmapImage x:Key="AvatarIcon" UriSource="/Assets/UserAvatar.jpg"/>
+
     <!--====== 动态效果颜色（hover/点击）对应画刷 ======-->
 </ResourceDictionary>
