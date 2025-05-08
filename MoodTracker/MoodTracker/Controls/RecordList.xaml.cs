@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MoodTracker.Models;
+using MoodTracker.View;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -85,7 +87,19 @@ namespace MoodTracker.Controls
         // 处理点击事件
         private void RecordCard_Clicked(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("卡片被点击了!");
+            var record = new RecordModel
+            {
+                Title = "我的日记",
+                Content = "今天听了很喜欢的歌，感觉很放松……",
+                Date = DateTime.Now,
+                ImagePath = "Assets/example.jpg",
+                MusicPath = "Assets/example.mp3"
+            };
+
+            var detailPage = new RecordDetailPage(record);
+
+            // 找到 MainWindow 里的 Frame 并导航
+            ((MainWindow)Application.Current.MainWindow).MainContentFrame.Navigate(detailPage);
         }
 
         private void RecordCard2_Loaded(object sender, RoutedEventArgs e)

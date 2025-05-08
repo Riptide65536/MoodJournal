@@ -54,3 +54,6 @@ _ReSharper*/
 # OS generated files
 .DS_Store
 desktop.ini
+
+# 忽略所有项目中的.vs文件夹及其内容
+.vs/

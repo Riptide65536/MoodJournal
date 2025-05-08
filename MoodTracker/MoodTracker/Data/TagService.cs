@@ -13,7 +13,7 @@ namespace MoodTracker.Data
         {
             using var db = new ApplicationDbContext();
             var tag = db.Tags.FirstOrDefault(t => t.Name == tagName) ?? new Tag { Name = tagName };
-            var moodRecord = db.MoodRecords.FirstOrDefault(mr => mr.MoodRecordId == moodRecordId);
+            var moodRecord = db.MoodRecords.FirstOrDefault(mr => mr.RecordId == moodRecordId);
 
             if (moodRecord != null)
             {
@@ -26,7 +26,7 @@ namespace MoodTracker.Data
         {
             using var db = new ApplicationDbContext();
             var moodRecord = db.MoodRecords.Include(mr => mr.Tags)
-                                           .FirstOrDefault(mr => mr.MoodRecordId == moodRecordId);
+                                           .FirstOrDefault(mr => mr.RecordId == moodRecordId);
 
             if (moodRecord != null)
             {
@@ -43,7 +43,7 @@ namespace MoodTracker.Data
         {
             using var db = new ApplicationDbContext();
             return db.MoodRecords.Include(mr => mr.Tags)
-                                  .FirstOrDefault(mr => mr.MoodRecordId == moodRecordId)?
+                                  .FirstOrDefault(mr => mr.RecordId == moodRecordId)?
                                   .Tags.ToList() ?? new List<Tag>();
         }
     }

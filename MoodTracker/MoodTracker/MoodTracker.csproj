@@ -6,36 +6,44 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+
+    <Company>MoodTracker</Company>
+    <Product>MoodTracker</Product>
+    <Copyright>Copyright © 2024</Copyright>
+    <Version>1.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Assets\analytics.png" />
-    <None Remove="Assets\hamburger.png" />
-    <None Remove="Assets\home.png" />
-    <None Remove="Assets\LucideCalendarDays.png" />
-    <None Remove="Assets\Mood\happy.png" />
-    <None Remove="Assets\next.png" />
-    <None Remove="Assets\pause.png" />
-    <None Remove="Assets\play.png" />
-    <None Remove="Assets\prev.png" />
-    <None Remove="Assets\UserAvatar.jpg" />
+    <None Remove="Assets\DaylightMode.png" />
+    <None Remove="Assets\MoodTracker.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="Resources\DarkTheme.xaml" />
+    <Page Remove="Resources\LightTheme.xaml" />
+    <Page Remove="Resources\Styles.xaml" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Assets\analytics.png" />
+    <Resource Include="Assets\DaylightMode.png" />
     <Resource Include="Assets\hamburger.png" />
     <Resource Include="Assets\home.png" />
     <Resource Include="Assets\LucideCalendarDays.png" />
+    <Resource Include="Assets\MoodTracker.png" />
     <Resource Include="Assets\Mood\happy.png" />
     <Resource Include="Assets\next.png" />
     <Resource Include="Assets\pause.png" />
     <Resource Include="Assets\play.png" />
     <Resource Include="Assets\prev.png" />
     <Resource Include="Assets\UserAvatar.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
+    <Resource Include="Resources\DarkTheme.xaml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\LightTheme.xaml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Styles.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -47,3 +55,4 @@
   </ItemGroup>
 
 </Project>
+

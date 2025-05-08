@@ -3,109 +3,74 @@
          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"  
          Height="Auto" Width="Auto">
 
-    <Border CornerRadius="30" Padding="30" Margin="20"  
+    <Grid  Margin="20"
+        Background="{StaticResource ContentSurface}"
         >
-        <Border.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#20273B" Offset="0"/>
-                <GradientStop Color="#1A1C2A" Offset="1"/>
-            </LinearGradientBrush>
-        </Border.Background>
 
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,20">
 
+            <!-- 日期信息区 -->
             <Grid Margin="0,20,0,20">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
-                    <!-- 左侧时间 -->
                     <ColumnDefinition Width="*"/>
-                    <!-- 右侧扩展 -->
                 </Grid.ColumnDefinitions>
 
-                <!-- 左侧：日期展示 -->
-                <StackPanel Grid.Column="0" Margin="10,0,0,0">
-                    <TextBlock Text="TIME" 
-                   FontSize="12"                     
-                   FontWeight="Bold"
-                   Margin="0,0,0,4"/>
+                <StackPanel Grid.Column="0" Margin="0,0,0,40">
+                    <TextBlock Text="TIME"
+                           Style="{StaticResource TitleHintTextStyle}"/>
                     <TextBlock x:Name="DayOfWeekText"
-                   Text="星期一" 
-                   FontSize="20" 
-                   FontWeight="SemiBold"
-                   Margin="0,0,0,2"/>
+                           Text="星期一"
+                           Style="{StaticResource DayOfWeekTextStyle}"/>
                     <TextBlock x:Name="DateText"
-                   Text="2025-04-28" 
-                   FontSize="14" />
+                           Text="2025-04-28"
+                           Style="{StaticResource SubtitleTextStyle}"/>
                 </StackPanel>
 
-                <!-- 右侧：预留扩展区域 -->
-                <StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,0,10,0">
-                    <!-- 这里以后可以放按钮或者功能 -->
+                <StackPanel Grid.Column="1" HorizontalAlignment="Right"
+                        Orientation="Horizontal" Margin="0,0,10,0">
+                    <!-- 可扩展功能区 -->
                 </StackPanel>
             </Grid>
 
-
             <!-- 歌曲封面 -->
-            <Border CornerRadius="20" Background="#EEE" Padding="5"  Margin="0,0,0,20">
-                <Image x:Name="CoverImage" Width="320" Height="220" Stretch="UniformToFill" ClipToBounds="True"   
-         HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Border CornerRadius="20" Background="{StaticResource CardBackground}" Padding="5" Margin="0,0,0,30"
+                Effect="{StaticResource CardShadow}">
+                <Image x:Name="CoverImage" Width="320" Height="220" Stretch="UniformToFill" ClipToBounds="True"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
 
-            <!-- 歌曲信息 + 控制按钮区域 -->
-            <Grid Margin="0,30,0,0">
+            <!-- 歌曲信息 + 控制按钮 -->
+            <Grid Margin="0,50,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
-                <!-- 左侧：歌名 + 作者 -->
+                <!-- 歌名与歌手 -->
                 <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <TextBlock x:Name="SongNameText" Text="歌曲名" 
-                  FontSize="20" FontWeight="Bold"
-                  TextAlignment="Left"/>
-                    <TextBlock x:Name="ArtistNameText" Text="歌手名" 
-                  FontSize="14"
-                  TextAlignment="Left" Margin="0,5,0,0"/>
+                    <TextBlock x:Name="SongNameText" Text="歌曲名"
+                           Style="{StaticResource TitleTextStyle}"/>
+                    <TextBlock x:Name="ArtistNameText" Text="歌手名"
+                           Style="{StaticResource SubtitleTextStyle}" Margin="0,5,0,0"/>
                 </StackPanel>
 
-                <!-- 右侧：控制按钮 -->
+                <!-- 控制按钮 -->
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-
-                    <Button x:Name="PreviousButton" 
-                           Width="40" Height="40" 
-                           Click="PreviousButton_Click" 
-                           Margin="0,0,10,0">
-                        <Image Source="pack://application:,,,/Assets/prev.png" 
-                              Width="24" Height="24"/>
+                    <Button Style="{StaticResource IconButtonStyle}" Click="PreviousButton_Click" Margin="0,0,10,0">
+                        <Image Source="pack://application:,,,/Assets/prev.png" Width="24" Height="24"/>
                     </Button>
 
-                    <!-- 播放/暂停 -->
-                    <Button x:Name="PlayPauseButton" 
-                           Width="40" Height="40" 
-                           Click="PlayPauseButton_Click" Margin="0,0,10,0">
+                    <Button Style="{StaticResource IconButtonStyle}" Click="PlayPauseButton_Click" Margin="0,0,10,0">
                         <Image x:Name="PlayPauseIcon" Source="pack://application:,,,/Assets/play.png" Width="30" Height="30"/>
                     </Button>
 
-                    <!-- 下一首 -->
-                    <Button x:Name="NextButton" 
-                           Width="40" Height="40" 
-                           Click="NextButton_Click">
+                    <Button Style="{StaticResource IconButtonStyle}" Click="NextButton_Click">
                         <Image Source="pack://application:,,,/Assets/next.png" Width="24" Height="24"/>
                     </Button>
-
                 </StackPanel>
             </Grid>
-
-
-            <!-- 音乐进度条 -->
-            <!--<ProgressBar x:Name="MusicProgressBar" Value="{Binding MusicProgress}" Maximum="100" Height="8" Margin="0,20,0,0"  
-           Foreground="{StaticResource AccentColor}" Background="{StaticResource ProgressBackground}"  
-           Style="{StaticResource RoundProgressBarStyle}">
-                <ProgressBar.Effect>
-                    <DropShadowEffect Color="Gray" Direction="270" BlurRadius="5" ShadowDepth="2"/>
-                </ProgressBar.Effect>
-            </ProgressBar>-->
-
         </StackPanel>
-    </Border>
+    </Grid>
+
 </UserControl>

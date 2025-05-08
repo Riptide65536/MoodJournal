@@ -3,13 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:local="clr-namespace:MoodTracker.Controls"
->
+             Height="Auto" Width="Auto">
+
     <ScrollViewer VerticalScrollBarVisibility="Hidden"
                   HorizontalScrollBarVisibility="Hidden"
                   Background="Transparent"
                   Padding="0"
                   UseLayoutRounding="True">
-        <!-- 通过样式完全隐藏滚动条 -->
+
+        <!-- 隐藏滚动条样式 -->
         <ScrollViewer.Resources>
             <Style TargetType="ScrollViewer">
                 <Setter Property="Template">
@@ -24,85 +26,134 @@
                                     <RowDefinition Height="*"/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-
                                 <ScrollContentPresenter Grid.Column="0" Grid.Row="0"/>
-
-                                <!-- 隐藏滚动条轨道 -->
-                                <ScrollBar x:Name="PART_VerticalScrollBar"
-                                           Grid.Column="1"
-                                           Visibility="Collapsed"/>
-                                <ScrollBar x:Name="PART_HorizontalScrollBar" 
-                                           Grid.Row="1"
-                                           Visibility="Collapsed"/>
+                                <ScrollBar x:Name="PART_VerticalScrollBar" Grid.Column="1" Visibility="Collapsed"/>
+                                <ScrollBar x:Name="PART_HorizontalScrollBar" Grid.Row="1" Visibility="Collapsed"/>
                             </Grid>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
             </Style>
         </ScrollViewer.Resources>
-        <StackPanel Margin="20" Width="200" >
 
-            <TextBlock Text="🗓️ 我的打卡记录" 
-           FontSize="20" FontWeight="Bold" 
-           Foreground="#444" Margin="0,0,0,20"/>
+        <StackPanel Margin="20" Width="200">
 
-            <!-- 优化日历控件 -->
-            <Border CornerRadius="20" Background="White" Padding="15" Margin="0,0,0,20"
-        >
+            <!-- 标题 -->
+            <TextBlock Text="🗓️ 我的打卡记录"
+                       Style="{StaticResource TitleTextStyle}"
+                       Margin="0,0,0,20" />
+
+            <!-- 日历控件 -->
+            <Border Background="{StaticResource CardBackground}"
+                    CornerRadius="{StaticResource CardCornerRadius}"
+                    Padding="15" Margin="0,0,0,20"
+                    Effect="{StaticResource CardShadow}">
                 <Calendar x:Name="PunchCalendar"
-              Background="White"
-              BorderThickness="0"
-              DisplayDate="{x:Static sys:DateTime.Now}"
-              SelectionMode="SingleDate"
-              Width="180" 
-              Height="Auto"
-              Margin="0,0,0,0"
-              HorizontalAlignment="Center"/>
+                          Background="Transparent"
+                          BorderThickness="0"
+                          DisplayDate="{x:Static sys:DateTime.Now}"
+                          SelectionMode="SingleDate"
+                          Width="180"
+                          HorizontalAlignment="Center"/>
             </Border>
 
             <!-- 今日心情小语 -->
-            <Border CornerRadius="20" Background="White" Padding="15" Margin="0,0,0,20"
-                    >
+            <Border Background="{StaticResource CardBackground}"
+                    CornerRadius="{StaticResource CardCornerRadius}"
+                    Padding="15" Margin="0,0,0,20"
+                    Effect="{StaticResource CardShadow}">
                 <StackPanel>
-                    <TextBlock Text="🌈 今日心情小语" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
-                    <TextBlock x:Name="MoodQuote" Text="每天都是新的开始！" TextWrapping="Wrap"
-                               Foreground="#666" FontSize="13"/>
+                    <TextBlock Text="🌈 今日心情小语"
+                               Style="{StaticResource SubtitleTextStyle}" />
+                    <TextBlock x:Name="MoodQuote"
+                               Text="每天都是新的开始！"
+                               TextWrapping="Wrap"
+                               Style="{StaticResource BodyTextStyle}"
+                               Margin="0,5,0,0"/>
                 </StackPanel>
             </Border>
 
-            <!-- 简单天气展示 -->
-            <Border CornerRadius="20" Background="White" Padding="15" Margin="0,0,0,20"
-                    >
+            <!-- 天气 -->
+            <Border Background="{StaticResource CardBackground}"
+                    CornerRadius="{StaticResource CardCornerRadius}"
+                    Padding="15" Margin="0,0,0,20"
+                    Effect="{StaticResource CardShadow}">
                 <StackPanel>
-                    <TextBlock Text="☁️ 天气" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
-                    <TextBlock x:Name="WeatherInfo" Text="晴，23°C" Foreground="#666" FontSize="13"/>
+                    <TextBlock Text="☁️ 天气"
+                               Style="{StaticResource SubtitleTextStyle}"/>
+                    <TextBlock x:Name="WeatherInfo"
+                               Text="晴，23°C"
+                               Style="{StaticResource BodyTextStyle}"
+                               Margin="0,5,0,0"/>
                 </StackPanel>
             </Border>
 
-            <!-- 听歌时长统计 -->
-            <Border CornerRadius="20" Background="White" Padding="15" Margin="0,0,0,20"
-                    >
+            <!-- 听歌时长 -->
+            <Border Background="{StaticResource CardBackground}"
+                    CornerRadius="{StaticResource CardCornerRadius}"
+                    Padding="15" Margin="0,0,0,20"
+                    Effect="{StaticResource CardShadow}">
                 <StackPanel>
-                    <TextBlock Text="⏰ 今日听歌时长" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
-                    <TextBlock x:Name="ListeningTime" Text="1小时24分钟" Foreground="#666" FontSize="13"/>
+                    <TextBlock Text="⏰ 今日听歌时长"
+                               Style="{StaticResource SubtitleTextStyle}"/>
+                    <TextBlock x:Name="ListeningTime"
+                               Text="1小时24分钟"
+                               Style="{StaticResource BodyTextStyle}"
+                               Margin="0,5,0,0"/>
                 </StackPanel>
             </Border>
 
-            <!-- 用户头像与昵称 -->
-            <Border CornerRadius="20" Background="White" Padding="15" Margin="0,0,0,20"
-                    >
+            <!-- 用户信息 -->
+            <Border Background="{StaticResource CardBackground}"
+                    CornerRadius="{StaticResource CardCornerRadius}"
+                    Padding="15" Margin="0,0,0,20"
+                    Effect="{StaticResource CardShadow}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                     <Ellipse Width="50" Height="50" Margin="0,0,10,0">
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="pack://application:,,,/Assets/UserAvatar.jpg" />
+                            <ImageBrush ImageSource="{StaticResource AvatarIcon}"/>
                         </Ellipse.Fill>
                     </Ellipse>
                     <StackPanel VerticalAlignment="Center">
-                        <TextBlock x:Name="UserName" Text="小Mood" FontWeight="Bold" FontSize="16"/>
-                        <TextBlock Text="打卡达人" Foreground="#777" FontSize="12"/>
+                        <TextBlock x:Name="UserName"
+                                   Text="小Mood"
+                                   Style="{StaticResource SubtitleTextStyle}" />
+                        <TextBlock Text="打卡达人"
+                                   Style="{StaticResource CaptionTextStyle}"/>
                     </StackPanel>
                 </StackPanel>
             </Border>
+
+            <!-- 快捷操作按钮 -->
+            <Button Style="{StaticResource IconButtonStyle}"
+                    Height="48"
+                    Margin="0,5,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{DynamicResource CalendarIcon}" 
+                           Width="24" 
+                           Height="24"/>
+                    <TextBlock Text="日历" 
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Center"
+                               FontSize="14"
+                               Foreground="{DynamicResource TextPrimaryBrush}"/>
+                </StackPanel>
+            </Button>
+
+            <Button Style="{StaticResource IconButtonStyle}"
+                    Height="48"
+                    Margin="0,5,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{DynamicResource SettingsIcon}" 
+                           Width="24" 
+                           Height="24"/>
+                    <TextBlock Text="设置" 
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Center"
+                               FontSize="14"
+                               Foreground="{DynamicResource TextPrimaryBrush}"/>
+                </StackPanel>
+            </Button>
 
         </StackPanel>
     </ScrollViewer>
