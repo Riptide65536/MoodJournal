@@ -1,11 +1,14 @@
 using Microsoft.EntityFrameworkCore;
-using MoodTracker.Models;
+using MoodTracker.Data;
 
 namespace MoodTracker.Data
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseMySQL("server=localhost;port=3307;database=JournalDatabase;user=root;password=password;");
+        }
 
         public DbSet<User> Users { get; set; }
         public DbSet<MoodRecord> MoodRecords { get; set; }

@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MoodTracker.Models
+namespace MoodTracker.Data
 {
     public class Mood
     {
-        public string MoodId { get; set; }
-        public string MoodName { get; set; }
+        public string MoodId { get; set; } = string.Empty;
+        public string MoodName { get; set; } = string.Empty;
 
-        public string UserId { get; set; }
+        // public string UserId { get; set; }  
     }
 }

@@ -5,14 +5,13 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MoodTracker.Models
+namespace MoodTracker.Data
 {
     public class User
     {
-        public string Id { get; set; }
-        public string Name { get; set; }
-        public string Password { get; set; }
-
-        public byte[] Avatar { get; set; }
+        public string Id { get; set; } = Guid.NewGuid().ToString();
+        public string Name { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+        public byte[] Avatar { get; set; } = [];
     }
 }
