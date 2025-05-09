@@ -5,9 +5,23 @@ namespace MoodTracker.Data
 {
     public class ApplicationDbContext : DbContext
     {
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseMySQL("server=localhost;port=3307;database=JournalDatabase;user=root;password=password;");
+        }
+
+        public DbSet<ChatRecord> ChatHistory { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<MoodRecord> MoodRecords { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public class ChatRecord
+        {
+            public string Id { get; set; } = Guid.NewGuid().ToString();
+            public string UserMessage { get; set; }
+            public string AIMessage { get; set; }
+            public string UserId { get; set; }  // ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½IDï¿½Ö¶ï¿½
+            public DateTime Timestamp { get; set; } = DateTime.Now;
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -20,21 +34,21 @@ namespace MoodTracker.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // ÅäÖÃUser-TagÒ»¶Ô¶à¹ØÏµ
+            // ï¿½ï¿½ï¿½ï¿½User-TagÒ»ï¿½Ô¶ï¿½ï¿½Ïµ
             modelBuilder.Entity<Tag>()
                 .HasOne(t => t.User)
                 .WithMany(u => u.Tags)
                 .HasForeignKey(t => t.UserId)
-                .OnDelete(DeleteBehavior.Cascade); // ¼¶ÁªÉ¾³ý[2,7](@ref)
+                .OnDelete(DeleteBehavior.Cascade); // ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½[2,7](@ref)
 
-            // ÅäÖÃUser-MoodRecordÒ»¶Ô¶à¹ØÏµ
+            // ï¿½ï¿½ï¿½ï¿½User-MoodRecordÒ»ï¿½Ô¶ï¿½ï¿½Ïµ
             modelBuilder.Entity<MoodRecord>()
                 .HasOne(m => m.User)
                 .WithMany(u => u.MoodRecords)
                 .HasForeignKey(m => m.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // ÅäÖÃMoodRecord-Tag¶à¶Ô¶à¹ØÏµ£¨EF Core 5+·½Ê½£©
+            // ï¿½ï¿½ï¿½ï¿½MoodRecord-Tagï¿½ï¿½Ô¶ï¿½ï¿½Ïµï¿½ï¿½EF Core 5+ï¿½ï¿½Ê½ï¿½ï¿½
             modelBuilder.Entity<MoodRecord>()
                 .HasMany(m => m.Tags)
                 .WithMany(t => t.MoodRecords)
@@ -46,10 +60,10 @@ namespace MoodTracker.Data
 
         public void EnsureDatabaseCreatedAndMigrated()
         {
-            // È·±£Êý¾Ý¿â´æÔÚ
+            // È·ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½
             this.Database.EnsureCreated();
 
-            // Ó¦ÓÃËùÓÐ¹ÒÆðµÄÇ¨ÒÆÒÔ×Ô¶¯½¨±í
+            // Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ð¹ï¿½ï¿½ï¿½ï¿½Ç¨ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½
             this.Database.Migrate();
         }
     }

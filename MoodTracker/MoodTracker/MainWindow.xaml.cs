@@ -17,6 +17,11 @@ namespace MoodTracker
             MainContentFrame.Navigate(new HomePage());
         }
 
+        //页面切换逻辑
+        public void NavigateTo(Page page)
+        {
+            MainContentFrame.Navigate(page);
+        }
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             DragMove();
