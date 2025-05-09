@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using MoodTracker.ViewModels;
 using System.Windows.Media.Animation;
+using MoodTracker.View;
 
 namespace MoodTracker.Controls
 {
@@ -112,6 +113,18 @@ namespace MoodTracker.Controls
                     analyticsButton.IsChecked = true;
                     RaiseEvent(new RoutedEventArgs(NavigationRequestedEvent, "Analytics"));
                 }
+            }
+        }
+
+        private void AIButton_Click(object sender, RoutedEventArgs e)
+        {
+            ResetSelection();
+            AnalyticsButton.IsChecked = true;
+            // TODO: 导航到数据分析页
+            var mainWindow = Window.GetWindow(this) as MainWindow;
+            if (mainWindow != null)
+            {
+                mainWindow.NavigateTo(new ChatWindow());
             }
         }
     }
