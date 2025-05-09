@@ -1,12 +1,12 @@
-﻿using System.Windows;
+﻿using MoodTracker.Data;
+using System.Windows;
 using System.Windows.Controls;
-using MoodTracker.Models;
 
 namespace MoodTracker.View
 {
     public partial class RecordDetailPage : Page
     {
-        public RecordDetailPage(RecordModel record)
+        public RecordDetailPage(MoodRecord record)
         {
             InitializeComponent();
             this.DataContext = record;

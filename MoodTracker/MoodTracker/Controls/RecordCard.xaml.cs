@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MoodTracker.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -63,6 +64,9 @@ namespace MoodTracker.Controls
                 control.MoodTextBlock.Text = (string)e.NewValue;
             }
         }
+
+        // 对应的record属性
+        public MoodRecord Record { get; set; }
 
         // 自定义点击事件，供外部绑定
         public event RoutedEventHandler CardClicked;

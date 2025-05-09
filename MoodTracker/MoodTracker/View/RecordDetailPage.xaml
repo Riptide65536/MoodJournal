@@ -27,16 +27,16 @@
 
                 <!-- 左侧标签 -->
                 <TextBlock Text="今日心情：" Grid.Row="0" Grid.Column="0" FontWeight="SemiBold" Margin="0,10"/>
-                <TextBlock Text="{Binding Mood}" Grid.Row="0" Grid.Column="1" Margin="0,10"/>
+                <TextBlock Text="{Binding CurrentEmotion}" Grid.Row="0" Grid.Column="1" Margin="0,10"/>
 
                 <TextBlock Text="音乐名称：" Grid.Row="1" Grid.Column="0" FontWeight="SemiBold" Margin="0,10"/>
-                <TextBlock Text="{Binding MusicName}" Grid.Row="1" Grid.Column="1" Margin="0,10"/>
+                <TextBlock Text="{Binding SongName}" Grid.Row="1" Grid.Column="1" Margin="0,10"/>
 
                 <TextBlock Text="音乐链接：" Grid.Row="2" Grid.Column="0" FontWeight="SemiBold" Margin="0,10"/>
-                <TextBlock Text="{Binding MusicPath}" Grid.Row="2" Grid.Column="1" Margin="0,10" TextWrapping="Wrap"/>
+                <TextBlock Text="{Binding SongLink}" Grid.Row="2" Grid.Column="1" Margin="0,10" TextWrapping="Wrap"/>
 
                 <TextBlock Text="记录时间：" Grid.Row="3" Grid.Column="0" FontWeight="SemiBold" Margin="0,10"/>
-                <TextBlock Text="{Binding Date, StringFormat=yyyy-MM-dd}" Grid.Row="3" Grid.Column="1" Margin="0,10"/>
+                <TextBlock Text="{Binding Datetime, StringFormat=yyyy-MM-dd}" Grid.Row="3" Grid.Column="1" Margin="0,10"/>
             </Grid>
 
             <!-- 分隔线 -->

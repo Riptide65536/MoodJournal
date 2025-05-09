@@ -1,4 +1,4 @@
-﻿using MoodTracker.Models;
+﻿using MoodTracker.Data;
 using MoodTracker.View;
 using System;
 using System.Collections.Generic;
@@ -24,11 +24,15 @@ namespace MoodTracker.Controls
     public partial class RecordList : UserControl
     {
         public ObservableCollection<RecordCard> RecordCards { get; set; }
+        private List<MoodRecord> allRecords = []; // 存储所有记录
+        private int currentPage = 0; // 当前页数
+        private const int PageSize = 10; // 每页加载的记录数
+        public string currentUserId = "0";
 
         public RecordList()
         {
             InitializeComponent();
-            RecordCards = new ObservableCollection<RecordCard>();
+            RecordCards = [];
             this.DataContext = this;
             LoadInitialRecords();
         }
@@ -36,30 +40,15 @@ namespace MoodTracker.Controls
         // 加载初始数据
         private void LoadInitialRecords()
         {
-            var card = new RecordCard
-            {
-                Mood = "今天心情超好！",
-                Date = DateTime.Parse("2025-04-28")
-            };
-            RecordStackPanel.Children.Add(card);
-            for (int i = 0; i < 20; i++) // 初始加载20个记录
-            {
-                var recordCard = new RecordCard
-                {
-                    Date = DateTime.Now.AddDays(-i),
-                    Mood = "开心",
-                };
-
-                recordCard.CardClicked += RecordCard_Clicked;
-
-                RecordCards.Add(recordCard);
-                RecordStackPanel.Children.Add(recordCard); // 添加到界面
-            }
+            JournalService journalService = new();
+            allRecords = journalService.GetRecordsByUserId(currentUserId); // 获取所有记录
+            LoadMoreRecords(); // 加载第一页
         }
 
         // 每次滚动到底部时加载更多记录
         private void ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
+            // TODO:修复分页显示系统
             if (e.VerticalOffset == e.ExtentHeight - e.ViewportHeight)
             {
                 LoadMoreRecords();
@@ -69,42 +58,42 @@ namespace MoodTracker.Controls
         // 加载更多记录
         private void LoadMoreRecords()
         {
-            for (int i = 0; i < 20; i++)
+            if (allRecords == null || currentPage * PageSize >= allRecords.Count)
             {
-                var recordCard = new RecordCard
+                return; // 没有更多记录
+            }
+
+            var recordsToLoad = allRecords
+                .Skip(currentPage * PageSize)
+                .Take(PageSize)
+                .ToList();
+
+            foreach (var rec in recordsToLoad)
+            {
+                var card = new RecordCard
                 {
-                    Date = DateTime.Now.AddDays(-RecordCards.Count),
-                    Mood = "放松",
+                    Mood = rec.Title,
+                    Date = rec.Datetime,
+                    Record = rec // 将记录数据存储在 Tag 属性中
                 };
 
-                recordCard.CardClicked += RecordCard_Clicked;
-
-                RecordCards.Add(recordCard);
-                RecordStackPanel.Children.Add(recordCard); // 添加到界面
+                card.CardClicked += RecordCard_Clicked;
+                RecordStackPanel.Children.Add(card); // 添加到界面
             }
+
+            currentPage++; // 增加页数
         }
 
         // 处理点击事件
         private void RecordCard_Clicked(object sender, RoutedEventArgs e)
         {
-            var record = new RecordModel
+            if (sender is RecordCard card && card.Record is MoodRecord record)
             {
-                Title = "我的日记",
-                Content = "今天听了很喜欢的歌，感觉很放松……",
-                Date = DateTime.Now,
-                ImagePath = "Assets/example.jpg",
-                MusicPath = "Assets/example.mp3"
-            };
+                var detailPage = new RecordDetailPage(record);
 
-            var detailPage = new RecordDetailPage(record);
-
-            // 找到 MainWindow 里的 Frame 并导航
-            ((MainWindow)Application.Current.MainWindow).MainContentFrame.Navigate(detailPage);
-        }
-
-        private void RecordCard2_Loaded(object sender, RoutedEventArgs e)
-        {
-
+                // 找到 MainWindow 里的 Frame 并导航
+                ((MainWindow)Application.Current.MainWindow).MainContentFrame.Navigate(detailPage);
+            }
         }
     }
 }

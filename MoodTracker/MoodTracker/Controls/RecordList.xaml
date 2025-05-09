@@ -18,7 +18,9 @@
 
         <ScrollViewer VerticalScrollBarVisibility="Hidden"
                       HorizontalScrollBarVisibility="Disabled"
-                      Padding="10">
+                      Padding="10"
+                      ScrollChanged="ScrollViewer_ScrollChanged"
+                      >
             <ScrollViewer.Resources>
 
                 <!-- 滚动条样式 -->
