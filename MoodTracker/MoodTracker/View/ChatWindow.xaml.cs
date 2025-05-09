@@ -15,6 +15,9 @@ namespace MoodTracker.View
     {
 
         private readonly SimpleAIChat _chatService = new SimpleAIChat("sk-76716f1a8fca45a9bfe98c01b1a6c310");
+        // 如下是林豪的的AIChat对应 API （但是还没付钱）
+        // private readonly SimpleAIChat _chatService = new SimpleAIChat("sk-d3b1587bd09a492ca9d6221509e9bb9d");
+
         public ObservableCollection<ChatRecord> ChatHistory { get; } = new();
         private readonly string ChatHistoryPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MoodTracker", "chat_history.json");
 
