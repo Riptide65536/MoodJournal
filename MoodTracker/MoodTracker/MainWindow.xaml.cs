@@ -12,7 +12,7 @@ namespace MoodTracker
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
+            this.DataContext = new MainViewModel();
             // 默认导航到首页
             MainContentFrame.Navigate(new HomePage());
         }
@@ -38,6 +38,10 @@ namespace MoodTracker
                 else if (sideNav.AnalyticsButton.IsChecked == true)
                 {
                     MainContentFrame.Navigate(new DataAnalysisPage());
+                }
+                else if (sideNav.AIButton.IsChecked == true)
+                {
+                    MainContentFrame.Navigate(new ChatWindow());
                 }
             }
         }

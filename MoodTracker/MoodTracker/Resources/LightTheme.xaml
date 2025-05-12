@@ -1,5 +1,4 @@
-﻿<!--日间主题-->
-
+﻿<!--light主题-->
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
@@ -26,7 +25,6 @@
     <!--====== 动态效果颜色（hover/点击） ======-->
     <Color x:Key="HoverGlow">#302B4A20</Color>
     <SolidColorBrush x:Key="HoverGlowBrush" Color="{StaticResource HoverGlow}" />
-    <!-- 淡淡的紫色 Hover 阴影 -->
 
     <!--====== 左侧导航栏 ======-->
     <SolidColorBrush x:Key="NavTextDefaultBrush" Color="#5A5A5A"/>
@@ -92,5 +90,5 @@
     <BitmapImage x:Key="ThemeIcon" UriSource="/Assets/DaylightMode.png"/>
     <BitmapImage x:Key="AvatarIcon" UriSource="/Assets/UserAvatar.jpg"/>
 
-    <!--====== 动态效果颜色（hover/点击）对应画刷 ======-->
+    
 </ResourceDictionary>

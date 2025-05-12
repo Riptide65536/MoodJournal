@@ -40,7 +40,7 @@ namespace MoodTracker.Controls
         public SideNav()
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
+            //DataContext = new MainViewModel();
 
             // 初始宽度设置
             this.Width = IsExpanded ? ExpandedWidth : CollapsedWidth;
@@ -73,6 +73,7 @@ namespace MoodTracker.Controls
             MenuButton.IsChecked = false;
             HomeButton.IsChecked = false;
             AnalyticsButton.IsChecked = false;
+            AIButton.IsChecked = false;
             //待添加（别的功能按钮）
         }
 
@@ -119,12 +120,16 @@ namespace MoodTracker.Controls
         private void AIButton_Click(object sender, RoutedEventArgs e)
         {
             ResetSelection();
-            AnalyticsButton.IsChecked = true;
-            // TODO: 导航到数据分析页
-            var mainWindow = Window.GetWindow(this) as MainWindow;
-            if (mainWindow != null)
+            if (sender is ToggleButton aiButton)
             {
-                mainWindow.NavigateTo(new ChatWindow());
+                var homeButton = this.FindName("HomeButton") as ToggleButton;
+                var analyticsButton = this.FindName("AnalyticsButton") as ToggleButton;
+
+                if (homeButton != null) homeButton.IsChecked = false;
+                if (analyticsButton != null) analyticsButton.IsChecked = false;
+                aiButton.IsChecked = true;
+
+                RaiseEvent(new RoutedEventArgs(NavigationRequestedEvent, "AI"));
             }
         }
     }
