@@ -1,4 +1,5 @@
 using System.Windows;
+using System.Linq;
 
 namespace MoodTracker.Resources
 {
@@ -11,17 +12,20 @@ namespace MoodTracker.Resources
             var mergedDictionaries = resources.MergedDictionaries;
 
             // 移除当前主题
-            if (mergedDictionaries.Count > 1)
+            var currentTheme = mergedDictionaries.FirstOrDefault(d =>
+                d.Source != null && (d.Source.OriginalString.Contains("LightTheme.xaml") || d.Source.OriginalString.Contains("DarkTheme.xaml")));
+
+            if (currentTheme != null)
             {
-                mergedDictionaries.RemoveAt(1);
+                mergedDictionaries.Remove(currentTheme);
             }
 
             // 添加新主题
-            var themeUri = !isDarkTheme
+            var themeUri = isDarkTheme
                 ? "Resources/DarkTheme.xaml"
                 : "Resources/LightTheme.xaml";
 
-            mergedDictionaries.Add(new ResourceDictionary { Source = new System.Uri(themeUri, System.UriKind.Relative) });
+            mergedDictionaries.Insert(0, new ResourceDictionary { Source = new System.Uri(themeUri, System.UriKind.Relative) });
         }
     }
 } 

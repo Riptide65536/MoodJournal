@@ -13,7 +13,7 @@
                     BorderThickness="1">-->
 
     <Grid
-            Background="{StaticResource ContentSurface}"
+            Background="{DynamicResource ContentSurface}"
             
             >
         <!-- 主内容三列布局 -->

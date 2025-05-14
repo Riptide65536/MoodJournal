@@ -3,13 +3,14 @@ using System.Windows;
 using System.Windows.Input;
 using MoodTracker.Resources;
 using System.Windows.Media;
+using System.Linq;
 
 namespace MoodTracker.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
         private bool _isMenuOpen;
-        private bool _isDarkTheme = false; // 默认使用主题
+        private bool _isDarkTheme;
 
         public bool IsMenuOpen
         {
@@ -22,11 +23,9 @@ namespace MoodTracker.ViewModels
             get => _isDarkTheme;
             set
             {
-                if (_isDarkTheme != value)
+                if (SetProperty(ref _isDarkTheme, value))
                 {
-                    _isDarkTheme = value;
-                    OnPropertyChanged();
-                    ToggleTheme();
+                    ThemeManager.ApplyTheme(_isDarkTheme);
                 }
             }
         }
@@ -43,8 +42,25 @@ namespace MoodTracker.ViewModels
             CloseCommand = new RelayCommand(CloseWindow);
             ToggleThemeCommand = new RelayCommand(_ => IsDarkTheme = !IsDarkTheme);
 
-            // 初始化主题
-            ToggleTheme();
+            // 初始化主题状态
+            InitializeTheme();
+        }
+
+        private void InitializeTheme()
+        {
+            var app = Application.Current;
+            var dictionaries = app.Resources.MergedDictionaries;
+            
+            // 检查当前主题
+            var currentTheme = dictionaries.FirstOrDefault(d =>
+                d.Source != null && (d.Source.OriginalString.Contains("LightTheme.xaml") || d.Source.OriginalString.Contains("DarkTheme.xaml")));
+
+            if (currentTheme != null)
+            {
+                // 根据当前主题设置IsDarkTheme
+                _isDarkTheme = currentTheme.Source.OriginalString.Contains("DarkTheme.xaml");
+                OnPropertyChanged(nameof(IsDarkTheme));
+            }
         }
 
         private void ExecuteToggleMenu(object parameter)
@@ -52,29 +68,6 @@ namespace MoodTracker.ViewModels
             IsMenuOpen = !IsMenuOpen;
         }
 
-        private void ToggleTheme()
-        {
-            var app = Application.Current;
-            var dictionaries = app.Resources.MergedDictionaries;
-
-            // 查找旧主题字典
-            var oldTheme = dictionaries.FirstOrDefault(d =>
-                d.Source != null && (d.Source.OriginalString.Contains("LightTheme.xaml") || d.Source.OriginalString.Contains("DarkTheme.xaml")));
-
-            if (oldTheme != null)
-            {
-                dictionaries.Remove(oldTheme);
-            }
-
-            var newTheme = new ResourceDictionary
-            {
-                Source = new Uri($"Resources/{(IsDarkTheme ? "Dark" : "Light")}Theme.xaml", UriKind.Relative)
-                //Source = new Uri($"Resources/{(IsDarkTheme ? "Light" : "Dark")}Theme.xaml", UriKind.Relative)
-
-            };
-            dictionaries.Insert(0, newTheme);
-
-        }
 
         private void MinimizeWindow(object parameter)
         {

@@ -32,7 +32,7 @@
         </EventTrigger>
     </Window.Triggers>
     
-    <Border Background="{StaticResource ContainerGlow}" CornerRadius="50">
+    <Border Background="{DynamicResource ContainerGlow}" CornerRadius="50">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -40,7 +40,7 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <!-- 左侧区域：斜纹背景 + SideNav -->
+            <!-- 左侧区域 + SideNav -->
             <Grid Grid.Column="0" Width="{Binding ActualWidth, ElementName=SideNavControl}">
                 <!-- 装饰性斜纹背景 -->
                 <Border Opacity="0.1" Margin="0,20,0,20">
@@ -58,7 +58,8 @@
                 </Border>
 
                 <!-- 左侧导航栏控件 -->
-                <controls:SideNav x:Name="SideNavControl"
+                <controls:SideNav DataContext="{Binding}"
+                                  x:Name="SideNavControl"
                                   VerticalAlignment="Stretch"
                                   HorizontalAlignment="Left"
                                   Margin="10,20,0,20"
@@ -67,7 +68,7 @@
 
             <!-- 主内容区域 -->
             <Border Grid.Column="1"
-                    Background="{StaticResource ContentSurface}"
+                    Background="{DynamicResource ContentSurface}"
                     CornerRadius="40"
                     Margin="0"
                     BorderBrush="#30324A"
