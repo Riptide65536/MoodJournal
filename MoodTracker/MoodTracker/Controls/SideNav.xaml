@@ -102,7 +102,7 @@
             <!-- 主题切换按钮 -->
             <ToggleButton Style="{StaticResource NavButtonStyle}" 
                           x:Name="ThemeButton" 
-                          IsChecked="{Binding IsDarkTheme, Mode=TwoWay}"
+                          IsChecked="{Binding IsDarkTheme}"
                           Margin="0,360,0,10" Height="48">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                     <Image Source="{DynamicResource ThemeIcon}" Width="24" Height="24"/>

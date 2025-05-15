@@ -125,35 +125,31 @@
             </Border>
 
             <!-- 快捷操作按钮 -->
-            <Button Style="{StaticResource IconButtonStyle}"
+            <!--<Button Style="{StaticResource IconButtonStyle}"
                     Height="48"
                     Margin="0,5,0,0">
                 <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="日历"
+                               FontSize="14"
+                               Foreground="{DynamicResource TextPrimaryBrush}"/>
                     <Image Source="{DynamicResource CalendarIcon}" 
                            Width="24" 
                            Height="24"/>
-                    <TextBlock Text="日历" 
-                               Margin="10,0,0,0"
-                               VerticalAlignment="Center"
-                               FontSize="14"
-                               Foreground="{DynamicResource TextPrimaryBrush}"/>
                 </StackPanel>
             </Button>
 
             <Button Style="{StaticResource IconButtonStyle}"
                     Height="48"
-                    Margin="0,5,0,0">
-                <StackPanel Orientation="Horizontal">
+                    Margin="0,5,0,0" Width="79">
+                <StackPanel Orientation="Horizontal" Width="62">
+                    <TextBlock Text="设置"
+                               FontSize="14"
+                               Foreground="{DynamicResource TextPrimaryBrush}" Width="50"/>
                     <Image Source="{DynamicResource SettingsIcon}" 
                            Width="24" 
                            Height="24"/>
-                    <TextBlock Text="设置" 
-                               Margin="10,0,0,0"
-                               VerticalAlignment="Center"
-                               FontSize="14"
-                               Foreground="{DynamicResource TextPrimaryBrush}"/>
                 </StackPanel>
-            </Button>
+            </Button>-->
 
         </StackPanel>
     </ScrollViewer>

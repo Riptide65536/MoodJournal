@@ -21,7 +21,7 @@ namespace MoodTracker.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-                .UseMySql("server=localhost;port=3306;database=mooddb;user=root;password=password;",
+                .UseMySql("server=localhost;port=3306;database=mooddb;user=root;password=2.71828182;",
                 new MySqlServerVersion(new Version(8, 0, 41)));
         }
 

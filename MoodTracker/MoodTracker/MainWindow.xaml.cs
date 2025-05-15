@@ -4,6 +4,8 @@ using MoodTracker.ViewModels;
 using MoodTracker.View;
 using System.Windows.Controls;
 using MoodTracker.Controls;
+using System.Globalization;
+using System.Windows.Data;
 
 namespace MoodTracker
 {
@@ -44,6 +46,11 @@ namespace MoodTracker
                     MainContentFrame.Navigate(new ChatWindow());
                 }
             }
+        }
+
+        private void CreateButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

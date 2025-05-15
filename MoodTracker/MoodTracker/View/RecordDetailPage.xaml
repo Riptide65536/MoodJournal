@@ -1,6 +1,6 @@
 ﻿<Page x:Class="MoodTracker.View.RecordDetailPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
       Background="{StaticResource ContentSurface}">
 
     <Grid Margin="20">
@@ -25,29 +25,59 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <!-- 左侧标签 -->
-                <TextBlock Text="今日心情：" Grid.Row="0" Grid.Column="0" FontWeight="SemiBold" Margin="0,10"/>
-                <TextBlock Text="{Binding CurrentEmotion}" Grid.Row="0" Grid.Column="1" Margin="0,10"/>
+                <!-- 今日心情 -->
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Margin="0,10">
+                    <Image Source="{DynamicResource MoodIcon}" Width="16" Height="16" Margin="0,0,6,0"/>
+                    <TextBlock Text="今日心情：" FontWeight="SemiBold"/>
+                </StackPanel>
+                <TextBox Text="{Binding CurrentEmotion}" 
+             Grid.Row="0" Grid.Column="1"
+             FontSize="14" BorderThickness="0,0,0,1" Background="Transparent" Margin="0,10"/>
 
-                <TextBlock Text="音乐名称：" Grid.Row="1" Grid.Column="0" FontWeight="SemiBold" Margin="0,10"/>
-                <TextBlock Text="{Binding SongName}" Grid.Row="1" Grid.Column="1" Margin="0,10"/>
+                <!-- 音乐名称 -->
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Margin="0,10">
+                    <Image Source="{DynamicResource MusicIcon}" Width="16" Height="16" Margin="0,0,6,0"/>
+                    <TextBlock Text="音乐名称：" FontWeight="SemiBold"/>
+                </StackPanel>
+                <TextBox Text="{Binding SongName}" 
+             Grid.Row="1" Grid.Column="1"
+             FontSize="14" BorderThickness="0,0,0,1" Background="Transparent" Margin="0,10"/>
 
-                <TextBlock Text="音乐链接：" Grid.Row="2" Grid.Column="0" FontWeight="SemiBold" Margin="0,10"/>
-                <TextBlock Text="{Binding SongLink}" Grid.Row="2" Grid.Column="1" Margin="0,10" TextWrapping="Wrap"/>
+                <!-- 音乐链接 -->
+                <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Margin="0,10">
+                    <Image Source="{DynamicResource LinkIcon}" Width="16" Height="16" Margin="0,0,6,0"/>
+                    <TextBlock Text="音乐链接：" FontWeight="SemiBold"/>
+                </StackPanel>
+                <TextBox Text="{Binding SongLink}" 
+             Grid.Row="2" Grid.Column="1"
+             TextWrapping="Wrap" FontSize="14" BorderThickness="0,0,0,1" Background="Transparent" Margin="0,10"/>
 
-                <TextBlock Text="记录时间：" Grid.Row="3" Grid.Column="0" FontWeight="SemiBold" Margin="0,10"/>
-                <TextBlock Text="{Binding Datetime, StringFormat=yyyy-MM-dd}" Grid.Row="3" Grid.Column="1" Margin="0,10"/>
+                <!-- 记录时间 -->
+                <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Margin="0,10">
+                    <Image Source="{DynamicResource TimeIcon}" Width="16" Height="16" Margin="0,0,6,0"/>
+                    <TextBlock Text="记录时间：" FontWeight="SemiBold"/>
+                </StackPanel>
+                <DatePicker SelectedDate="{Binding Datetime}" 
+                Grid.Row="3" Grid.Column="1"
+                Margin="0,10"/>
             </Grid>
+
 
             <!-- 分隔线 -->
             <Separator Margin="0,20"/>
 
             <!-- 内容 -->
-            <TextBlock Text="{Binding Content}"
-               FontSize="16"
-               TextWrapping="Wrap"
-               Margin="0,10,0,0"
-               TextAlignment="Left"/>
+            <TextBox Text="{Binding Content}" 
+         FontSize="16"
+         TextWrapping="Wrap"
+         Margin="0,10,0,0"
+         TextAlignment="Left"
+         AcceptsReturn="True"
+         VerticalScrollBarVisibility="Auto"
+         Height="200"
+         BorderBrush="{StaticResource ContentSurface}"
+         BorderThickness="1"
+         Padding="6"/>
         </StackPanel>
 
     </Grid>

@@ -18,6 +18,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
             </Grid.ColumnDefinitions>
 
             <!-- 图片：左对齐且垂直居中 -->
@@ -59,6 +60,28 @@
                     HorizontalAlignment="Left"  
                 />
             </Grid>
+            <Grid Grid.Column="2">
+                <!-- 装饰图片-->
+                <Image Source="/Assets/RecordCard_ArrowForward.png"
+           Width="26"
+           Height="46"
+           VerticalAlignment="Center"
+           HorizontalAlignment="Center"/>
+
+                <!-- 顶部右上角的按钮 -->
+                <Canvas HorizontalAlignment="Right" VerticalAlignment="Top">
+                    <ToggleButton x:Name="OptionsButton"
+                      Width="30"
+                      Height="24"
+                      Style="{StaticResource NavButtonStyle}"
+                      Click="OptionsButton_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="-17" Canvas.Top="-14">
+                        <Image Source="/Assets/OptionHorizontal.png" Width="12" Height="12"/>
+                    </ToggleButton>
+                </Canvas>
+            </Grid>
+
+
+
         </Grid>
     </Border>
 </UserControl>

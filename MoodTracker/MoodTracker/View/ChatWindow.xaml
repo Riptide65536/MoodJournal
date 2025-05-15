@@ -5,7 +5,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:local="clr-namespace:MoodTracker.View"
       mc:Ignorable="d"
-      Title="AI聊天助手" Height="650" Width="800">
+      Title="AI聊天助手" Height="650" Width="800"
+      >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -17,7 +18,9 @@
                  ItemsSource="{Binding ChatHistory}"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                 Background="White">
+                 Background="{StaticResource ContentSurface}"
+                 BorderThickness="0"
+                 BorderBrush="Transparent">
 
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -28,15 +31,15 @@
 
                         <!-- 用户消息（右对齐） -->
                         <StackPanel HorizontalAlignment="Right" Margin="0,5">
-                            <Border Background="#FFE0E0E0" Padding="10" CornerRadius="10" MaxWidth="800">
-                                <TextBlock Text="{Binding UserMessage}" TextWrapping="Wrap"/>
+                            <Border Background="#FFE0E0E0" Padding="16" CornerRadius="16" MaxWidth="800">
+                                <TextBlock Text="{Binding UserMessage}" TextWrapping="Wrap" FontSize="14"/>
                             </Border>
                         </StackPanel>
 
                         <!-- AI消息（左对齐） -->
                         <StackPanel HorizontalAlignment="Left" Margin="0,5">
-                            <Border Background="#FFB0E0E6" Padding="10" CornerRadius="10" MaxWidth="800">
-                                <TextBlock Text="{Binding AIMessage}" TextWrapping="Wrap"/>
+                            <Border Background="#FFB0E0E6" Padding="16" CornerRadius="16" MaxWidth="800">
+                                <TextBlock Text="{Binding AIMessage}" TextWrapping="Wrap" FontSize="14"/>
                             </Border>
                         </StackPanel>
                     </StackPanel>
@@ -61,7 +64,8 @@
                              BorderThickness="0"
                              Padding="8"
                              MinHeight="60"
-                             KeyDown="InputBox_KeyDown"/>
+                             KeyDown="InputBox_KeyDown"
+                             Background="Transparent"/>
                 </Border>
 
                 <!-- 发送按钮 -->
@@ -72,7 +76,7 @@
                         BorderThickness="0"
                         Cursor="Hand"
                         HorizontalAlignment="Right"
-                        VerticalAlignment="Bottom"
+                        VerticalAlignment="Center"
                         Margin="0,0,0,0"
                         Click="SendButton_Click">
                     <Button.Resources>

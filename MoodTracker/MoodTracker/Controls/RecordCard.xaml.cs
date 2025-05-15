@@ -69,9 +69,11 @@ namespace MoodTracker.Controls
         public MoodRecord Record { get; set; }
 
         // 自定义点击事件，供外部绑定
-        public event RoutedEventHandler CardClicked;
+        public event RoutedEventHandler CardClicked;//卡片点击事件
 
         private ScaleTransform _scaleTransform = new ScaleTransform(1.0, 1.0);
+
+        public event RoutedEventHandler OptionsButtonClicked;//右上角事件点击（删除当前卡片）
 
         private void CardBorder_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -95,6 +97,11 @@ namespace MoodTracker.Controls
         {
             AnimateScale(_scaleTransform.ScaleX, 1.05);
             CardClicked?.Invoke(this, new RoutedEventArgs());
+        }
+        private void OptionsButton_Click(object sender, RoutedEventArgs e)
+        {
+            AnimateScale(_scaleTransform.ScaleX, 1.05);
+            OptionsButtonClicked?.Invoke(this, e);
         }
 
         // 缩放动画封装
