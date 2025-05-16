@@ -72,6 +72,11 @@ namespace MoodTracker.View
 
             InputBox.Clear();
             ChatList.ScrollIntoView(ChatHistory[^1]);
+
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                ChatList.ScrollIntoView(ChatHistory[^1]);
+            }), System.Windows.Threading.DispatcherPriority.Background);
         }
 
         private void SaveChatHistory()
