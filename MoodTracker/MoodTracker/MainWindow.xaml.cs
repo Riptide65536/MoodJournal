@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using MoodTracker.Controls;
 using System.Globalization;
 using System.Windows.Data;
+using MoodTracker.Data;
 
 namespace MoodTracker
 {
@@ -50,7 +51,21 @@ namespace MoodTracker
 
         private void CreateButton_Click(object sender, RoutedEventArgs e)
         {
+            // 创建一个新的记录
+            MoodRecord moodRecord = new MoodRecord();
 
+            // 提醒RecordList组件更新
+            var homePage = MainContentFrame.Content as HomePage;
+            if (homePage != null)
+            {
+                // 假设HomePage里有public属性RecordList RecordListControl { get; }
+                homePage.RecordListControl.AddNewRecord(moodRecord);
+            }
+
+            // 导航至新开的页面
+            var detailPage = new RecordDetailPage(moodRecord);
+
+            ((MainWindow)Application.Current.MainWindow).MainContentFrame.Navigate(detailPage);
         }
     }
 }

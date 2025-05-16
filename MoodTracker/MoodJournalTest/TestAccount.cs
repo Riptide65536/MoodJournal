@@ -26,6 +26,7 @@ public class TestAccount
         {
             MoodRecord moodRecord = new MoodRecord
             {
+                Datetime = DateTime.Now.AddDays(i-40),
                 UserId = testUser.Id,
                 User = testUser,
                 CurrentEmotion = EmotionType.Happy,

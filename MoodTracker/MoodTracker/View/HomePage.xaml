@@ -24,8 +24,8 @@
             <!-- 中间 -->
         </Grid.ColumnDefinitions>
 
-        <!-- 左侧： RecordList -->
-        <controls:RecordList Grid.Column="0" Margin="0,0,10,0"/>
+        <!-- 左侧：   RecordList -->
+        <controls:RecordList x:Name="RecordListControl_" Grid.Column="0" Margin="0,0,10,0"/>
         
 
         <!-- 中间 -->

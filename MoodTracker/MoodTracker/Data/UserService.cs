@@ -44,8 +44,12 @@ namespace MoodTracker.Data
                 existingUser.Name = user.Name;
                 existingUser.Password = user.Password;
                 existingUser.Avatar = user.Avatar;
-                db.SaveChanges();
             }
+            else
+            {
+                db.Users.Add(user);
+            }
+            db.SaveChanges();
         }
     }
 }

@@ -51,15 +51,18 @@ namespace MoodTracker.Data
         // 更新记录
         public void UpdateMoodRecord(string recordId, MoodRecord new_record)
         {
+            // TODO:更新UpdateMoodRecord中的方法
             DeleteMoodRecord(recordId);
-            AddMoodRecord(new_record);
+            // 在自动更新时会产生错误！从使用角度看换成这个更好……
+            AddRecordToExistingUser(new_record.UserId, new_record);
+            //AddMoodRecord(new_record);
         }
 
         // 获取用户的所有记录（按照时间倒序）
         public List<MoodRecord> GetRecordsByUserId(string userId)
         {
             using var db = new ApplicationDbContext();
-            db.EnsureDatabaseCreatedAndMigrated();
+            // db.EnsureDatabaseCreatedAndMigrated();
 
             return db.MoodRecords.Where(r => r.UserId == userId)
                 .OrderByDescending(r => r.Datetime)

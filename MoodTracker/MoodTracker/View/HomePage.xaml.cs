@@ -14,6 +14,8 @@ namespace MoodTracker.View
     public partial class HomePage : Page
     {
         public ObservableCollection<MoodRecord> UserRecords { get; set; }
+        public RecordList RecordListControl => this.RecordListControl_;
+
 
         public HomePage()
         {

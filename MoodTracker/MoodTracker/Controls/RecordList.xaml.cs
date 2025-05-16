@@ -27,6 +27,8 @@ namespace MoodTracker.Controls
         private List<MoodRecord> allRecords = []; // 存储所有记录
         private int currentPage = 0; // 当前页数
         private const int PageSize = 10; // 每页加载的记录数
+
+        // 这个id之后要用！
         public string currentUserId = "0";
 
         public RecordList()
@@ -40,6 +42,7 @@ namespace MoodTracker.Controls
         // 加载初始数据
         private void LoadInitialRecords()
         {
+            RecordCards = [];   // 清空当前所有卡片
             JournalService journalService = new();
             allRecords = journalService.GetRecordsByUserId(currentUserId); // 获取所有记录
             LoadMoreRecords(); // 加载第一页
@@ -48,7 +51,7 @@ namespace MoodTracker.Controls
         // 每次滚动到底部时加载更多记录
         private void ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
-            // TODO:修复分页显示系统
+            
             if (e.VerticalOffset == e.ExtentHeight - e.ViewportHeight)
             {
                 LoadMoreRecords();
@@ -111,8 +114,12 @@ namespace MoodTracker.Controls
                 {
                     // 从 UI 中移除
                     RecordStackPanel.Children.Remove(card);
-                    //TODO: 从数据库删除记录
 
+                    JournalService journalService = new();
+                    journalService.DeleteMoodRecord(record.RecordId);
+
+                    // 更新初始数据
+                    LoadInitialRecords();
 
                 };
 
@@ -131,29 +138,17 @@ namespace MoodTracker.Controls
         //添加
         public void AddNewRecord(MoodRecord newRecord)
         {
-            if (newRecord == null) return;
+            if (newRecord == null || currentUserId == null) return;
 
-            // 添加到本地列表（可选）
-            allRecords.Insert(0, newRecord); // 插入开头，确保分页还能显示
+            // 处理record的用户信息
+            newRecord.UserId = currentUserId;
 
-            // 创建对应的 RecordCard
-            var newCard = new RecordCard
-            {
-                Mood = newRecord.Title,
-                Date = newRecord.Datetime,
-                Record = newRecord
-            };
+            // 将record写入数据库
+            JournalService journalService = new();
+            journalService.AddRecordToExistingUser(currentUserId, newRecord);
 
-            // 绑定事件（与其他卡片一致）
-            newCard.CardClicked += RecordCard_Clicked;
-            newCard.OptionsButtonClicked += RecordCard_OptionsButtonClicked;
-
-            // 添加到 UI 顶部
-            RecordStackPanel.Children.Insert(0, newCard);
-
-            // TODO: 写入数据库
-            // JournalService journalService = new();
-            // journalService.AddRecord(newRecord);
+            // 直接更新一遍卡片列表即可
+            LoadInitialRecords();
         }
     }
 }
