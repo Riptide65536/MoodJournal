@@ -16,13 +16,28 @@
   <ItemGroup>
     <None Remove="Assets\ai.png" />
     <None Remove="Assets\DaylightMode.png" />
+    <None Remove="Assets\link.png" />
+    <None Remove="Assets\mood.png" />
     <None Remove="Assets\MoodTracker.png" />
+    <None Remove="Assets\music.png" />
+    <None Remove="Assets\OptionHorizontal.png" />
+    <None Remove="Assets\RecordCard_ArrowForward.png" />
+    <None Remove="Assets\time.png" />
+    <None Remove="Assets\UilPlus.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Page Remove="Resources\DarkTheme.xaml" />
     <Page Remove="Resources\LightTheme.xaml" />
     <Page Remove="Resources\Styles.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\link.png" />
+    <Resource Include="Assets\mood.png" />
+    <Resource Include="Assets\music.png" />
+    <Resource Include="Assets\time.png" />
+    <Resource Include="Assets\UilPlus.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,10 +50,14 @@
     <Resource Include="Assets\MoodTracker.png" />
     <Resource Include="Assets\Mood\happy.png" />
     <Resource Include="Assets\next.png" />
+    <Resource Include="Assets\OptionHorizontal.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\pause.png" />
     <Resource Include="Assets\play.png" />
     <Resource Include="Assets\prev.png" />
-    <Resource Include="Assets\UserAvatar.jpg" />
+    <Resource Include="Assets\RecordCard_ArrowForward.png" />
+    <Resource Include="Assets\UserAvatar.png" />
     <Resource Include="Resources\DarkTheme.xaml">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

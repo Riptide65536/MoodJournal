@@ -78,6 +78,7 @@ namespace MoodTracker.Controls
                 };
 
                 card.CardClicked += RecordCard_Clicked;
+                card.OptionsButtonClicked += RecordCard_OptionsButtonClicked;
                 RecordStackPanel.Children.Add(card); // 添加到界面
             }
 
@@ -94,6 +95,65 @@ namespace MoodTracker.Controls
                 // 找到 MainWindow 里的 Frame 并导航
                 ((MainWindow)Application.Current.MainWindow).MainContentFrame.Navigate(detailPage);
             }
+        }
+
+        //删除
+        private void RecordCard_OptionsButtonClicked(object sender, RoutedEventArgs e)
+        {
+            if (sender is RecordCard card && card.Record is MoodRecord record)
+            {
+                // 创建上下文菜单
+                ContextMenu menu = new ContextMenu();
+
+                // 删除菜单项
+                MenuItem deleteItem = new MenuItem { Header = "删除该记录" };
+                deleteItem.Click += (s, args) =>
+                {
+                    // 从 UI 中移除
+                    RecordStackPanel.Children.Remove(card);
+                    //TODO: 从数据库删除记录
+
+
+                };
+
+                menu.Items.Add(deleteItem);
+
+                // 弹出菜单位置绑定 OptionsButton
+                if (e.OriginalSource is FrameworkElement source)
+                {
+                    menu.PlacementTarget = source;
+                    menu.Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
+                    menu.IsOpen = true;
+                }
+            }
+        }
+
+        //添加
+        public void AddNewRecord(MoodRecord newRecord)
+        {
+            if (newRecord == null) return;
+
+            // 添加到本地列表（可选）
+            allRecords.Insert(0, newRecord); // 插入开头，确保分页还能显示
+
+            // 创建对应的 RecordCard
+            var newCard = new RecordCard
+            {
+                Mood = newRecord.Title,
+                Date = newRecord.Datetime,
+                Record = newRecord
+            };
+
+            // 绑定事件（与其他卡片一致）
+            newCard.CardClicked += RecordCard_Clicked;
+            newCard.OptionsButtonClicked += RecordCard_OptionsButtonClicked;
+
+            // 添加到 UI 顶部
+            RecordStackPanel.Children.Insert(0, newCard);
+
+            // TODO: 写入数据库
+            // JournalService journalService = new();
+            // journalService.AddRecord(newRecord);
         }
     }
 }

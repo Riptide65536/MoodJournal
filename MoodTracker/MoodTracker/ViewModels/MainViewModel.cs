@@ -34,6 +34,8 @@ namespace MoodTracker.ViewModels
         public ICommand MinimizeCommand { get; }
         public ICommand CloseCommand { get; }
         public ICommand ToggleThemeCommand { get; }
+        //public ICommand CreateCommand => new RelayCommand<object>(CreateItem);
+
 
         public MainViewModel()
         {
@@ -83,6 +85,14 @@ namespace MoodTracker.ViewModels
             {
                 window.Close();
             }
+        }
+
+        private void CreateItem(object obj)
+        {
+            //“创建”逻辑
+            MessageBox.Show("你点击了创建按钮！");
+
+
         }
     }
 
