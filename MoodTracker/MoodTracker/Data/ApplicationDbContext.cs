@@ -22,6 +22,8 @@ namespace MoodTracker.Data
         {
             optionsBuilder
                 .UseMySql("server=localhost;port=3306;database=mooddb;user=root;password=2.71828182;",
+                //.UseMySql("server=localhost;port=3306;database=mooddb;user=root;password=mrwuabc0750*;",
+                //.UseMySql("server=localhost;port=3307;database=mooddb;user=root;password=password;",
                 new MySqlServerVersion(new Version(8, 0, 41)));
         }
 

@@ -13,6 +13,24 @@
             </ResourceDictionary.MergedDictionaries>
             <!-- 转换器 -->
             <converters:BoolToThemeTextConverter x:Key="BoolToThemeTextConverter"/>
+            
+            
+            <!-- 定义进度条资源 -->
+            <SolidColorBrush x:Key="ProgressBarBackground" Color="#E0E0E0"/>
+            <SolidColorBrush x:Key="ProgressBarForeground" Color="#4285F4"/>
+
+            <!-- 其他资源 -->
+            <SolidColorBrush x:Key="ContentSurface" Color="#FFFFFF"/>
+            <SolidColorBrush x:Key="CardBackground" Color="#F5F5F5"/>
+
+            <!-- 文本样式 -->
+            <Style x:Key="SmallTextStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="Foreground" Value="#666666"/>
+            </Style>
+
+            <!-- 阴影效果 -->
+            <DropShadowEffect x:Key="CardShadow" BlurRadius="10" ShadowDepth="2" Opacity="0.2"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -39,10 +39,14 @@ namespace MoodTracker
             {
                 model = "deepseek-chat",
                 messages = new[]
-                {
-                    new { role = "system", content = "You are a helpful assistant." },
-                    new { role = "user", content = message }
-                },
+        {
+            new {
+                role = "system",
+                content = "You are a helpful assistant. Always format your responses using Markdown " +
+                         "for better readability. Use headings, lists, and code blocks when appropriate."
+            },
+            new { role = "user", content = message }
+        },
                 stream = false
             };
 

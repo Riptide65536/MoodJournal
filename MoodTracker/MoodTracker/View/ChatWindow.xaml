@@ -4,6 +4,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:local="clr-namespace:MoodTracker.View"
+      xmlns:controls="clr-namespace:MoodTracker.Controls" 
       mc:Ignorable="d"
       Title="AI聊天助手" Height="650" Width="800"
       >
@@ -22,6 +23,22 @@
                  BorderThickness="0"
                  BorderBrush="Transparent">
 
+            <ListBox.Resources>
+                <Style TargetType="ListBox">
+                    <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
+                    <Setter Property="ScrollViewer.PanningMode" Value="VerticalOnly"/>
+                    <Setter Property="ScrollViewer.IsDeferredScrollingEnabled" Value="True"/>
+                </Style>
+            </ListBox.Resources>
+
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Focusable" Value="False"/>
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="Margin" Value="0"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="5" 
@@ -38,8 +55,8 @@
 
                         <!-- AI消息（左对齐） -->
                         <StackPanel HorizontalAlignment="Left" Margin="0,5">
-                            <Border Background="#FFB0E0E6" Padding="16" CornerRadius="16" MaxWidth="800">
-                                <TextBlock Text="{Binding AIMessage}" TextWrapping="Wrap" FontSize="14"/>
+                            <Border Background="#FFB0E0E6" Padding="10" CornerRadius="10" MaxWidth="800">
+                                <controls:MarkdownViewer Markdown="{Binding AIMessage}" />
                             </Border>
                         </StackPanel>
                     </StackPanel>
