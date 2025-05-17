@@ -16,6 +16,7 @@ namespace MoodTracker.View
         public ObservableCollection<MoodRecord> UserRecords { get; set; }
         public RecordList RecordListControl => this.RecordListControl_;
 
+        public string currentUserId = "0";
 
         public HomePage()
         {
@@ -23,28 +24,20 @@ namespace MoodTracker.View
             UserRecords = new ObservableCollection<MoodRecord>();
             this.DataContext = this;
 
-            LoadUserRecords("guest"); // 替换为实际的用户ID
+            // 在这里提醒更新即可
+            RecordListControl.currentUserId = currentUserId;
+            RecordListControl.RefreshRecords();
         }
 
-        private void LoadUserRecords(string userId)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            var journalService = new JournalService();
-            var records = journalService.GetRecordsByUserId(userId);
-
-            UserRecords.Clear();
-            foreach (var record in records)
-            {
-                UserRecords.Add(record);
-            }
+            RefreshRecords();
         }
 
-        private void OnRecordSelected(object? sender, MoodRecord record)
+
+        public void RefreshRecords()
         {
-            var detailPage = new RecordDetailPage(record);
-            var mainWindow = (MainWindow)Application.Current.MainWindow;
-            mainWindow.MainContentFrame.Navigate(detailPage);
+            RecordListControl.RefreshRecords();
         }
     }
-
-
 }

@@ -29,24 +29,29 @@ namespace MoodTracker.Controls
         private const int PageSize = 10; // 每页加载的记录数
 
         // 这个id之后要用！
-        public string currentUserId = "0";
+        public string currentUserId { get; set; } = "0";
 
         public RecordList()
         {
             InitializeComponent();
             RecordCards = [];
             this.DataContext = this;
-            LoadInitialRecords();
+            RefreshRecords();
         }
 
         // 加载初始数据
-        private void LoadInitialRecords()
+        public void RefreshRecords()
         {
             RecordCards = [];   // 清空当前所有卡片
+            RecordStackPanel.Children.Clear();
+            currentPage = 0;
+
             JournalService journalService = new();
             allRecords = journalService.GetRecordsByUserId(currentUserId); // 获取所有记录
             LoadMoreRecords(); // 加载第一页
         }
+
+        private void Loaded_list(object sender, RoutedEventArgs e) { RefreshRecords(); }
 
         // 每次滚动到底部时加载更多记录
         private void ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
@@ -119,7 +124,7 @@ namespace MoodTracker.Controls
                     journalService.DeleteMoodRecord(record.RecordId);
 
                     // 更新初始数据
-                    LoadInitialRecords();
+                    RefreshRecords();
 
                 };
 
@@ -148,7 +153,7 @@ namespace MoodTracker.Controls
             journalService.AddRecordToExistingUser(currentUserId, newRecord);
 
             // 直接更新一遍卡片列表即可
-            LoadInitialRecords();
+            RefreshRecords();
         }
     }
 }

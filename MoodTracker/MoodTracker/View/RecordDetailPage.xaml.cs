@@ -27,9 +27,10 @@ namespace MoodTracker.View
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            // 返回上一页（可根据你的 Frame 实例修改）
+            // 返回上一页
             if (NavigationService?.CanGoBack == true)
                 NavigationService.GoBack();
+
         }
 
         private void TitleTextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
