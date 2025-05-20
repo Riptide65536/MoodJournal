@@ -101,5 +101,6 @@
     <BitmapImage x:Key="MusicIcon" UriSource="/Assets/music.png"/>
     <BitmapImage x:Key="LinkIcon" UriSource="/Assets/link.png"/>
     <BitmapImage x:Key="TimeIcon" UriSource="/Assets/time.png"/>
+    <BitmapImage x:Key="SearchIcon" UriSource="/Assets/NimbusSearch.png"/>
 
 </ResourceDictionary>

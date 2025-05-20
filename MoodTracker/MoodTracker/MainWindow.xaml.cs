@@ -7,6 +7,10 @@ using MoodTracker.Controls;
 using System.Globalization;
 using System.Windows.Data;
 using MoodTracker.Data;
+using System.Collections.ObjectModel;
+using System.Windows.Threading;
+using System.Linq;
+using System.Windows.Threading;
 
 namespace MoodTracker
 {
@@ -66,6 +70,35 @@ namespace MoodTracker
             var detailPage = new RecordDetailPage(moodRecord);
 
             ((MainWindow)Application.Current.MainWindow).MainContentFrame.Navigate(detailPage);
+        }
+
+
+        //搜索框相关事件（5.20）
+        private void SearchBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is MainViewModel viewModel)
+            {
+                // 强制更新UI
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    viewModel.InitializeSearchResults();
+                    viewModel.IsSearchOpen = true;
+                }), DispatcherPriority.Render);
+            }
+        }
+
+        private void SearchBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            Dispatcher.InvokeAsync(() =>
+            {
+                if (!SearchPopup.IsKeyboardFocusWithin && !SearchBox.IsKeyboardFocusWithin)
+                {
+                    if (DataContext is MainViewModel viewModel)
+                    {
+                        viewModel.IsSearchOpen = false;
+                    }
+                }
+            }, DispatcherPriority.Background);
         }
     }
 }
