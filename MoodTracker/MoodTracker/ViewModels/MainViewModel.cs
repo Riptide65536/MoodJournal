@@ -4,6 +4,8 @@ using System.Windows.Input;
 using MoodTracker.Resources;
 using System.Windows.Media;
 using System.Linq;
+using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace MoodTracker.ViewModels
 {
@@ -46,6 +48,15 @@ namespace MoodTracker.ViewModels
 
             // 初始化主题状态
             InitializeTheme();
+
+            SearchItems = new ObservableCollection<string>();
+            SearchItems.CollectionChanged += (s, e) =>
+            {
+                OnPropertyChanged(nameof(IsSearchOpen));
+            };
+
+            // 初始化搜索结果
+            InitializeSearchResults();
         }
 
         private void InitializeTheme()
@@ -89,12 +100,87 @@ namespace MoodTracker.ViewModels
 
         private void CreateItem(object obj)
         {
-            //“创建”逻辑
+            //"创建"逻辑
             MessageBox.Show("你点击了创建按钮！");
 
 
         }
+
+        //搜索框相关逻辑实现（5.20）
+
+    public ObservableCollection<string> SearchItems { get; set; } = new();
+
+        private string _searchText;
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                if (_searchText != value)
+                {
+                    _searchText = value;
+                    OnPropertyChanged();
+                    FilterSearchResults();
+                }
+            }
+        }
+
+        private bool _isSearchOpen;
+        public bool IsSearchOpen
+        {
+            get => _isSearchOpen;
+            set
+            {
+                _isSearchOpen = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public void InitializeSearchResults()
+        {
+            var allItems = new[]
+            {
+                "🎵 周杰伦 - 夜曲",
+                "😊 今日心情：放松",
+                "📝 日记内容：今天听了很棒的歌"
+            };
+
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                SearchItems.Clear();
+                foreach (var item in allItems)
+                    SearchItems.Add(item);
+
+                OnPropertyChanged(nameof(SearchItems));
+                IsSearchOpen = true;
+            });
+        }
+
+        private void FilterSearchResults()
+        {
+            var allItems = new[]
+            {
+                "🎵 周杰伦 - 夜曲",
+                "😊 今日心情：放松",
+                "📝 日记内容：今天听了很棒的歌"
+            };
+
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                var filtered = allItems
+                    .Where(i => string.IsNullOrEmpty(SearchText) || i.ToLower().Contains(SearchText.ToLower()))
+                    .ToList();
+
+                SearchItems.Clear();
+                foreach (var item in filtered)
+                    SearchItems.Add(item);
+
+                OnPropertyChanged(nameof(SearchItems));
+                IsSearchOpen = true;
+            });
+        }
     }
+
 
     public class RelayCommand : ICommand
     {

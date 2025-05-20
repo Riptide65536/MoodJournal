@@ -122,8 +122,21 @@
 
       <!-- 返回按钮 -->
       <!-- TODO：美化这个按钮（允许切换成非按钮元件，但是功能不变）-->
-      <Button Content="返回上级" HorizontalAlignment="Left" Margin="15,17,0,0" VerticalAlignment="Top" Height="40" Width="80"
-              Click="BackButton_Click"/>
+        <Button Click="BackButton_Click"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="15,17,0,0"
+                Padding="10,5"
+                Height="40"
+                Width="80"
+                ToolTip="返回"
+                Cursor="Hand"
+                Style="{StaticResource BackButtonStyle}">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Image Source="/Assets/TopcoatBack.png" Width="16" Height="16" Margin="0,0,14,0"/>
+                <TextBlock Text="返回" FontWeight="SemiBold"/>
+            </StackPanel>
+        </Button>
 
-  </Grid>
+    </Grid>
 </Page>

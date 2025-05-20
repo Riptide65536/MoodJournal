@@ -208,6 +208,36 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="BackButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="#007bff"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Padding" Value="10,5"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                        CornerRadius="6">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#45A049"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="#388E3C"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 
+    <!-- 搜索项模板 -->
+    <DataTemplate x:Key="SearchItemTemplate">
+        <TextBlock Text="{Binding}" Padding="6" FontSize="13" Foreground="{DynamicResource TextPrimaryBrush}"/>
+    </DataTemplate>
 </ResourceDictionary>
     

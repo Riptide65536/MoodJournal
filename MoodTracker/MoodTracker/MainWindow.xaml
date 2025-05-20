@@ -14,19 +14,19 @@
         MouseLeftButtonDown="Window_MouseLeftButtonDown">
 
     <Window.DataContext>
-        <viewmodels:MainViewModel/>
+        <viewmodels:MainViewModel />
     </Window.DataContext>
 
-    <!--加载动画-->
+    <!-- 加载动画 -->
     <Window.Triggers>
         <EventTrigger RoutedEvent="Loaded">
             <BeginStoryboard>
                 <Storyboard>
                     <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                 From="0" To="1" Duration="0:0:0.3"/>
+                                     From="0" To="1" Duration="0:0:0.3" />
                     <ThicknessAnimation Storyboard.TargetProperty="Margin"
-                                   From="0,20,0,0" To="0,0,0,0" 
-                                   Duration="0:0:0.5"/>
+                                       From="0,20,0,0" To="0,0,0,0"
+                                       Duration="0:0:0.5" />
                 </Storyboard>
             </BeginStoryboard>
         </EventTrigger>
@@ -35,9 +35,9 @@
     <Border Background="{DynamicResource ContainerGlow}" CornerRadius="20">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
             <!-- 左侧区域 + SideNav -->
@@ -49,7 +49,7 @@
                             <DrawingBrush.Drawing>
                                 <GeometryDrawing Brush="White">
                                     <GeometryDrawing.Geometry>
-                                        <PathGeometry Figures="M0,10 L10,0"/>
+                                        <PathGeometry Figures="M0,10 L10,0" />
                                     </GeometryDrawing.Geometry>
                                 </GeometryDrawing>
                             </DrawingBrush.Drawing>
@@ -63,7 +63,7 @@
                                   VerticalAlignment="Stretch"
                                   HorizontalAlignment="Left"
                                   Margin="10,20,0,20"
-                                  NavigationRequested="SideNav_NavigationRequested"/>
+                                  NavigationRequested="SideNav_NavigationRequested" />
             </Grid>
 
             <!-- 主内容区域 -->
@@ -76,18 +76,81 @@
 
                 <Grid>
                     <Grid.RowDefinitions>
-                        <!--顶部标题栏-->
-                        <RowDefinition Height="Auto"/>
-                        <!--装饰-->
-                        <RowDefinition Height="1"/>
-                        <!--Page切换-->
-                        <RowDefinition Height="*"/>
+                        <!-- 顶部标题栏 -->
+                        <RowDefinition Height="Auto" />
+                        <!-- 装饰 -->
+                        <RowDefinition Height="1" />
+                        <!-- Page切换 -->
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
                     <!-- 顶部标题栏按钮 -->
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Right"
-                                Margin="0,10,0,0">
+                                Margin="0,10,0,0"
+                                VerticalAlignment="Top">
+
+                        <!-- 搜索区域 -->
+                        <StackPanel Orientation="Vertical"
+                                    Margin="0,0,20,0"
+                                    VerticalAlignment="Center"
+                                    Width="265">
+                            <!-- 搜索框 -->
+                            <Grid Width="240" Height="32">
+                                <Border CornerRadius="16"
+                                        Background="{DynamicResource LightAccentBrush}"
+                                        Height="32"
+                                        VerticalAlignment="Center">
+                                    <Grid Margin="10,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="{DynamicResource SearchIcon}"
+                                               Width="16" Height="16"
+                                               VerticalAlignment="Center" />
+                                        <TextBox x:Name="SearchBox"
+                                                 Grid.Column="1"
+                                                 Background="Transparent"
+                                                 BorderThickness="0"
+                                                 FontSize="14"
+                                                 VerticalContentAlignment="Center"
+                                                 Padding="6,0"
+                                                 Foreground="{DynamicResource TextPrimaryBrush}"
+                                                 Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                                                 GotFocus="SearchBox_GotFocus"
+                                                 LostFocus="SearchBox_LostFocus" />
+                                    </Grid>
+                                </Border>
+                            </Grid>
+
+                            <!-- 搜索下拉结果 -->
+                            <Popup x:Name="SearchPopup"
+                                   Placement="Bottom"
+                                   PlacementTarget="{Binding ElementName=SearchBox}"
+                                   StaysOpen="False"
+                                   AllowsTransparency="True"
+                                   Width="240"
+                                   IsOpen="{Binding IsSearchOpen, Mode=TwoWay}">
+                                <Border Background="{DynamicResource ContentBaseBrush}"
+                                        CornerRadius="8"
+                                        Padding="8"
+                                        Effect="{StaticResource ShadowEffect}">
+                                    <ListBox x:Name="SearchResults"
+                                             Background="Transparent"
+                                             BorderThickness="0"
+                                             ItemsSource="{Binding SearchItems}">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}" FontSize="14" Padding="4" />
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                </Border>
+                            </Popup>
+                        </StackPanel>
+
+                        <!-- 创建按钮 -->
                         <Button x:Name="CreateButton"
                                 Margin="0,5,0,0"
                                 Height="48"
@@ -103,27 +166,25 @@
                                         CornerRadius="24"
                                         Height="48"
                                         HorizontalAlignment="Left"
-                                        Width="112"/>
+                                        Width="112" />
                                 <StackPanel Orientation="Horizontal"
                                             VerticalAlignment="Center"
                                             Margin="12,0,0,0">
                                     <Image Source="{DynamicResource CreateIcon}"
-                                           Width="24"
-                                           Height="24"/>
+                                           Width="24" Height="24" />
                                     <TextBlock Text="创建"
                                                Margin="20,0,0,0"
                                                VerticalAlignment="Center"
                                                FontSize="14"
                                                Foreground="{DynamicResource TextPrimaryBrush}"
-                                               Visibility="{Binding IsExpanded, ElementName=SideNavControl, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                               Visibility="{Binding IsExpanded, ElementName=SideNavControl, Converter={StaticResource BooleanToVisibilityConverter}}" />
                                 </StackPanel>
                             </Grid>
                         </Button>
 
-
-                        <Border Width="32" Height="32" 
+                        <!-- 头像 -->
+                        <Border Width="32" Height="32"
                                 Margin="0,0,20,0"
-                               
                                 VerticalAlignment="Center"
                                 BorderThickness="1">
                             <Image Source="{StaticResource AvatarIcon}"
@@ -132,19 +193,20 @@
                                    Width="32" Height="32"
                                    HorizontalAlignment="Center" Margin="0,-1,0,-1">
                                 <Image.Clip>
-                                    <EllipseGeometry Center="16,16" RadiusX="16" RadiusY="16"/>
+                                    <EllipseGeometry Center="16,16" RadiusX="16" RadiusY="16" />
                                 </Image.Clip>
                             </Image>
                         </Border>
 
+                        <!-- 最小化 / 关闭 -->
                         <Button Content="─"
                                 Style="{StaticResource TitleBarButtonStyle}"
                                 Command="{Binding MinimizeCommand}"
-                                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
+                                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" />
                         <Button Content="✕"
                                 Style="{StaticResource TitleBarButtonStyle}"
                                 Command="{Binding CloseCommand}"
-                                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
+                                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" />
                     </StackPanel>
 
                     <!-- 装饰 -->
@@ -152,18 +214,17 @@
                             Height="1"
                             Margin="40,40,40,0"
                             Background="#1E2035"
-                            VerticalAlignment="Top"/>
+                            VerticalAlignment="Top" />
 
-                    <!--页面内容-->
-                    <Frame 
-                        x:Name="MainContentFrame"
-                        Grid.Row="2"
-                        NavigationUIVisibility="Hidden"/>
+                    <!-- 页面内容 -->
+                    <Frame x:Name="MainContentFrame"
+                           Grid.Row="2"
+                           NavigationUIVisibility="Hidden" />
                 </Grid>
             </Border>
         </Grid>
     </Border>
 
-    <!--窗口切换-->
+    <!-- 窗口切换 -->
 
 </Window>
