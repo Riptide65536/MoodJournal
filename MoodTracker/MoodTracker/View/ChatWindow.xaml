@@ -19,7 +19,7 @@
                  ItemsSource="{Binding ChatHistory}"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                 Background="{StaticResource ContentSurface}"
+                 Background="{DynamicResource ContentBaseBrush}"
                  BorderThickness="0"
                  BorderBrush="Transparent">
 
@@ -65,7 +65,7 @@
         </ListBox>
 
         <!-- 输入区域 -->
-        <Border Grid.Row="1" Background="#F0F0F0" Padding="10" CornerRadius="10" Margin="5">
+        <Border Grid.Row="1" Background="{DynamicResource ContentBaseBrush}" Padding="10" CornerRadius="10" Margin="5">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>

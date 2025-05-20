@@ -41,14 +41,14 @@
 
             <!-- 标题 -->
             <TextBlock Text="🗓️ 我的打卡记录"
-                       Style="{StaticResource TitleTextStyle}"
+                       Style="{DynamicResource TitleTextStyle}"
                        Margin="0,0,0,20" />
 
             <!-- 日历控件 -->
-            <Border Background="{StaticResource CardBackground}"
-                    CornerRadius="{StaticResource CardCornerRadius}"
+            <Border Background="{DynamicResource NavIconHoverBackground}"
+                    CornerRadius="{DynamicResource CardCornerRadius}"
                     Padding="15" Margin="0,0,0,20"
-                    Effect="{StaticResource CardShadow}">
+                    >
                 <Calendar x:Name="PunchCalendar"
                           Background="Transparent"
                           BorderThickness="0"
@@ -60,68 +60,68 @@
             </Border>
 
             <!-- 今日心情小语 -->
-            <Border Background="{StaticResource CardBackground}"
-                    CornerRadius="{StaticResource CardCornerRadius}"
+            <Border Background="{DynamicResource NavIconHoverBackground}"
+                    CornerRadius="{DynamicResource CardCornerRadius}"
                     Padding="15" Margin="0,0,0,20"
-                    Effect="{StaticResource CardShadow}">
+                    >
                 <StackPanel>
                     <TextBlock Text="🌈 今日心情小语"
-                               Style="{StaticResource SubtitleTextStyle}" />
+                               Style="{DynamicResource SubtitleTextStyle}" />
                     <TextBlock x:Name="MoodQuote"
                                Text="每天都是新的开始！"
                                TextWrapping="Wrap"
-                               Style="{StaticResource BodyTextStyle}"
+                               Style="{DynamicResource BodyTextStyle}"
                                Margin="0,5,0,0"/>
                 </StackPanel>
             </Border>
 
             <!-- 天气 -->
-            <Border Background="{StaticResource CardBackground}"
-                    CornerRadius="{StaticResource CardCornerRadius}"
+            <Border Background="{DynamicResource NavIconHoverBackground}"
+                    CornerRadius="{DynamicResource CardCornerRadius}"
                     Padding="15" Margin="0,0,0,20"
-                    Effect="{StaticResource CardShadow}">
+                    Effect="{DynamicResource CardShadow}">
                 <StackPanel>
                     <TextBlock Text="☁️ 天气"
-                               Style="{StaticResource SubtitleTextStyle}"/>
+                               Style="{DynamicResource SubtitleTextStyle}"/>
                     <TextBlock x:Name="WeatherInfo"
                                Text="晴，23°C"
-                               Style="{StaticResource BodyTextStyle}"
+                               Style="{DynamicResource BodyTextStyle}"
                                Margin="0,5,0,0"/>
                 </StackPanel>
             </Border>
 
             <!-- 听歌时长 -->
-            <Border Background="{StaticResource CardBackground}"
-                    CornerRadius="{StaticResource CardCornerRadius}"
+            <Border Background="{DynamicResource NavIconHoverBackground}"
+                    CornerRadius="{DynamicResource CardCornerRadius}"
                     Padding="15" Margin="0,0,0,20"
-                    Effect="{StaticResource CardShadow}">
+                    >
                 <StackPanel>
                     <TextBlock Text="⏰ 今日听歌时长"
-                               Style="{StaticResource SubtitleTextStyle}"/>
+                               Style="{DynamicResource SubtitleTextStyle}"/>
                     <TextBlock x:Name="ListeningTime"
                                Text="1小时24分钟"
-                               Style="{StaticResource BodyTextStyle}"
+                               Style="{DynamicResource BodyTextStyle}"
                                Margin="0,5,0,0"/>
                 </StackPanel>
             </Border>
 
             <!-- 用户信息 -->
-            <Border Background="{StaticResource CardBackground}"
-                    CornerRadius="{StaticResource CardCornerRadius}"
+            <Border Background="{DynamicResource NavIconHoverBackground}"
+                    CornerRadius="{DynamicResource CardCornerRadius}"
                     Padding="15" Margin="0,0,0,20"
-                    Effect="{StaticResource CardShadow}">
+                    >
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                     <Ellipse Width="50" Height="50" Margin="0,0,10,0">
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="{StaticResource AvatarIcon}"/>
+                            <ImageBrush ImageSource="{DynamicResource AvatarIcon}"/>
                         </Ellipse.Fill>
                     </Ellipse>
                     <StackPanel VerticalAlignment="Center">
                         <TextBlock x:Name="UserName"
                                    Text="小Mood"
-                                   Style="{StaticResource SubtitleTextStyle}" />
+                                   Style="{DynamicResource SubtitleTextStyle}" />
                         <TextBlock Text="打卡达人"
-                                   Style="{StaticResource CaptionTextStyle}"/>
+                                   Style="{DynamicResource CaptionTextStyle}"/>
                     </StackPanel>
                 </StackPanel>
             </Border>

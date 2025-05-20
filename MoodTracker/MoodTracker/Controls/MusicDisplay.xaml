@@ -4,7 +4,7 @@
          Height="Auto" Width="Auto">
 
     <Grid  Margin="20"
-        Background="{StaticResource ContentSurface}"
+        Background="{DynamicResource ContentBaseBrush}"
         >
 
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,20">

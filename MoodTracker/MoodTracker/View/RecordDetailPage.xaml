@@ -4,7 +4,7 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:local="clr-namespace:MoodTracker.Data"
 
-    Background="{StaticResource ContentSurface}">
+    Background="{DynamicResource ContentSurface}">
 
   <Page.Resources>
         <ObjectDataProvider x:Key="EmotionValues"

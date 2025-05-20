@@ -6,10 +6,10 @@
     <Grid>
         <lvc:CartesianChart Series="{Binding LineSeriesCollection}" LegendLocation="Right">
             <lvc:CartesianChart.AxisX>
-                <lvc:Axis Title="日期" Labels="{Binding Labels}" Foreground="White"/>
+                <lvc:Axis Title="日期" Labels="{Binding Labels}" Foreground="{DynamicResource CardText}"/>
             </lvc:CartesianChart.AxisX>
             <lvc:CartesianChart.AxisY>
-                <lvc:Axis Title="情绪指数" LabelFormatter="{Binding YFormatter}" Foreground="White"/>
+                <lvc:Axis Title="情绪指数" LabelFormatter="{Binding YFormatter}" Foreground="{DynamicResource CardText}"/>
             </lvc:CartesianChart.AxisY>
         </lvc:CartesianChart>
     </Grid>
