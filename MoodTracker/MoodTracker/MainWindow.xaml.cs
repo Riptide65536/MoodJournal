@@ -81,7 +81,7 @@ namespace MoodTracker
                 // 强制更新UI
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
-                    viewModel.InitializeSearchResults();
+                    viewModel.UpdateSearchResults();
                     viewModel.IsSearchOpen = true;
                 }), DispatcherPriority.Render);
             }
@@ -99,6 +99,22 @@ namespace MoodTracker
                     }
                 }
             }, DispatcherPriority.Background);
+        }
+
+        private void SearchResults_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender is ListBox listBox && listBox.SelectedItem is MoodRecord selectedRecord)
+            {
+                // 导航到选中的记录详情页
+                var detailPage = new RecordDetailPage(selectedRecord);
+                MainContentFrame.Navigate(detailPage);
+
+                // 关闭下拉
+                SearchPopup.IsOpen = false;
+
+                // 清除选中，避免再次点击无效
+                ((ListBox)sender).SelectedItem = null;
+            }
         }
     }
 }
