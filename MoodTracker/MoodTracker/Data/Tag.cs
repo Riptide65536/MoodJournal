@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -20,6 +21,6 @@ namespace MoodTracker.Data
         public User User { get; set; } = new User();
 
         // 对应心情记录
-        public List<MoodRecord> MoodRecords { get; set; } = [];
+        public ObservableCollection<MoodRecord> MoodRecords { get; set; } = [];
     }
 }

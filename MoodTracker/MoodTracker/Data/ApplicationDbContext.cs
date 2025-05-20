@@ -20,7 +20,7 @@ namespace MoodTracker.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // select by different users
+            // 根据实际情况选择数据库连接字符串
             optionsBuilder
                 //.UseMySql("server=localhost;port=3306;database=mooddb;user=root;password=2.71828182;",
                 //.UseMySql("server=localhost;port=3306;database=mooddb;user=root;password=mrwuabc0750*;",
@@ -32,21 +32,21 @@ namespace MoodTracker.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // ����User-Tagһ�Զ��ϵ
+            // User-Tag关系
             modelBuilder.Entity<Tag>()
                 .HasOne(t => t.User)
                 .WithMany(u => u.Tags)
                 .HasForeignKey(t => t.UserId)
                 .OnDelete(DeleteBehavior.Cascade); // ����ɾ��[2,7](@ref)
 
-            // ����User-MoodRecordһ�Զ��ϵ
+            // User-MoodRecord关系
             modelBuilder.Entity<MoodRecord>()
                 .HasOne(m => m.User)
                 .WithMany(u => u.MoodRecords)
                 .HasForeignKey(m => m.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // ����MoodRecord-Tag��Զ��ϵ��EF Core 5+��ʽ��
+            // MoodRecord-Tag关系
             modelBuilder.Entity<MoodRecord>()
                 .HasMany(m => m.Tags)
                 .WithMany(t => t.MoodRecords)
@@ -58,10 +58,10 @@ namespace MoodTracker.Data
 
         public void EnsureDatabaseCreatedAndMigrated()
         {
-            // ȷ�����ݿ����
+            // 确保已经拥有
             this.Database.EnsureCreated();
 
-            // Ӧ�����й����Ǩ�����Զ�����
+            // 确保已经迁移
             this.Database.Migrate();
         }
     }

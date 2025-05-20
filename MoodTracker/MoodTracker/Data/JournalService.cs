@@ -52,12 +52,42 @@ namespace MoodTracker.Data
         // 更新记录
         public void UpdateMoodRecord(string recordId, MoodRecord new_record)
         {
+            using var db = new ApplicationDbContext();
+
+            var existing = db.MoodRecords
+                .Include(r => r.Tags)
+                .FirstOrDefault(r => r.RecordId == recordId);
+            if (existing != null)
+            {
+                // 更新属性
+                existing.Datetime = new_record.Datetime;
+                existing.CurrentEmotion = new_record.CurrentEmotion;
+                existing.SongName = new_record.SongName;
+                existing.SongLink = new_record.SongLink;
+                existing.Title = new_record.Title;
+                existing.Content = new_record.Content;
+
+                // 处理标签
+                existing.Tags.Clear();
+                foreach (var tag in new_record.Tags)
+                {
+                    var dbTag = db.Tags.FirstOrDefault(t => t.TagId == tag.TagId) ?? tag;
+                    existing.Tags.Add(dbTag);
+                }
+
+                db.SaveChanges();
+            }
+        }
+
+        /*
+        public void UpdateMoodRecord(string recordId, MoodRecord new_record)
+        {
             // TODO:更新UpdateMoodRecord中的方法
             DeleteMoodRecord(recordId);
             // 在自动更新时会产生错误！从使用角度看换成这个更好……
             AddRecordToExistingUser(new_record.UserId, new_record);
             //AddMoodRecord(new_record);
-        }
+        }*/
 
         // 获取用户的所有记录（按照时间倒序）
         public List<MoodRecord> GetRecordsByUserId(string userId)

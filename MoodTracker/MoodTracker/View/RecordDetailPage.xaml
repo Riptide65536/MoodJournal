@@ -6,7 +6,7 @@
 
     Background="{DynamicResource ContentSurface}">
 
-  <Page.Resources>
+    <Page.Resources>
         <ObjectDataProvider x:Key="EmotionValues"
                           MethodName="GetValues"
                           ObjectType="{x:Type sys:Enum}">
@@ -18,9 +18,9 @@
         <local:TitleDisplayConverter x:Key="TitleDisplayConverter"/>
     </Page.Resources>
 
-  <Grid Margin="20">
-      <StackPanel Margin="30" HorizontalAlignment="Center" Width="700">
-          <!-- 标题 -->
+    <Grid Margin="20">
+        <StackPanel Margin="30" HorizontalAlignment="Center" Width="700">
+            <!-- 标题 -->
             <TextBlock x:Name="TitleTextBlock"
            Text="{Binding Title, Converter={StaticResource TitleDisplayConverter}}"
            FontSize="24"
@@ -42,72 +42,116 @@
          KeyDown="TitleTextBox_KeyDown"/>
 
             <!-- 表格式布局 -->
-          <Grid>
-              <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="200"/>
-                  <ColumnDefinition Width="*" />
-              </Grid.ColumnDefinitions>
-              <Grid.RowDefinitions>
-                  <RowDefinition Height="Auto"/>
-                  <RowDefinition Height="Auto"/>
-                  <RowDefinition Height="Auto"/>
-                  <RowDefinition Height="Auto"/>
-                  <RowDefinition Height="Auto"/>
-              </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-              <!-- 今日心情 -->
-              <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Margin="0,10">
-                  <!-- TODO：补充一个“标签”的图表并放在下面这个地方-->
-                  <Image Source="{DynamicResource ThemeIcon}" Width="16" Height="16" Margin="0,0,6,0"/>
-                  <TextBlock Text="标签：" FontWeight="SemiBold"/>
-              </StackPanel>
-              <TextBox Text="{Binding Tags}" 
-          Grid.Row="0" Grid.Column="1"
-          FontSize="14" BorderThickness="0,0,0,1" Background="Transparent" Margin="0,10"/>
+                <!-- 标签 -->
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Margin="0,10">
+                    <Image Source="{DynamicResource ThemeIcon}" Width="16" Height="16" Margin="0,0,6,0"/>
+                    <TextBlock Text="标签：" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                </StackPanel>
 
-              <!-- 今日心情 -->
-              <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Margin="0,10">
-                  <Image Source="{DynamicResource MoodIcon}" Width="16" Height="16" Margin="0,0,6,0"/>
-                  <TextBlock Text="今日心情：" FontWeight="SemiBold"/>
-              </StackPanel>
-              <ComboBox Grid.Row="1" Grid.Column="1"
+                <Grid Grid.Row="0" Grid.Column="1" Margin="0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <!-- 标签区自适应 -->
+                        <ColumnDefinition Width="Auto" />
+                        <!-- 输入区固定 -->
+                    </Grid.ColumnDefinitions>
+                    <!-- 标签列表 -->
+                    <ItemsControl ItemsSource="{Binding Tags}" VerticalAlignment="Center" Grid.Column="0">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="#FFE0E0E0" CornerRadius="12" Margin="2" Padding="6,2" VerticalAlignment="Center">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding Name}" Margin="0,0,4,0"/>
+                                        <Button Content="×"
+                                        Click="Delete_Button_Click"
+                                        Width="18" Height="18"
+                                        Padding="0"
+                                        Margin="2,0,0,0"
+                                        VerticalAlignment="Center"
+                                        Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"/>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <!-- 右侧输入框和按钮 -->
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" 
+                                HorizontalAlignment="Right" VerticalAlignment="Center" 
+                                Margin="10,0,0,0">
+                        <TextBox x:Name="NewTagBox"
+                            Width="80" Height="24"
+                            VerticalAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Margin="0,0,6,0"
+                 Style="{StaticResource TagInputBoxStyle}"/>
+                        <Button Content="添加" Height="24" Padding="8,0"
+                Click="AddTagButton_Click"/>
+                    </StackPanel>
+                </Grid>
+
+
+
+                <!-- 今日心情 -->
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Margin="0,10">
+                    <Image Source="{DynamicResource MoodIcon}" Width="16" Height="16" Margin="0,0,6,0"/>
+                    <TextBlock Text="今日心情：" FontWeight="SemiBold"/>
+                </StackPanel>
+                <ComboBox Grid.Row="1" Grid.Column="1"
                 FontSize="14" BorderThickness="0,0,0,1" Background="Transparent" Margin="0,10"
                 ItemsSource="{Binding Source={StaticResource EmotionValues}}"
                 SelectedItem="{Binding CurrentEmotion, Mode=TwoWay}" />
 
-              <!-- 音乐名称 -->
-              <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Margin="0,10">
-                  <Image Source="{DynamicResource MusicIcon}" Width="16" Height="16" Margin="0,0,6,0"/>
-                  <TextBlock Text="音乐名称：" FontWeight="SemiBold"/>
-              </StackPanel>
-              <TextBox Text="{Binding SongName}" 
+                <!-- 音乐名称 -->
+                <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Margin="0,10">
+                    <Image Source="{DynamicResource MusicIcon}" Width="16" Height="16" Margin="0,0,6,0"/>
+                    <TextBlock Text="音乐名称：" FontWeight="SemiBold"/>
+                </StackPanel>
+                <TextBox Text="{Binding SongName}" 
            Grid.Row="2" Grid.Column="1"
            FontSize="14" BorderThickness="0,0,0,1" Background="Transparent" Margin="0,10"/>
 
-              <!-- 音乐链接 -->
-              <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Margin="0,10">
-                  <Image Source="{DynamicResource LinkIcon}" Width="16" Height="16" Margin="0,0,6,0"/>
-                  <TextBlock Text="音乐链接：" FontWeight="SemiBold"/>
-              </StackPanel>
-              <TextBox Text="{Binding SongLink}" 
+                <!-- 音乐链接 -->
+                <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Margin="0,10">
+                    <Image Source="{DynamicResource LinkIcon}" Width="16" Height="16" Margin="0,0,6,0"/>
+                    <TextBlock Text="音乐链接：" FontWeight="SemiBold"/>
+                </StackPanel>
+                <TextBox Text="{Binding SongLink}" 
            Grid.Row="3" Grid.Column="1"
            TextWrapping="Wrap" FontSize="14" BorderThickness="0,0,0,1" Background="Transparent" Margin="0,10"/>
 
-              <!-- 记录时间 -->
-              <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0" Margin="0,10">
-                  <Image Source="{DynamicResource TimeIcon}" Width="16" Height="16" Margin="0,0,6,0"/>
-                  <TextBlock Text="记录时间：" FontWeight="SemiBold"/>
-              </StackPanel>
-              <DatePicker SelectedDate="{Binding Datetime}" 
+                <!-- 记录时间 -->
+                <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0" Margin="0,10">
+                    <Image Source="{DynamicResource TimeIcon}" Width="16" Height="16" Margin="0,0,6,0"/>
+                    <TextBlock Text="记录时间：" FontWeight="SemiBold"/>
+                </StackPanel>
+                <DatePicker SelectedDate="{Binding Datetime}" 
               Grid.Row="4" Grid.Column="1"
               Margin="0,10"/>
-          </Grid>
+            </Grid>
 
-          <!-- 分隔线 -->
-          <Separator Margin="0,20"/>
+            <!-- 分隔线 -->
+            <Separator Margin="0,20"/>
 
-          <!-- 内容 -->
-          <TextBox Text="{Binding Content}" 
+            <!-- 内容 -->
+            <TextBox Text="{Binding Content}" 
        FontSize="16"
        TextWrapping="Wrap"
        Margin="0,10,0,0"
@@ -118,10 +162,10 @@
        BorderBrush="{StaticResource ContentSurface}"
        BorderThickness="1"
        Padding="6"/>
-      </StackPanel>
+        </StackPanel>
 
-      <!-- 返回按钮 -->
-      <!-- TODO：美化这个按钮（允许切换成非按钮元件，但是功能不变）-->
+        <!-- 返回按钮 -->
+        <!-- TODO：美化这个按钮（允许切换成非按钮元件，但是功能不变）-->
         <Button Click="BackButton_Click"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"

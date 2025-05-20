@@ -1,4 +1,5 @@
 ﻿using MoodTracker.Data;
+using MoodTracker.ViewModels;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -59,7 +60,31 @@ namespace MoodTracker.View
             }
         }
 
-        
+        private void AddTagButton_Click(object sender, RoutedEventArgs e)
+        {
+            var tagName = NewTagBox.Text.Trim();
+            if (!string.IsNullOrEmpty(tagName) && !_record.Tags.Any(t => t.Name == tagName))
+            {
+                var newTag = new Tag { Name = tagName, UserId = _record.UserId };
+                _record.Tags.Add(newTag);
+                NewTagBox.Text = "";
+                // TODO：用户在添加/删除后将tags数据保存到数据库（主要解决“多对多如何存储”问题）
+                //new JournalService().UpdateMoodRecord(_record.RecordId, _record);
+            }
+        }
+
+        private void Delete_Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button btn && btn.DataContext is Tag tag)
+            {
+                if (_record.Tags.Contains(tag))
+                {
+                    _record.Tags.Remove(tag);
+                    // 可选：保存到数据库
+                    //new JournalService().UpdateMoodRecord(_record.RecordId, _record);
+                }
+            }
+        }
 
     }
 }

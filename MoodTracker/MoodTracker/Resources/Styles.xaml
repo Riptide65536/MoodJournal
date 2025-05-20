@@ -239,5 +239,36 @@
     <DataTemplate x:Key="SearchItemTemplate">
         <TextBlock Text="{Binding}" Padding="6" FontSize="13" Foreground="{DynamicResource TextPrimaryBrush}"/>
     </DataTemplate>
+
+    <!-- Placeholder的兼容版实现 -->
+    <Style x:Key="TagInputBoxStyle" TargetType="TextBox">
+        <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Grid>
+                        <ScrollViewer x:Name="PART_ContentHost"/>
+                        <TextBlock x:Name="Placeholder"
+                               Text="新标签"
+                               Foreground="Gray"
+                               Margin="4,0,0,0"
+                               VerticalAlignment="Center"
+                               IsHitTestVisible="False"
+                               Visibility="Collapsed"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Text" Value="">
+                            <Setter TargetName="Placeholder" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter TargetName="Placeholder" Property="Foreground" Value="#FFC0C0C0"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
 </ResourceDictionary>
     
