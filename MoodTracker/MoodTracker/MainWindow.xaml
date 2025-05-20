@@ -68,7 +68,7 @@
 
             <!-- 主内容区域 -->
             <Border Grid.Column="1"
-                    Background="{DynamicResource ContentSurface}"
+                    Background="{DynamicResource ContentBaseBrush}"
                     CornerRadius="20"
                     Margin="0"
                     BorderBrush="#30324A"

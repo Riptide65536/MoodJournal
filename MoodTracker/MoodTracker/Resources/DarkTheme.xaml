@@ -39,7 +39,7 @@
     <SolidColorBrush x:Key="CardText" Color="#E0E0E0"/>
     <SolidColorBrush x:Key="TagBackground" Color="#3D3D3D"/>
     <SolidColorBrush x:Key="TagText" Color="#A0A0A0"/>
-
+    
     <!--====== 图表主色调 ======-->
     <SolidColorBrush x:Key="ChartLine1" Color="#9D7FFF"/>
     <SolidColorBrush x:Key="ChartLine2" Color="#4CD9C0"/>
