@@ -65,6 +65,12 @@ namespace MoodTracker.Data
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        // 转化为字符串
+        public override string ToString()
+        {
+            return $"📕 {Title}";
+        }
     }
 }
 //数据库表结构

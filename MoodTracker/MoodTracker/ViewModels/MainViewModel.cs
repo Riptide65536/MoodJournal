@@ -6,6 +6,7 @@ using System.Windows.Media;
 using System.Linq;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using MoodTracker.Data;
 
 namespace MoodTracker.ViewModels
 {
@@ -49,14 +50,15 @@ namespace MoodTracker.ViewModels
             // 初始化主题状态
             InitializeTheme();
 
-            SearchItems = new ObservableCollection<string>();
+            SearchItems = new ObservableCollection<MoodRecord>();
             SearchItems.CollectionChanged += (s, e) =>
             {
                 OnPropertyChanged(nameof(IsSearchOpen));
             };
 
             // 初始化搜索结果
-            InitializeSearchResults();
+            UpdateSearchResults();
+            IsSearchOpen = false;
         }
 
         private void InitializeTheme()
@@ -98,17 +100,9 @@ namespace MoodTracker.ViewModels
             }
         }
 
-        private void CreateItem(object obj)
-        {
-            //"创建"逻辑
-            MessageBox.Show("你点击了创建按钮！");
-
-
-        }
-
         //搜索框相关逻辑实现（5.20）
 
-    public ObservableCollection<string> SearchItems { get; set; } = new();
+        public ObservableCollection<MoodRecord> SearchItems { get; set; } = new();
 
         private string _searchText;
         public string SearchText
@@ -120,7 +114,7 @@ namespace MoodTracker.ViewModels
                 {
                     _searchText = value;
                     OnPropertyChanged();
-                    FilterSearchResults();
+                    UpdateSearchResults();
                 }
             }
         }
@@ -136,43 +130,17 @@ namespace MoodTracker.ViewModels
             }
         }
 
-        public void InitializeSearchResults()
+        public void UpdateSearchResults()
         {
-            var allItems = new[]
-            {
-                "🎵 周杰伦 - 夜曲",
-                "😊 今日心情：放松",
-                "📝 日记内容：今天听了很棒的歌"
-            };
 
             Application.Current.Dispatcher.Invoke(() =>
             {
                 SearchItems.Clear();
-                foreach (var item in allItems)
-                    SearchItems.Add(item);
 
-                OnPropertyChanged(nameof(SearchItems));
-                IsSearchOpen = true;
-            });
-        }
+                JournalService service = new();
+                var result = service.GetRecordsByStringOfUserId("0", SearchText);
 
-        private void FilterSearchResults()
-        {
-            var allItems = new[]
-            {
-                "🎵 周杰伦 - 夜曲",
-                "😊 今日心情：放松",
-                "📝 日记内容：今天听了很棒的歌"
-            };
-
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-                var filtered = allItems
-                    .Where(i => string.IsNullOrEmpty(SearchText) || i.ToLower().Contains(SearchText.ToLower()))
-                    .ToList();
-
-                SearchItems.Clear();
-                foreach (var item in filtered)
+                foreach (var item in result)
                     SearchItems.Add(item);
 
                 OnPropertyChanged(nameof(SearchItems));

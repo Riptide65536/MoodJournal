@@ -100,7 +100,8 @@
                                 <Border CornerRadius="16"
                                         Background="{DynamicResource LightAccentBrush}"
                                         Height="32"
-                                        VerticalAlignment="Center">
+                                        VerticalAlignment="Center"
+                                        x:Name="SearchBorder">
                                     <Grid Margin="10,0">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto" />
@@ -130,22 +131,62 @@
                                    PlacementTarget="{Binding ElementName=SearchBox}"
                                    StaysOpen="False"
                                    AllowsTransparency="True"
+                                   PopupAnimation="None"
                                    Width="240"
+                                   ClipToBounds="True"
                                    IsOpen="{Binding IsSearchOpen, Mode=TwoWay}">
                                 <Border Background="{DynamicResource ContentBaseBrush}"
                                         CornerRadius="8"
                                         Padding="8"
                                         Effect="{StaticResource ShadowEffect}">
-                                    <ListBox x:Name="SearchResults"
-                                             Background="Transparent"
-                                             BorderThickness="0"
-                                             ItemsSource="{Binding SearchItems}">
-                                        <ListBox.ItemTemplate>
-                                            <DataTemplate>
-                                                <TextBlock Text="{Binding}" FontSize="14" Padding="4" />
-                                            </DataTemplate>
-                                        </ListBox.ItemTemplate>
-                                    </ListBox>
+                                    <ScrollViewer Background="Transparent" MaxHeight="260"
+                                                  VerticalScrollBarVisibility="Auto">  
+                                       <ScrollViewer.Resources>  
+                                           <Style TargetType="ScrollBar">  
+                                               <Setter Property="Visibility" Value="Visible" />  
+                                           </Style>  
+                                       </ScrollViewer.Resources>
+
+                                        <ListBox x:Name="SearchResults"
+                                                 Background="Transparent"
+                                                 BorderThickness="0"
+                                                 ItemsSource="{Binding SearchItems}"
+                                                 SelectionChanged="SearchResults_SelectionChanged">
+                                            <ListBox.ItemContainerStyle>
+                                                <Style TargetType="ListBoxItem">
+                                                    <Setter Property="Background" Value="Transparent"/>
+                                                    <Setter Property="Cursor" Value="Hand"/>
+                                                    <Setter Property="Padding" Value="4"/>
+                                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="ListBoxItem">
+                                                                <Border x:Name="Bd"
+                                                                        Background="{TemplateBinding Background}"
+                                                                        CornerRadius="4">
+                                                                    <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                                                </Border>
+                                                                <ControlTemplate.Triggers>
+                                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                                        <Setter TargetName="Bd" Property="Background" Value="#22000000"/>
+                                                                    </Trigger>
+                                                                    <Trigger Property="IsSelected" Value="True">
+                                                                        <Setter TargetName="Bd" Property="Background" Value="#44007ACC"/>
+                                                                    </Trigger>
+                                                                </ControlTemplate.Triggers>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </ListBox.ItemContainerStyle>
+                                            <ListBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding}" FontSize="14" Padding="4"/>
+                                                </DataTemplate>
+                                            </ListBox.ItemTemplate>
+                                        </ListBox>  
+                                    </ScrollViewer>
                                 </Border>
                             </Popup>
                         </StackPanel>

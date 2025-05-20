@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -83,5 +84,34 @@ namespace MoodTracker.Data
             return null;
         }
 
+        // 按照字符串获取当前用户的记录（还是按照时间倒序）
+        public List<MoodRecord> GetRecordsByStringOfUserId(string userId, string content)
+        {
+            using var db = new ApplicationDbContext();
+            // 包含标签信息，便于后续查询
+            return db.MoodRecords
+                .Include(r => r.Tags)
+                .Where(r => r.UserId == userId)
+                .Where(r =>
+                    r.Content.Contains(content) ||
+                    r.Title.Contains(content) ||
+                    r.SongName.Contains(content) ||
+                    r.Tags.Any(t => t.Name.Contains(content) || t.TagId.Contains(content))
+                )
+                .OrderByDescending(r => r.Datetime)
+                .ToList();
+        }
+
+        // 按照字符串获取当前用户的记录时间
+        public List<DateTime> GetAllRecordDates(string userId)
+        {
+            using var db = new ApplicationDbContext();
+            return db.MoodRecords
+                .Where(r => r.UserId == userId)
+                .Select(r => r.Datetime.Date)
+                .Distinct()
+                .OrderBy(d => d)
+                .ToList();
+        }
     }
 }
