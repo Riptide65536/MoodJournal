@@ -22,6 +22,8 @@ namespace MoodTracker
             this.DataContext = new MainViewModel();
             // 默认导航到首页
             MainContentFrame.Navigate(new HomePage());
+            // 监听主窗口任何点击事件
+            this.PreviewMouseDown += MainWindow_PreviewMouseDown;
         }
 
         //页面切换逻辑
@@ -49,6 +51,13 @@ namespace MoodTracker
                 else if (sideNav.AIButton.IsChecked == true)
                 {
                     MainContentFrame.Navigate(new ChatWindow());
+                }
+                else if (sideNav.MemoryButton.IsChecked == true)
+                {
+                    MoodRecord? record = new JournalService().GetRandomRecordByUserId("0");
+                    if (record == null) return;
+                    var detailPage = new RecordDetailPage(record);
+                    MainContentFrame.Navigate(detailPage);
                 }
             }
         }
@@ -78,27 +87,27 @@ namespace MoodTracker
         {
             if (DataContext is MainViewModel viewModel)
             {
-                // 强制更新UI
-                Dispatcher.BeginInvoke(new Action(() =>
-                {
-                    viewModel.UpdateSearchResults();
-                    viewModel.IsSearchOpen = true;
-                }), DispatcherPriority.Render);
+                viewModel.UpdateSearchResults();
+                viewModel.IsSearchOpen = true;
+                SearchPopup.IsOpen = true; // 确保弹窗打开
             }
         }
 
         private void SearchBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            Dispatcher.InvokeAsync(() =>
+            // 延迟检查是否真的需要关闭弹窗
+            Dispatcher.BeginInvoke(new Action(() =>
             {
-                if (!SearchPopup.IsKeyboardFocusWithin && !SearchBox.IsKeyboardFocusWithin)
+                // 检查焦点是否真的离开了搜索区域
+                if (!SearchPopup.IsMouseOver && !SearchBox.IsMouseOver)
                 {
                     if (DataContext is MainViewModel viewModel)
                     {
                         viewModel.IsSearchOpen = false;
+                        SearchPopup.IsOpen = false;
                     }
                 }
-            }, DispatcherPriority.Background);
+            }), DispatcherPriority.Background);
         }
 
         private void SearchResults_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -116,5 +125,47 @@ namespace MoodTracker
                 ((ListBox)sender).SelectedItem = null;
             }
         }
+
+        private void MainWindow_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // 检查点击是否发生在搜索框或搜索列表内
+            if (!IsClickInside(SearchBox, e) && !IsClickInside(SearchPopup, e))
+            {
+                // 延迟关闭，以便能够点击搜索结果
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    if (!SearchPopup.IsMouseOver && !SearchBox.IsMouseOver)
+                    {
+                        if (DataContext is MainViewModel vm)
+                        {
+                            vm.IsSearchOpen = false;
+                            SearchPopup.IsOpen = false;
+                        }
+                    }
+                }), DispatcherPriority.Background);
+            }
+        }
+        private bool IsClickInside(FrameworkElement element, MouseButtonEventArgs e)
+        {
+            if (element == null) return false;
+
+            var clickedElement = e.OriginalSource as DependencyObject;
+            return element.IsAncestorOf(clickedElement);
+        }
+
+        private void SearchBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            // 手动设置焦点 & 打开弹窗
+            SearchBox.Focus();
+            e.Handled = true; // 防止事件冒泡
+
+            if (DataContext is MainViewModel viewModel)
+            {
+                viewModel.UpdateSearchResults();
+                viewModel.IsSearchOpen = true;
+                SearchPopup.IsOpen = true; // 确保弹窗打开
+            }
+        }
+
     }
 }

@@ -131,7 +131,7 @@
                 <!-- 音乐链接 -->
                 <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Margin="0,10">
                     <Image Source="{DynamicResource LinkIcon}" Width="16" Height="16" Margin="0,0,6,0"/>
-                    <TextBlock Text="音乐链接：" FontWeight="SemiBold"/>
+                    <TextBlock Text="音乐链接：" FontWeight="SemiBold" VerticalAlignment="Center" />
                 </StackPanel>
                 <TextBox Text="{Binding SongLink}" 
            Grid.Row="3" Grid.Column="1"
@@ -152,16 +152,16 @@
 
             <!-- 内容 -->
             <TextBox Text="{Binding Content}" 
-       FontSize="16"
-       TextWrapping="Wrap"
-       Margin="0,10,0,0"
-       TextAlignment="Left"
-       AcceptsReturn="True"
-       VerticalScrollBarVisibility="Auto"
-       Height="200"
-       BorderBrush="{StaticResource ContentSurface}"
-       BorderThickness="1"
-       Padding="6"/>
+               FontSize="16"
+               TextWrapping="Wrap"
+               Margin="0,10,0,0"
+               TextAlignment="Left"
+               AcceptsReturn="True"
+               VerticalScrollBarVisibility="Auto"
+               Height="200"
+               BorderBrush="{StaticResource ContentSurface}"
+               BorderThickness="1"
+               Padding="6"/>
         </StackPanel>
 
         <!-- 返回按钮 -->

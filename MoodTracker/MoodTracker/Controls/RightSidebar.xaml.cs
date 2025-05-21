@@ -13,7 +13,6 @@ namespace MoodTracker.Controls
     public partial class RightSidebar : UserControl
     {
         private HashSet<DateTime> _recordDates = new();
-        public string currentUserId = "0";
 
         private static readonly string[] MoodQuotesList = new[]
         {
@@ -49,7 +48,7 @@ namespace MoodTracker.Controls
         {
             // 假设有 JournalService.GetAllRecordDates() 返回 List<DateTime>
             var service = new JournalService();
-            _recordDates = service.GetAllRecordDates(currentUserId).ToHashSet();
+            _recordDates = service.GetAllRecordDates(UserSession.CurrentUserId).ToHashSet();
         }
 
         private void PunchCalendar_Loaded(object sender, RoutedEventArgs e)
@@ -111,6 +110,26 @@ namespace MoodTracker.Controls
         {
             var rand = new Random();
             MoodQuote.Text = MoodQuotesList[rand.Next(MoodQuotesList.Length)];
+        }
+
+
+        //心情小语实现
+        private readonly SimpleAIChat _aiChat = new SimpleAIChat("sk-76716f1a8fca45a9bfe98c01b1a6c310");
+
+        private async void RefreshMoodQuote_Click(object sender, RoutedEventArgs e)
+        {
+            MoodQuote.Text = "生成中...";
+            try
+            {
+                string prompt = "请以轻松、温暖的语气生成一句中文心情语录，不超过30个字，不要出现AI相关内容，生成的语录要有创意,注意每次生成的语句不要和上一句生成的有很多相同（每句话里的元素不要重复）。";
+                string quote = await _aiChat.GetChatResponse(prompt);
+                MoodQuote.Text = quote.Trim();
+            }
+            catch (Exception ex)
+            {
+                MoodQuote.Text = "获取失败，请稍后重试。";
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }

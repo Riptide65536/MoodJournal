@@ -30,6 +30,7 @@
     <None Remove="Assets\music.png" />
     <None Remove="Assets\NimbusSearch.png" />
     <None Remove="Assets\OptionHorizontal.png" />
+    <None Remove="Assets\random.png" />
     <None Remove="Assets\RecordCard_ArrowForward.png" />
     <None Remove="Assets\time.png" />
     <None Remove="Assets\TopcoatBack.png" />
@@ -86,6 +87,9 @@
     </Resource>
     <Resource Include="Assets\music.png" />
     <Resource Include="Assets\NimbusSearch.png" />
+    <Resource Include="Assets\random.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\time.png" />
     <Resource Include="Assets\TopcoatBack.png" />
     <Resource Include="Assets\UilPlus.png" />

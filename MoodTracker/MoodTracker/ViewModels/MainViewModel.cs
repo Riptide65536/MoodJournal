@@ -132,16 +132,27 @@ namespace MoodTracker.ViewModels
 
         public void UpdateSearchResults()
         {
-
             Application.Current.Dispatcher.Invoke(() =>
             {
                 SearchItems.Clear();
 
-                JournalService service = new();
-                var result = service.GetRecordsByStringOfUserId("0", SearchText);
+                if (!string.IsNullOrWhiteSpace(SearchText))
+                {
+                    JournalService service = new();
+                    var result = service.GetRecordsByStringOfUserId("0", SearchText);
 
-                foreach (var item in result)
-                    SearchItems.Add(item);
+                    foreach (var item in result)
+                        SearchItems.Add(item);
+                }
+                else
+                {
+                    // 如果搜索文本为空，显示所有记录
+                    JournalService service = new();
+                    var result = service.GetRecordsByStringOfUserId("0", "");
+
+                    foreach (var item in result)
+                        SearchItems.Add(item);
+                }
 
                 OnPropertyChanged(nameof(SearchItems));
                 IsSearchOpen = true;

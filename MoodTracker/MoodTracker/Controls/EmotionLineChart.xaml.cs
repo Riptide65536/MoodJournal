@@ -10,7 +10,6 @@ namespace MoodTracker.Controls
 {
     public partial class EmotionLineChart : UserControl
     {
-        public string currentUserId = "0";
         public SeriesCollection? LineSeriesCollection { get; set; }
         public List<string> Labels { get; set; } = [];
         public Func<double, string>? YFormatter { get; set; }
@@ -26,7 +25,7 @@ namespace MoodTracker.Controls
         {
             using var db = new ApplicationDbContext();
             var records = db.MoodRecords
-                .Where(r => r.UserId == currentUserId)
+                .Where(r => r.UserId == UserSession.CurrentUserId)
                 .Where(r => r.Datetime >= DateTime.Now.AddDays(-7))
                 .OrderBy(r => r.Datetime);
 

@@ -16,8 +16,6 @@ namespace MoodTracker.View
         public ObservableCollection<MoodRecord> UserRecords { get; set; }
         public RecordList RecordListControl => this.RecordListControl_;
 
-        public string currentUserId = "0";
-
         public HomePage()
         {
             InitializeComponent();
@@ -25,7 +23,6 @@ namespace MoodTracker.View
             this.DataContext = this;
 
             // 在这里提醒更新即可
-            RecordListControl.currentUserId = currentUserId;
             RecordListControl.RefreshRecords();
         }
 

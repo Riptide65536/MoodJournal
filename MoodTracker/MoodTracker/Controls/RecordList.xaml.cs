@@ -28,9 +28,6 @@ namespace MoodTracker.Controls
         private int currentPage = 0; // 当前页数
         private const int PageSize = 10; // 每页加载的记录数
 
-        // 这个id之后要用！
-        public string currentUserId { get; set; } = "0";
-
         public RecordList()
         {
             InitializeComponent();
@@ -47,7 +44,7 @@ namespace MoodTracker.Controls
             currentPage = 0;
 
             JournalService journalService = new();
-            allRecords = journalService.GetRecordsByUserId(currentUserId); // 获取所有记录
+            allRecords = journalService.GetRecordsByUserId(UserSession.CurrentUserId); // 获取所有记录
             LoadMoreRecords(); // 加载第一页
         }
 
@@ -143,14 +140,14 @@ namespace MoodTracker.Controls
         //添加
         public void AddNewRecord(MoodRecord newRecord)
         {
-            if (newRecord == null || currentUserId == null) return;
+            if (newRecord == null || UserSession.CurrentUserId == null) return;
 
             // 处理record的用户信息
-            newRecord.UserId = currentUserId;
+            newRecord.UserId = UserSession.CurrentUserId;
 
             // 将record写入数据库
             JournalService journalService = new();
-            journalService.AddRecordToExistingUser(currentUserId, newRecord);
+            journalService.AddRecordToExistingUser(UserSession.CurrentUserId, newRecord);
 
             // 直接更新一遍卡片列表即可
             RefreshRecords();

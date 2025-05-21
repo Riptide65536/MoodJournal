@@ -9,7 +9,6 @@ namespace MoodTracker.Controls
 {
     public partial class KeywordCloud : UserControl
     {
-        public string currentUserId = "0";
 
         public KeywordCloud()
         {
@@ -21,7 +20,7 @@ namespace MoodTracker.Controls
         {
             // 获取当前用户的所有情绪记录
             JournalService service = new();
-            var records = service.GetRecordsByUserId(currentUserId);
+            var records = service.GetRecordsByUserId(UserSession.CurrentUserId);
 
             // 清点词云的关键词：情绪类型和标签
             var wordsDict = new Dictionary<string, int>();
