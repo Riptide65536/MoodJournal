@@ -74,6 +74,7 @@ namespace MoodTracker.Controls
             HomeButton.IsChecked = false;
             AnalyticsButton.IsChecked = false;
             AIButton.IsChecked = false;
+            MemoryButton.IsChecked = false;
             //待添加（别的功能按钮）
         }
 
@@ -130,6 +131,27 @@ namespace MoodTracker.Controls
                 aiButton.IsChecked = true;
 
                 RaiseEvent(new RoutedEventArgs(NavigationRequestedEvent, "AI"));
+            }
+        }
+
+        private void MemoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            ResetSelection();
+            if (sender is ToggleButton randomButton)
+            {
+                var homeButton = this.FindName("HomeButton") as ToggleButton;
+                var analyticsButton = this.FindName("AnalyticsButton") as ToggleButton;
+                var aiButton = this.FindName("AIButton") as ToggleButton;
+
+                if (homeButton != null) homeButton.IsChecked = false;
+                if (analyticsButton != null) analyticsButton.IsChecked = false;
+                if (aiButton != null) aiButton.IsChecked = false;
+
+                randomButton.IsChecked = true;
+
+                RaiseEvent(new RoutedEventArgs(NavigationRequestedEvent, "Random"));
+
+                
             }
         }
     }

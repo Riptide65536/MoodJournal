@@ -102,5 +102,6 @@
     <BitmapImage x:Key="LinkIcon" UriSource="/Assets/link.png"/>
     <BitmapImage x:Key="TimeIcon" UriSource="/Assets/time.png"/>
     <BitmapImage x:Key="SearchIcon" UriSource="/Assets/NimbusSearch.png"/>
+    <BitmapImage x:Key="RandomButton" UriSource="/Assets/random.png"/>
 
 </ResourceDictionary>

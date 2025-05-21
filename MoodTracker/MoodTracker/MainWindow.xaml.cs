@@ -52,6 +52,13 @@ namespace MoodTracker
                 {
                     MainContentFrame.Navigate(new ChatWindow());
                 }
+                else if (sideNav.MemoryButton.IsChecked == true)
+                {
+                    MoodRecord? record = new JournalService().GetRandomRecordByUserId("0");
+                    if (record == null) return;
+                    var detailPage = new RecordDetailPage(record);
+                    MainContentFrame.Navigate(detailPage);
+                }
             }
         }
 
