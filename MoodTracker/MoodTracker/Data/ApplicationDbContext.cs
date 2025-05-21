@@ -22,9 +22,9 @@ namespace MoodTracker.Data
         {
             // 根据实际情况选择数据库连接字符串
             optionsBuilder
-                //.UseMySql("server=localhost;port=3306;database=mooddb;user=root;password=2.71828182;",
+                .UseMySql("server=localhost;port=3306;database=mooddb;user=root;password=2.71828182;",
                 //.UseMySql("server=localhost;port=3306;database=mooddb;user=root;password=mrwuabc0750*;",
-                .UseMySql("server=localhost;port=3307;database=mooddb;user=root;password=password;",
+                //.UseMySql("server=localhost;port=3307;database=mooddb;user=root;password=password;",
                 new MySqlServerVersion(new Version(8, 0, 41)));
         }
 
