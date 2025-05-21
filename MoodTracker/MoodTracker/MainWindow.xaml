@@ -119,6 +119,7 @@
                                                  Padding="6,0"
                                                  Foreground="{DynamicResource TextPrimaryBrush}"
                                                  Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                                                 PreviewMouseLeftButtonDown="SearchBox_PreviewMouseLeftButtonDown"
                                                  GotFocus="SearchBox_GotFocus"
                                                  LostFocus="SearchBox_LostFocus" />
                                     </Grid>

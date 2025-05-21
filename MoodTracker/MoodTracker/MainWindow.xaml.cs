@@ -22,6 +22,8 @@ namespace MoodTracker
             this.DataContext = new MainViewModel();
             // 默认导航到首页
             MainContentFrame.Navigate(new HomePage());
+            // 监听主窗口任何点击事件
+            this.PreviewMouseDown += MainWindow_PreviewMouseDown;
         }
 
         //页面切换逻辑
@@ -78,27 +80,20 @@ namespace MoodTracker
         {
             if (DataContext is MainViewModel viewModel)
             {
-                // 强制更新UI
-                Dispatcher.BeginInvoke(new Action(() =>
-                {
-                    viewModel.UpdateSearchResults();
-                    viewModel.IsSearchOpen = true;
-                }), DispatcherPriority.Render);
+                viewModel.UpdateSearchResults();
+                viewModel.IsSearchOpen = true;
             }
         }
 
         private void SearchBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            Dispatcher.InvokeAsync(() =>
+            if (!SearchPopup.IsKeyboardFocusWithin && !SearchBox.IsKeyboardFocusWithin)
             {
-                if (!SearchPopup.IsKeyboardFocusWithin && !SearchBox.IsKeyboardFocusWithin)
+                if (DataContext is MainViewModel viewModel)
                 {
-                    if (DataContext is MainViewModel viewModel)
-                    {
-                        viewModel.IsSearchOpen = false;
-                    }
+                    viewModel.IsSearchOpen = false;
                 }
-            }, DispatcherPriority.Background);
+            }
         }
 
         private void SearchResults_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -116,5 +111,40 @@ namespace MoodTracker
                 ((ListBox)sender).SelectedItem = null;
             }
         }
+
+        private void MainWindow_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // 检查点击是否发生在搜索框或搜索列表内
+            if (!IsClickInside(SearchBox, e) && !IsClickInside(SearchPopup, e))
+            {
+                if (DataContext is MainViewModel vm)
+                {
+                    vm.IsSearchOpen = false;
+                }
+            }
+        }
+        private bool IsClickInside(FrameworkElement element, MouseButtonEventArgs e)
+        {
+            if (element == null) return false;
+
+            var clickedElement = e.OriginalSource as DependencyObject;
+            return element.IsAncestorOf(clickedElement);
+        }
+
+        private void SearchBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            // 手动设置焦点 & 打开弹窗（无论是不是已经 Focus）
+            if (!SearchBox.IsKeyboardFocusWithin)
+            {
+                SearchBox.Focus();
+                e.Handled = true; // 防止事件冒泡
+            }
+
+            if (DataContext is MainViewModel viewModel)
+            {
+                viewModel.IsSearchOpen = true;
+            }
+        }
+
     }
 }
