@@ -23,7 +23,7 @@
 
             <!-- 图片：左对齐且垂直居中 -->
             <Image 
-                Source="/Assets/Mood/happy.png" 
+                Source="{Binding ImagePath, RelativeSource={RelativeSource AncestorType=UserControl}}"
                 Width="40" 
                 Height="40"
                 VerticalAlignment="Center"       
@@ -38,26 +38,25 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <!-- 日期 -->
+                <!-- 标题 -->
                 <TextBlock 
-                    x:Name="DateTextBlock"
+                    x:Name="MoodTextBlock"
                     Grid.Row="0"
-                    Text="{Binding Date, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                    Text="{Binding Title, RelativeSource={RelativeSource AncestorType=UserControl}}" 
                     FontWeight="Bold" 
-                    FontSize="14"
+                    FontSize="16"
                     HorizontalAlignment="Left"  
                 />
 
-                <!-- 内容 -->
+                <!-- 日期 -->
                 <TextBlock 
-                    x:Name="MoodTextBlock"
+                    x:Name="DateTextBlock"
                     Grid.Row="1"
-                    Text="{Binding Mood, RelativeSource={RelativeSource AncestorType=UserControl}}"  
+                    Text="{Binding Format_date, RelativeSource={RelativeSource AncestorType=UserControl}}"
                     TextTrimming="CharacterEllipsis"  
                     FontSize="12" 
-                    Margin="10,5,0,0"  
                     TextWrapping="Wrap"
-                    HorizontalAlignment="Left"  
+                    HorizontalAlignment="Left" Foreground="#FF707070"  
                 />
             </Grid>
             <Grid Grid.Column="2">

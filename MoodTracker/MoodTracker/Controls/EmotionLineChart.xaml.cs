@@ -1,5 +1,7 @@
 ﻿using LiveCharts;
 using LiveCharts.Wpf;
+using MoodTracker.Converters;
+using MoodTracker.Data;
 using System;
 using System.Collections.Generic;
 using System.Windows.Controls;
@@ -8,9 +10,10 @@ namespace MoodTracker.Controls
 {
     public partial class EmotionLineChart : UserControl
     {
-        public SeriesCollection LineSeriesCollection { get; set; }
-        public List<string> Labels { get; set; }
-        public Func<double, string> YFormatter { get; set; }
+        public string currentUserId = "0";
+        public SeriesCollection? LineSeriesCollection { get; set; }
+        public List<string> Labels { get; set; } = [];
+        public Func<double, string>? YFormatter { get; set; }
 
         public EmotionLineChart()
         {
@@ -21,21 +24,27 @@ namespace MoodTracker.Controls
 
         private void LoadChartData()
         {
-            LineSeriesCollection = new SeriesCollection
-            {
-                new LineSeries
-                {
-                    Title = "平静",
-                    Values = new ChartValues<double> { 100, 120, 90, 150, 130, 160 }
-                },
-                new LineSeries
-                {
-                    Title = "焦虑",
-                    Values = new ChartValues<double> { 60, 70, 85, 50, 95, 65 }
-                }
-            };
+            using var db = new ApplicationDbContext();
+            var records = db.MoodRecords
+                .Where(r => r.UserId == currentUserId)
+                .Where(r => r.Datetime >= DateTime.Now.AddDays(-7))
+                .OrderBy(r => r.Datetime);
 
-            Labels = new List<string> { "周一", "周二", "周三", "周四", "周五", "周六" };
+
+            ChartValues<double> values = [];
+            foreach (var r in records)
+            {
+                values.Add(EmotionConverter.ConvertToValue(r.CurrentEmotion));
+                Labels.Add(r.Datetime.ToString("MM/dd"));
+            }
+
+            LineSeriesCollection = new SeriesCollection();
+            LineSeriesCollection.Add(new LineSeries
+            {
+                Title = "心情值",
+                Values = values
+            });
+
             YFormatter = value => value.ToString("N0");
         }
     }

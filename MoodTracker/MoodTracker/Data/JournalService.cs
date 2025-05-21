@@ -79,23 +79,15 @@ namespace MoodTracker.Data
             }
         }
 
-        /*
-        public void UpdateMoodRecord(string recordId, MoodRecord new_record)
-        {
-            // TODO:更新UpdateMoodRecord中的方法
-            DeleteMoodRecord(recordId);
-            // 在自动更新时会产生错误！从使用角度看换成这个更好……
-            AddRecordToExistingUser(new_record.UserId, new_record);
-            //AddMoodRecord(new_record);
-        }*/
-
         // 获取用户的所有记录（按照时间倒序）
         public List<MoodRecord> GetRecordsByUserId(string userId)
         {
             using var db = new ApplicationDbContext();
             // db.EnsureDatabaseCreatedAndMigrated();
 
-            return db.MoodRecords.Where(r => r.UserId == userId)
+            return db.MoodRecords
+                .Include(r => r.Tags)
+                .Where(r => r.UserId == userId)
                 .OrderByDescending(r => r.Datetime)
                 .ToList();
         }
@@ -104,10 +96,13 @@ namespace MoodTracker.Data
         public MoodRecord? GetRandomRecordByUserId(string userId)
         {
             using var db = new ApplicationDbContext();
-            var records = db.MoodRecords.Where(r => r.UserId == userId).ToList();
+            var records = db.MoodRecords
+                .Include(r => r.Tags)
+                .Where(r => r.UserId == userId)
+                .ToList();
             if (records.Count > 0)
             {
-                Random random = new Random();
+                Random random = new Random(DateTime.Now.Millisecond);
                 int index = random.Next(records.Count);
                 return records[index];
             }

@@ -21,7 +21,7 @@ namespace MoodTracker.Data
 
         [ForeignKey("User")]
         public string UserId { get; set; } = string.Empty; //所属用户Id  
-        public User User { get; set; } = new User();
+        public User? User { get; set; }
 
         private EmotionType currentEmotion; // 用户心情（枚举类型）  
         public EmotionType CurrentEmotion

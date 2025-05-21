@@ -18,7 +18,7 @@ namespace MoodTracker.Data
         // 对应用户
         [ForeignKey("User")]
         public string UserId { get; set; } = string.Empty;
-        public User User { get; set; } = new User();
+        public User? User { get; set; }
 
         // 对应心情记录
         public ObservableCollection<MoodRecord> MoodRecords { get; set; } = [];

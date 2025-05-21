@@ -80,7 +80,7 @@ namespace MoodTracker.Controls
             {
                 var card = new RecordCard
                 {
-                    Mood = rec.Title,
+                    Title = rec.Title,
                     Date = rec.Datetime,
                     Record = rec // 将记录数据存储在 Tag 属性中
                 };

@@ -15,19 +15,10 @@
                    FontSize="18"
                    FontWeight="SemiBold"
                    Margin="0 0 0 10"/>
-        
-        <WrapPanel x:Name="KeywordWrapPanel" 
+
+            <WrapPanel x:Name="KeywordWrapPanel" 
                    Margin="5">
-            <!-- 关键词示例样式 -->
-            <Border CornerRadius="8" 
-                    Background="#2C2E47"  
-                    Margin="4" 
-                    Padding="8,4">
-                <TextBlock Text="#电子乐" 
-                           Foreground="#AEB1D9"  
-                           FontSize="14"/>
-            </Border>
-        </WrapPanel>
+            </WrapPanel>
     </StackPanel>
 </Border>
 </UserControl>

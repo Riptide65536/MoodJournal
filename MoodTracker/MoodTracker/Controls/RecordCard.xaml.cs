@@ -1,4 +1,5 @@
-﻿using MoodTracker.Data;
+﻿using MoodTracker.Converters;
+using MoodTracker.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,56 +25,50 @@ namespace MoodTracker.Controls
     {
         public RecordCard()
         {
+            this.Date = DateTime.Now;
+            this.Title = string.Empty;
+            this.Record = new();
             InitializeComponent();
         }
 
-        // 自定义依赖属性：Date
-        public static readonly DependencyProperty DateProperty =
-        DependencyProperty.Register("Date", typeof(DateTime),
-            typeof(RecordCard), new PropertyMetadata(DateTime.Now.Date));
+        public RecordCard(DateTime dateTime, string title, MoodRecord record)
+        {
+            this.Date = dateTime;
+            this.Title = title;
+            this.Record = record;
+            InitializeComponent();
+        }
 
+        // 重写依赖属性Date和Mood
+
+        public DateTime date;
         public DateTime Date
         {
-            get { return (DateTime)GetValue(DateProperty); }
-            set { SetValue(DateProperty, value); }
-        }
-        private static void OnDateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var control = d as RecordCard;
-            if (control != null)
-            {
-                control.DateTextBlock.Text = (string)e.NewValue;
-            }
+            get => date;
+            set { date = value; }
         }
 
-        // 自定义依赖属性：Mood
-        public static readonly DependencyProperty MoodProperty =
-            DependencyProperty.Register("Mood", typeof(string), typeof(RecordCard), new PropertyMetadata(string.Empty));
+        public string Format_date{get => date.ToString("f");}
 
-        public string Mood
+        public string? title;
+        public string Title
         {
-            get { return (string)GetValue(MoodProperty); }
-            set { SetValue(MoodProperty, value); }
+            get => (title == null || title == string.Empty ? "无标题" : title);
+            set { title = value; }
         }
-        private static void OnMoodChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var control = d as RecordCard;
-            if (control != null)
-            {
-                // 更新显示
-                control.MoodTextBlock.Text = (string)e.NewValue;
-            }
-        }
+
+        // 对应的emoji图片
+        public string ImagePath{get => EmotionConverter.ConvertToEmojiPath(Record.CurrentEmotion);}
 
         // 对应的record属性
         public MoodRecord Record { get; set; }
 
         // 自定义点击事件，供外部绑定
-        public event RoutedEventHandler CardClicked;//卡片点击事件
+        public event RoutedEventHandler? CardClicked;//卡片点击事件
 
         private ScaleTransform _scaleTransform = new ScaleTransform(1.0, 1.0);
 
-        public event RoutedEventHandler OptionsButtonClicked;//右上角事件点击（删除当前卡片）
+        public event RoutedEventHandler? OptionsButtonClicked;//右上角事件点击（删除当前卡片）
 
         private void CardBorder_MouseEnter(object sender, MouseEventArgs e)
         {

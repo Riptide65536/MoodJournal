@@ -1,5 +1,7 @@
 ﻿using LiveCharts;
 using LiveCharts.Wpf;
+using MoodTracker.Converters;
+using MoodTracker.Data;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -7,7 +9,8 @@ namespace MoodTracker.Controls
 {
     public partial class EmotionPieChart : UserControl
     {
-        public SeriesCollection PieSeriesCollection { get; set; }
+        public string currentUserId = "0";
+        public SeriesCollection? PieSeriesCollection { get; set; }
 
         public EmotionPieChart()
         {
@@ -18,13 +21,37 @@ namespace MoodTracker.Controls
 
         private void LoadChartData()
         {
-            PieSeriesCollection = new SeriesCollection
+            // 从JournalServices中获取当前用户的情绪数据
+            using var db = new ApplicationDbContext();
+            var emotions = db.MoodRecords
+                .Where(r => r.UserId == currentUserId)
+                .Where(r => r.Datetime >= DateTime.Now.AddDays(-30))
+                .Select(r => r.CurrentEmotion);
+
+            // 分别统计每种情绪的数量
+            var emotionCounts = new Dictionary<EmotionType, int>();
+            foreach (var emotion in emotions)
             {
-                new PieSeries { Title = "快乐", Values = new ChartValues<double> { 30 }, Fill = Brushes.LightPink },
-                new PieSeries { Title = "平静", Values = new ChartValues<double> { 25 }, Fill = Brushes.LightSkyBlue },
-                new PieSeries { Title = "疲惫", Values = new ChartValues<double> { 20 }, Fill = Brushes.Khaki },
-                new PieSeries { Title = "紧张", Values = new ChartValues<double> { 25 }, Fill = Brushes.MediumOrchid }
-            };
+                if (emotionCounts.ContainsKey(emotion))
+                {
+                    emotionCounts[emotion]++;
+                }
+                else
+                {
+                    emotionCounts[emotion] = 1;
+                }
+            }
+
+            // 创建饼图数据
+            PieSeriesCollection = new SeriesCollection();
+            foreach (var e in emotionCounts) {
+                PieSeriesCollection.Add(new PieSeries
+                {
+                    Title = EmotionConverter.ConvertToChinese(e.Key),
+                    Values = new ChartValues<double> { e.Value },
+                    Fill = EmotionConverter.ConvertToColor(e.Key)
+                });
+            }
         }
     }
 }

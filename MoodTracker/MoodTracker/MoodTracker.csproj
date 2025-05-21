@@ -19,6 +19,14 @@
     <None Remove="Assets\link.png" />
     <None Remove="Assets\mood.png" />
     <None Remove="Assets\MoodTracker.png" />
+    <None Remove="Assets\Mood\afraid.png" />
+    <None Remove="Assets\Mood\angry.png" />
+    <None Remove="Assets\Mood\anxiety.png" />
+    <None Remove="Assets\Mood\calm.png" />
+    <None Remove="Assets\Mood\confused.png" />
+    <None Remove="Assets\Mood\excited.png" />
+    <None Remove="Assets\Mood\neutral.png" />
+    <None Remove="Assets\Mood\sad.png" />
     <None Remove="Assets\music.png" />
     <None Remove="Assets\NimbusSearch.png" />
     <None Remove="Assets\OptionHorizontal.png" />
@@ -37,6 +45,30 @@
   <ItemGroup>
     <Resource Include="Assets\link.png" />
     <Resource Include="Assets\mood.png" />
+    <Resource Include="Assets\Mood\afraid.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Mood\angry.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Mood\anxiety.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Mood\calm.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Mood\confused.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Mood\excited.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Mood\neutral.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Mood\sad.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\music.png" />
     <Resource Include="Assets\NimbusSearch.png" />
     <Resource Include="Assets\time.png" />
@@ -52,7 +84,9 @@
     <Resource Include="Assets\home.png" />
     <Resource Include="Assets\LucideCalendarDays.png" />
     <Resource Include="Assets\MoodTracker.png" />
-    <Resource Include="Assets\Mood\happy.png" />
+    <Resource Include="Assets\Mood\happy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\next.png" />
     <Resource Include="Assets\OptionHorizontal.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>

@@ -68,8 +68,7 @@ namespace MoodTracker.View
                 var newTag = new Tag { Name = tagName, UserId = _record.UserId };
                 _record.Tags.Add(newTag);
                 NewTagBox.Text = "";
-                // TODO：用户在添加/删除后将tags数据保存到数据库（主要解决“多对多如何存储”问题）
-                //new JournalService().UpdateMoodRecord(_record.RecordId, _record);
+                new JournalService().UpdateMoodRecord(_record.RecordId, _record);
             }
         }
 
@@ -80,8 +79,7 @@ namespace MoodTracker.View
                 if (_record.Tags.Contains(tag))
                 {
                     _record.Tags.Remove(tag);
-                    // 可选：保存到数据库
-                    //new JournalService().UpdateMoodRecord(_record.RecordId, _record);
+                    new JournalService().UpdateMoodRecord(_record.RecordId, _record);
                 }
             }
         }
