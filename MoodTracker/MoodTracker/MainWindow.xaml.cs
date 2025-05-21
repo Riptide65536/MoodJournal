@@ -82,18 +82,25 @@ namespace MoodTracker
             {
                 viewModel.UpdateSearchResults();
                 viewModel.IsSearchOpen = true;
+                SearchPopup.IsOpen = true; // 确保弹窗打开
             }
         }
 
         private void SearchBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (!SearchPopup.IsKeyboardFocusWithin && !SearchBox.IsKeyboardFocusWithin)
+            // 延迟检查是否真的需要关闭弹窗
+            Dispatcher.BeginInvoke(new Action(() =>
             {
-                if (DataContext is MainViewModel viewModel)
+                // 检查焦点是否真的离开了搜索区域
+                if (!SearchPopup.IsMouseOver && !SearchBox.IsMouseOver)
                 {
-                    viewModel.IsSearchOpen = false;
+                    if (DataContext is MainViewModel viewModel)
+                    {
+                        viewModel.IsSearchOpen = false;
+                        SearchPopup.IsOpen = false;
+                    }
                 }
-            }
+            }), DispatcherPriority.Background);
         }
 
         private void SearchResults_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -117,10 +124,18 @@ namespace MoodTracker
             // 检查点击是否发生在搜索框或搜索列表内
             if (!IsClickInside(SearchBox, e) && !IsClickInside(SearchPopup, e))
             {
-                if (DataContext is MainViewModel vm)
+                // 延迟关闭，以便能够点击搜索结果
+                Dispatcher.BeginInvoke(new Action(() =>
                 {
-                    vm.IsSearchOpen = false;
-                }
+                    if (!SearchPopup.IsMouseOver && !SearchBox.IsMouseOver)
+                    {
+                        if (DataContext is MainViewModel vm)
+                        {
+                            vm.IsSearchOpen = false;
+                            SearchPopup.IsOpen = false;
+                        }
+                    }
+                }), DispatcherPriority.Background);
             }
         }
         private bool IsClickInside(FrameworkElement element, MouseButtonEventArgs e)
@@ -133,16 +148,15 @@ namespace MoodTracker
 
         private void SearchBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            // 手动设置焦点 & 打开弹窗（无论是不是已经 Focus）
-            if (!SearchBox.IsKeyboardFocusWithin)
-            {
-                SearchBox.Focus();
-                e.Handled = true; // 防止事件冒泡
-            }
+            // 手动设置焦点 & 打开弹窗
+            SearchBox.Focus();
+            e.Handled = true; // 防止事件冒泡
 
             if (DataContext is MainViewModel viewModel)
             {
+                viewModel.UpdateSearchResults();
                 viewModel.IsSearchOpen = true;
+                SearchPopup.IsOpen = true; // 确保弹窗打开
             }
         }
 

@@ -121,7 +121,8 @@
                                                  Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
                                                  PreviewMouseLeftButtonDown="SearchBox_PreviewMouseLeftButtonDown"
                                                  GotFocus="SearchBox_GotFocus"
-                                                 LostFocus="SearchBox_LostFocus" />
+                                                 LostFocus="SearchBox_LostFocus"
+                                                 />
                                     </Grid>
                                 </Border>
                             </Grid>
@@ -130,15 +131,15 @@
                             <Popup x:Name="SearchPopup"
                                    Placement="Bottom"
                                    PlacementTarget="{Binding ElementName=SearchBox}"
-                                   StaysOpen="False"
+                                   StaysOpen="True"
                                    AllowsTransparency="True"
                                    PopupAnimation="None"
-                                   Width="240"
+                                   Width="224"
                                    ClipToBounds="True"
                                    IsOpen="{Binding IsSearchOpen, Mode=TwoWay}">
-                                <Border Background="{DynamicResource ContentBaseBrush}"
+                                <Border Background="{DynamicResource CardBorder}"
                                         CornerRadius="8"
-                                        Padding="8"
+                                        Padding="4"
                                         Effect="{StaticResource ShadowEffect}">
                                     <ScrollViewer Background="Transparent" MaxHeight="260"
                                                   VerticalScrollBarVisibility="Auto">  
