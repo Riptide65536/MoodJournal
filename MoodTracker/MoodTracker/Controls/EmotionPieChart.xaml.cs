@@ -9,7 +9,6 @@ namespace MoodTracker.Controls
 {
     public partial class EmotionPieChart : UserControl
     {
-        public string currentUserId = "0";
         public SeriesCollection? PieSeriesCollection { get; set; }
 
         public EmotionPieChart()
@@ -24,7 +23,7 @@ namespace MoodTracker.Controls
             // 从JournalServices中获取当前用户的情绪数据
             using var db = new ApplicationDbContext();
             var emotions = db.MoodRecords
-                .Where(r => r.UserId == currentUserId)
+                .Where(r => r.UserId == UserSession.CurrentUserId)
                 .Where(r => r.Datetime >= DateTime.Now.AddDays(-30))
                 .Select(r => r.CurrentEmotion);
 

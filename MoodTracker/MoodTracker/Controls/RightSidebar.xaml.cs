@@ -13,7 +13,6 @@ namespace MoodTracker.Controls
     public partial class RightSidebar : UserControl
     {
         private HashSet<DateTime> _recordDates = new();
-        public string currentUserId = "0";
 
         private static readonly string[] MoodQuotesList = new[]
         {
@@ -49,7 +48,7 @@ namespace MoodTracker.Controls
         {
             // 假设有 JournalService.GetAllRecordDates() 返回 List<DateTime>
             var service = new JournalService();
-            _recordDates = service.GetAllRecordDates(currentUserId).ToHashSet();
+            _recordDates = service.GetAllRecordDates(UserSession.CurrentUserId).ToHashSet();
         }
 
         private void PunchCalendar_Loaded(object sender, RoutedEventArgs e)
