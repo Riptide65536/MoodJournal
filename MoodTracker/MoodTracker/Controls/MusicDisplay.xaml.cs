@@ -4,7 +4,8 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-
+using NAudio.Wave;
+using System.IO;
 namespace MoodTracker.Controls
 {
     public partial class MusicDisplay : UserControl, INotifyPropertyChanged
@@ -13,36 +14,71 @@ namespace MoodTracker.Controls
         private double musicProgress = 0;
         private string progressText = "0:00 / 0:00";
         private System.Windows.Threading.DispatcherTimer progressTimer;
+        private WaveOutEvent outputDevice;
+        private AudioFileReader audioFileReader;
+
+        private readonly string[] songPaths = new string[]
+        {
+              "Assets/跳楼机_时柏尘.wav",
+              "Assets/稻香_周杰伦.wav",
+              "Assets/搀扶_马健涛.wav"
+        };
+        private int currentSongIndex = 0;
 
         // 当前播放的歌曲信息
         private MusicItem currentSong = new MusicItem
         {
-            Title = "XX歌曲",
-            Artist = "XX歌手",
+            Title = "未加载歌曲",
+            Artist = "未知艺术家",
             CoverImage = "pack://application:,,,/Assets/MoodTracker.png",
-            Duration = 180 // 3分钟
+            Duration = 0
         };
 
         public MusicDisplay()
         {
             InitializeComponent();
             DataContext = this;
+            Loaded += MusicDisplay_Loaded;
+            Unloaded += MusicDisplay_Unloaded;
+        }
 
+        private void MusicDisplay_Loaded(object sender, RoutedEventArgs e)
+        {
             // 初始化日期显示
             DateTime today = DateTime.Today;
             DayOfWeekText.Text = today.ToString("dddd", new CultureInfo("zh-CN"));
             DateText.Text = today.ToString("yyyy-MM-dd");
 
-            // 初始化歌曲信息
-            UpdateSongInfo();
+            // 初始化第一首歌信息
+            if (songPaths.Length > 0)
+            {
+                UpdateCurrentSongInfo();
+            }
+        }
+
+        private void MusicDisplay_Unloaded(object sender, RoutedEventArgs e)
+        {
+            CleanupResources();
+        }
+
+        private void CleanupResources()
+        {
+            try
+            {
+                outputDevice?.Stop();
+                outputDevice?.Dispose();
+                audioFileReader?.Dispose();
+                progressTimer?.Stop();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"资源释放异常: {ex.Message}");
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void OnPropertyChanged(string propertyName)
-        {
+        protected void OnPropertyChanged(string propertyName) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         public double MusicProgress
         {
@@ -65,8 +101,17 @@ namespace MoodTracker.Controls
             }
         }
 
-        private void UpdateSongInfo()
+        private void UpdateCurrentSongInfo()
         {
+            // 从文件名解析歌曲名和歌手（格式：歌曲名_歌手.wav）
+            string fileName = Path.GetFileNameWithoutExtension(songPaths[currentSongIndex]);
+            string[] parts = fileName.Split(new[] { '_' }, 2); // 按第一个下划线分割
+
+            currentSong.Title = parts.Length > 0 ? parts[0] : "未知歌曲";
+            currentSong.Artist = parts.Length > 1 ? parts[1] : "未知艺术家";
+            currentSong.Duration = audioFileReader?.TotalTime.TotalSeconds ?? 0;
+
+            // 更新UI
             SongNameText.Text = currentSong.Title;
             ArtistNameText.Text = currentSong.Artist;
             CoverImage.Source = new BitmapImage(new Uri(currentSong.CoverImage));
@@ -76,108 +121,132 @@ namespace MoodTracker.Controls
 
         private void UpdateProgressText()
         {
-            int currentSeconds = (int)(currentSong.Duration * (MusicProgress / 100));
-            TimeSpan currentTime = TimeSpan.FromSeconds(currentSeconds);
-            TimeSpan totalTime = TimeSpan.FromSeconds(currentSong.Duration);
+            if (audioFileReader == null) return;
 
+            TimeSpan currentTime = audioFileReader.CurrentTime;
+            TimeSpan totalTime = audioFileReader.TotalTime;
             ProgressText = $"{currentTime:mm\\:ss} / {totalTime:mm\\:ss}";
         }
 
         private void PlayPauseButton_Click(object sender, RoutedEventArgs e)
         {
-            isPlaying = !isPlaying;
+            if (outputDevice == null)
+            {
+                outputDevice = new WaveOutEvent();
+                outputDevice.PlaybackStopped += (s, args) =>
+                {
+                    if (isPlaying && args.Exception == null)
+                    {
+                        Dispatcher.Invoke(() => NextButton_Click(null, null));
+                    }
+                };
+            }
 
             if (isPlaying)
             {
-                PlayPauseIcon.Source = new BitmapImage(new Uri("pack://application:,,,/Assets/pause.png"));
-                StartMusicProgressUpdate();
+                PauseMusic();
             }
             else
             {
-                PlayPauseIcon.Source = new BitmapImage(new Uri("pack://application:,,,/Assets/play.png"));
-                StopMusicProgressUpdate();
+                PlayMusic();
             }
+        }
+
+        private void PlayMusic()
+        {
+            if (audioFileReader == null)
+            {
+                audioFileReader = new AudioFileReader(songPaths[currentSongIndex]);
+            }
+
+            // Stop any previously playing music before starting a new one
+            outputDevice?.Stop();
+            outputDevice?.Init(audioFileReader);
+            outputDevice?.Play();
+
+            // Update UI state
+            PlayPauseIcon.Source = new BitmapImage(new Uri("pack://application:,,,/Assets/pause.png"));
+            StartMusicProgressUpdate();
+            isPlaying = true;
+        }
+
+        private void PauseMusic()
+        {
+            outputDevice.Pause();
+            PlayPauseIcon.Source = new BitmapImage(new Uri("pack://application:,,,/Assets/play.png"));
+            StopMusicProgressUpdate();
+            isPlaying = false;
         }
 
         private void StartMusicProgressUpdate()
         {
-            if (progressTimer == null)
+            progressTimer = new System.Windows.Threading.DispatcherTimer
             {
-                progressTimer = new System.Windows.Threading.DispatcherTimer
+                Interval = TimeSpan.FromMilliseconds(200)
+            };
+            progressTimer.Tick += (s, e) =>
+            {
+                if (audioFileReader != null)
                 {
-                    Interval = TimeSpan.FromSeconds(1)
-                };
-                progressTimer.Tick += (s, e) =>
-                {
-                    if (MusicProgress < 100)
-                    {
-                        // 计算每秒增加的进度百分比
-                        double increment = 100.0 / currentSong.Duration;
-                        MusicProgress += increment;
-                    }
-                    else
-                    {
-                        // 播放完成
-                        StopMusicProgressUpdate();
-                        MusicProgress = 0;
-                        isPlaying = false;
-                        PlayPauseIcon.Source = new BitmapImage(new Uri("pack://application:,,,/Assets/play.png"));
-                    }
-                };
-            }
+                    MusicProgress = (audioFileReader.CurrentTime.TotalSeconds / audioFileReader.TotalTime.TotalSeconds) * 100;
+                }
+            };
             progressTimer.Start();
         }
 
         private void StopMusicProgressUpdate()
         {
             progressTimer?.Stop();
+            progressTimer = null;
         }
 
         private void PreviousButton_Click(object sender, RoutedEventArgs e)
         {
-            // 这里可以替换为实际的上一首逻辑
-            currentSong = new MusicItem
-            {
-                Title = "上一首歌曲",
-                Artist = "上一首艺术家",
-                CoverImage = "pack://application:,,,/Assets/MoodTracker.png",
-                Duration = 210 // 3分30秒
-            };
-
-            UpdateSongInfo();
-            if (isPlaying)
-            {
-                MusicProgress = 0;
-                StartMusicProgressUpdate();
-            }
+            currentSongIndex = (currentSongIndex - 1 + songPaths.Length) % songPaths.Length;
+            SwitchSong();
         }
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
-            // 这里可以替换为实际的下一首逻辑
-            currentSong = new MusicItem
-            {
-                Title = "下一首歌曲",
-                Artist = "下一首艺术家",
-                CoverImage = "pack://application:,,,/Assets/MoodTracker.png",
-                Duration = 150 // 2分30秒
-            };
+            currentSongIndex = (currentSongIndex + 1) % songPaths.Length;
+            SwitchSong();
+        }
 
-            UpdateSongInfo();
-            if (isPlaying)
+        private void SwitchSong()
+        {
+            try
             {
-                MusicProgress = 0;
-                StartMusicProgressUpdate();
+                // Stop the current song
+                outputDevice?.Stop();
+
+                // Dispose of the previous audio file reader
+                audioFileReader?.Dispose();
+                audioFileReader = null;
+
+                // Load the new song
+                if (isPlaying)
+                {
+                    PlayMusic(); // If the song is playing, play the next one immediately
+                }
+                else
+                {
+                    // If paused, just load the next song without playing
+                    audioFileReader = new AudioFileReader(songPaths[currentSongIndex]);
+                    UpdateCurrentSongInfo();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"切换歌曲失败: {ex.Message}");
             }
         }
-    }
 
-    // 简单的歌曲信息类
-    public class MusicItem
-    {
-        public string Title { get; set; }
-        public string Artist { get; set; }
-        public string CoverImage { get; set; }
-        public int Duration { get; set; } // 歌曲时长，单位秒
+        public class MusicItem
+        {
+            public string Title { get; set; }
+            public string Artist { get; set; }
+            public string CoverImage { get; set; }
+            public double Duration { get; set; }
+        }
     }
 }
