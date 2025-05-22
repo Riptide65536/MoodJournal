@@ -14,7 +14,7 @@ namespace MoodTracker.Data
             public string Id { get; set; } = Guid.NewGuid().ToString();
             public string UserMessage { get; set; }
             public string AIMessage { get; set; }
-            public string UserId { get; set; }  // �����û�ID�ֶ�
+            public string UserId { get; set; }  
             public DateTime Timestamp { get; set; } = DateTime.Now;
         }
 

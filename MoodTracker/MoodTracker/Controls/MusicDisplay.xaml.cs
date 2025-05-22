@@ -121,11 +121,18 @@ namespace MoodTracker.Controls
 
         private void UpdateProgressText()
         {
-            if (audioFileReader == null) return;
+            if (audioFileReader == null || audioFileReader.TotalTime == TimeSpan.Zero) return;
 
-            TimeSpan currentTime = audioFileReader.CurrentTime;
-            TimeSpan totalTime = audioFileReader.TotalTime;
-            ProgressText = $"{currentTime:mm\\:ss} / {totalTime:mm\\:ss}";
+            try
+            {
+                TimeSpan currentTime = audioFileReader.CurrentTime;
+                TimeSpan totalTime = audioFileReader.TotalTime;
+                ProgressText = $"{currentTime:mm\\:ss} / {totalTime:mm\\:ss}";
+            }
+            catch (Exception)
+            {
+                return;
+            }
         }
 
         private void PlayPauseButton_Click(object sender, RoutedEventArgs e)
