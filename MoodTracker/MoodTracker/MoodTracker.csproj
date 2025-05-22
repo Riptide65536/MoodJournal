@@ -16,7 +16,10 @@
   <ItemGroup>
     <None Remove="Assets\ai.png" />
     <None Remove="Assets\DaylightMode.png" />
+    <None Remove="Assets\Home_light.png" />
     <None Remove="Assets\link.png" />
+    <None Remove="Assets\Link_dark.png" />
+    <None Remove="Assets\Menu_dark.png" />
     <None Remove="Assets\mood.png" />
     <None Remove="Assets\MoodTracker.png" />
     <None Remove="Assets\Mood\afraid.png" />
@@ -27,12 +30,18 @@
     <None Remove="Assets\Mood\excited.png" />
     <None Remove="Assets\Mood\neutral.png" />
     <None Remove="Assets\Mood\sad.png" />
+    <None Remove="Assets\Mood_dark.png" />
+    <None Remove="Assets\MoonStars.png" />
     <None Remove="Assets\music.png" />
+    <None Remove="Assets\Music_dark.png" />
     <None Remove="Assets\NimbusSearch.png" />
+    <None Remove="Assets\Nimbus_dark.png" />
     <None Remove="Assets\OptionHorizontal.png" />
     <None Remove="Assets\random.png" />
+    <None Remove="Assets\RandomFill.png" />
     <None Remove="Assets\RecordCard_ArrowForward.png" />
     <None Remove="Assets\time.png" />
+    <None Remove="Assets\Time_dark.png" />
     <None Remove="Assets\TopcoatBack.png" />
     <None Remove="Assets\UilPlus.png" />
     <None Remove="Assets\搀扶_马健涛.wav" />
@@ -59,7 +68,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\Home_light.png" />
     <Resource Include="Assets\link.png" />
+    <Resource Include="Assets\Link_dark.png" />
+    <Resource Include="Assets\Menu_dark.png" />
     <Resource Include="Assets\mood.png" />
     <Resource Include="Assets\Mood\afraid.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -85,12 +97,18 @@
     <Resource Include="Assets\Mood\sad.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Assets\Mood_dark.png" />
+    <Resource Include="Assets\MoonStars.png" />
     <Resource Include="Assets\music.png" />
+    <Resource Include="Assets\Music_dark.png" />
     <Resource Include="Assets\NimbusSearch.png" />
+    <Resource Include="Assets\Nimbus_dark.png" />
     <Resource Include="Assets\random.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Assets\RandomFill.png" />
     <Resource Include="Assets\time.png" />
+    <Resource Include="Assets\Time_dark.png" />
     <Resource Include="Assets\TopcoatBack.png" />
     <Resource Include="Assets\UilPlus.png" />
   </ItemGroup>

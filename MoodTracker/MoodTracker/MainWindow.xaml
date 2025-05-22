@@ -219,8 +219,7 @@
                                                Margin="20,0,0,0"
                                                VerticalAlignment="Center"
                                                FontSize="14"
-                                               Foreground="{DynamicResource TextPrimaryBrush}"
-                                               Visibility="{Binding IsExpanded, ElementName=SideNavControl, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                               />
                                 </StackPanel>
                             </Grid>
                         </Button>
