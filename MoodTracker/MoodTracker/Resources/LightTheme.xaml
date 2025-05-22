@@ -89,7 +89,7 @@
     
     <!-- 图标资源 -->
     <BitmapImage x:Key="MenuIcon" UriSource="/Assets/hamburger.png"/>
-    <BitmapImage x:Key="HomeIcon" UriSource="/Assets/home.png"/>
+    <BitmapImage x:Key="HomeIcon" UriSource="/Assets/Home_light.png"/>
     <BitmapImage x:Key="AnalyticsIcon" UriSource="/Assets/analytics.png"/>
     <BitmapImage x:Key="ThemeIcon" UriSource="/Assets/DaylightMode.png"/>
     <BitmapImage x:Key="AvatarIcon" UriSource="/Assets/UserAvatar.png"/>
@@ -102,6 +102,6 @@
     <BitmapImage x:Key="LinkIcon" UriSource="/Assets/link.png"/>
     <BitmapImage x:Key="TimeIcon" UriSource="/Assets/time.png"/>
     <BitmapImage x:Key="SearchIcon" UriSource="/Assets/NimbusSearch.png"/>
-    <BitmapImage x:Key="RandomButton" UriSource="/Assets/random.png"/>
+    <BitmapImage x:Key="RandomButton" UriSource="/Assets/RandomFill.png"/>
 
 </ResourceDictionary>
