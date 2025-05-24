@@ -54,7 +54,7 @@ namespace MoodTracker
                 }
                 else if (sideNav.MemoryButton.IsChecked == true)
                 {
-                    MoodRecord? record = new JournalService().GetRandomRecordByUserId("0");
+                    MoodRecord? record = new JournalService().GetRandomRecordByUserId(UserSession.CurrentUserId);
                     if (record == null) return;
                     var detailPage = new RecordDetailPage(record);
                     MainContentFrame.Navigate(detailPage);

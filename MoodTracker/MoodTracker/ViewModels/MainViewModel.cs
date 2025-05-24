@@ -139,7 +139,7 @@ namespace MoodTracker.ViewModels
                 if (!string.IsNullOrWhiteSpace(SearchText))
                 {
                     JournalService service = new();
-                    var result = service.GetRecordsByStringOfUserId("0", SearchText);
+                    var result = service.GetRecordsByStringOfUserId(UserSession.CurrentUserId, SearchText);
 
                     foreach (var item in result)
                         SearchItems.Add(item);
@@ -148,7 +148,7 @@ namespace MoodTracker.ViewModels
                 {
                     // 如果搜索文本为空，显示所有记录
                     JournalService service = new();
-                    var result = service.GetRecordsByStringOfUserId("0", "");
+                    var result = service.GetRecordsByStringOfUserId(UserSession.CurrentUserId, "");
 
                     foreach (var item in result)
                         SearchItems.Add(item);
